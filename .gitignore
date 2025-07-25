@@ -24,3 +24,5 @@ pnpm-debug.log*
 .idea/
 
 .history
+*storybook.log
+storybook-static
