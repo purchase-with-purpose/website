@@ -15,6 +15,19 @@ const inner = {
     },
   }),
 
+  id: fields.text({
+    label: "Unique ID",
+    description: "A unique identifier for the software, used in the URL path.",
+    validation: {
+      isRequired: true,
+      pattern: {
+        regex: /^[a-z0-9_-]+$/,
+        message:
+          "Must be a valid ID (lowercase letters, numbers, dashes, underscores)",
+      },
+    },
+  }),
+
   logo: fields.image({
     label: "Logo",
     directory: "public/images/logos",
@@ -136,7 +149,7 @@ const inner = {
 export const cms = collection({
   schema: inner,
   label: "Software",
-  slugField: "label",
+  slugField: "id",
   path: "src/data/software/*",
   columns: ["description"],
   format: {
