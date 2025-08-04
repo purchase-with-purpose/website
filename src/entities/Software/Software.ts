@@ -9,23 +9,17 @@ import * as Indicator from "../Indicator";
 const inner = {
   label: fields.text({
     label: "Name",
+    description: "The full name of the software product or service.",
     validation: {
       isRequired: true,
-    },
-  }),
-
-  id: fields.slug({
-    name: {
-      label: "Unique ID",
-      validation: {
-        isRequired: true,
-      },
     },
   }),
 
   logo: fields.image({
     label: "Logo",
     directory: "public/images/logos",
+    description:
+      "Upload a logo image that represents the software. Ideal format is SVG if possible",
     validation: {
       isRequired: true,
     },
@@ -33,6 +27,8 @@ const inner = {
 
   description: fields.text({
     label: "Description",
+    description:
+      "A concise but informative description of the software, including its purpose and main features.",
     multiline: true,
     validation: {
       isRequired: true,
@@ -41,15 +37,19 @@ const inner = {
 
   incumbent: fields.checkbox({
     label: "Incumbent",
+    description:
+      "Enable this value if this software is a widely used or dominant player in its category.",
   }),
 
   category: fields.select({
     label: "Category",
-    defaultValue: "none",
+    description:
+      "Select the most appropriate category that the software fits into.",
+    defaultValue: "",
 
     options: [
       {
-        value: "none",
+        value: "",
         label: "None",
       },
       ...u.values(Category.items).map((x) => ({
@@ -61,11 +61,13 @@ const inner = {
 
   origin: fields.select({
     label: "Location",
-    defaultValue: "none",
+    defaultValue: "",
+    description:
+      "Select the country or region where the software is primarily developed or operated.",
 
     options: [
       {
-        value: "none",
+        value: "",
         label: "None",
       },
       ...u.values(Origin.items).map((x) => ({
@@ -77,6 +79,8 @@ const inner = {
 
   indicators: fields.multiselect({
     label: "Indicators",
+    description:
+      "Select one, multiple or none of the following if they are applicable to the software.",
     defaultValue: [],
     options: u.values(Indicator.items).map((x) => ({
       value: x.id,
@@ -123,6 +127,8 @@ const inner = {
     }),
     {
       label: "Notes",
+      description:
+        "Additional notes or comments about the software that are not part of the description.",
     }
   ),
 };
