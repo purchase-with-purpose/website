@@ -1,0 +1,12 @@
+[
+    {
+        "id": "1",
+        "label": "Origin 1",
+        "icon": "icon-1"
+    },
+    {
+        "id": "123",
+        "icon": "icon-2",
+        "label": "Origin 2"
+    }
+]

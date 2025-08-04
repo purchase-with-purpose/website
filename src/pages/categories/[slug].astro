@@ -1,0 +1,22 @@
+---
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const array = await getCollection("origins");
+
+  return array.map(({ id, data }) => ({
+    params: { slug: id },
+    props: { data },
+  }));
+}
+
+const { label } = Astro.props.data;
+---
+
+<html>
+  <head><title>{label}</title></head>
+  <body>
+    <h1>{label}</h1>
+    <p>12313</p>
+  </body>
+</html>

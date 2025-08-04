@@ -1,0 +1,32 @@
+[
+    {
+        "id": "photo-management",
+        "label": "AAA",
+        "tags": []
+    },
+    {
+        "id": "browser",
+        "label": "AAA",
+        "tags": []
+    },
+    {
+        "id": "file-storage",
+        "label": "AAA",
+        "tags": []
+    },
+    {
+        "id": "office-suite",
+        "label": "AAA",
+        "tags": []
+    },
+    {
+        "id": "search-engine",
+        "label": "AAA",
+        "tags": []
+    },
+    {
+        "id": "audio-book",
+        "label": "AAA",
+        "tags": []
+    }
+]
