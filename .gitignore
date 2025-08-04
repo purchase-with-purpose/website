@@ -26,3 +26,5 @@ pnpm-debug.log*
 .history
 *storybook.log
 storybook-static
+
+.vercel
