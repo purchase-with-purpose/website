@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { fields } from "@keystatic/core";
 
 export const TAG_ID_ARRAY = [
   "facial-recognition",

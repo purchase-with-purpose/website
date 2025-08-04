@@ -10,7 +10,7 @@ export const INDICATOR_ID_ARRAY = [
 export const validation = {
   item: z.object({
     id: z.enum(INDICATOR_ID_ARRAY),
-    labels: z.string(),
+    label: z.string(),
     swatch: z.string(),
   }),
 };

@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
-  const array = await getCollection("categories");
+  const array = await getCollection("software");
 
   return array.map(({ id, data }) => ({
     params: { slug: id },
@@ -10,12 +10,16 @@ export async function getStaticPaths() {
   }));
 }
 
-const { label } = Astro.props.data;
+const { label, description } = Astro.props.data;
 ---
 
 <html>
   <head><title>{label}</title></head>
+
   <body>
     <h1>{label}</h1>
+    <p>
+      {description}
+    </p>
   </body>
 </html>
