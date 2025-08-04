@@ -17,9 +17,8 @@ const { label, description } = Astro.props.data;
   <head><title>{label}</title></head>
 
   <body>
+    <a href="/">Home</a>
     <h1>{label}</h1>
-    <p>
-      {description}
-    </p>
+    <pre>{JSON.stringify(Astro.props.data, null, 2)}</pre>
   </body>
 </html>
