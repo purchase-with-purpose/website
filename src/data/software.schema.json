@@ -1,0 +1,97 @@
+{
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string"
+      },
+      "label": {
+        "type": "string"
+      },
+      "logo": {
+        "type": "string"
+      },
+      "description": {
+        "type": "string"
+      },
+      "indicators": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "environmental",
+            "open-source",
+            "privacy",
+            "self-hosted"
+          ]
+        }
+      },
+      "category": {
+        "type": "string",
+        "enum": [
+          "photo-management",
+          "browser",
+          "file-storage",
+          "office-suite",
+          "search-engine",
+          "audio-book",
+          "none"
+        ]
+      },
+      "incumbent": {
+        "type": "boolean"
+      },
+      "additional": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "variant": {
+              "type": "string",
+              "enum": [
+                "info",
+                "disclaimer",
+                "resource"
+              ]
+            },
+            "description": {
+              "type": "string"
+            },
+            "url": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "label",
+            "variant",
+            "description"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "origin": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "id",
+      "label",
+      "logo",
+      "description",
+      "indicators",
+      "category",
+      "incumbent",
+      "additional",
+      "origin"
+    ],
+    "additionalProperties": false
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

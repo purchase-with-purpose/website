@@ -1,5 +1,5 @@
 import { defineCollection } from "astro:content";
-import { glob } from "astro/loaders";
+import { file } from "astro/loaders";
 import * as Category from "./entities/Category";
 import * as Indicator from "./entities/Indicator";
 import * as Origin from "./entities/Origin";
@@ -21,7 +21,7 @@ const origins = defineCollection({
 });
 
 const software = defineCollection({
-  loader: glob({ pattern: "**/*.json", base: "./src/data/software" }),
+  loader: file("./src/data/software.json"),
   schema: Software.validation.item,
 });
 

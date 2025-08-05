@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "purchase-with-purpose",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -8,22 +8,22 @@
     "preview": "astro preview",
     "astro": "astro",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "predev": "tsx scripts.ts"
   },
   "dependencies": {
     "@astrojs/markdoc": "^0.15.4",
     "@astrojs/react": "^4.3.0",
-    "@astrojs/vercel": "^8.2.5",
-    "@keystatic/astro": "^5.0.6",
-    "@keystatic/core": "^0.5.48",
     "@types/react": "^19.1.9",
     "@types/react-dom": "^19.1.7",
     "@types/uuid": "^10.0.0",
     "astro": "^5.12.8",
-    "decap-cms-app": "^3.8.2",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "uuid": "^8.3.2"
+    "tsx": "^4.20.3",
+    "uuid": "^8.3.2",
+    "zod": "^3.25.76",
+    "zod-to-json-schema": "^3.24.6"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^4.0.1",

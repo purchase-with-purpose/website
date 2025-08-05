@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { fields } from "@keystatic/core";
 
 export const TAG_ID_ARRAY = [
   "facial-recognition",
@@ -24,6 +23,7 @@ export const CATEGORY_ID_ARRAY = [
   "office-suite",
   "search-engine",
   "audio-book",
+  "none",
 ] as const;
 
 export const validation = {
