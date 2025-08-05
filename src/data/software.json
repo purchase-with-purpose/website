@@ -1,1 +1,868 @@
-[]
+[
+  {
+    "id": "chrome",
+    "label": "Chrome",
+    "logo": "https://example.com/chrome-logo.png",
+    "description": "A widely used browser by Google.",
+    "indicators": [],
+    "category": "browser",
+    "incumbent": true,
+    "additional": [
+      {
+        "label": "Note",
+        "variant": "disclaimer",
+        "description": "Part of the big tech monopolies.",
+        "url": null
+      }
+    ],
+    "origin": "Google"
+  },
+  {
+    "id": "edge",
+    "label": "Edge",
+    "logo": "https://example.com/edge-logo.png",
+    "description": "A browser developed by Microsoft.",
+    "indicators": [],
+    "category": "browser",
+    "incumbent": true,
+    "additional": [
+      {
+        "label": "Note",
+        "variant": "disclaimer",
+        "description": "Part of the big tech monopolies.",
+        "url": null
+      }
+    ],
+    "origin": "Microsoft"
+  },
+  {
+    "id": "safari",
+    "label": "Safari",
+    "logo": "https://example.com/safari-logo.png",
+    "description": "A browser developed by Apple.",
+    "indicators": [],
+    "category": "browser",
+    "incumbent": true,
+    "additional": [
+      {
+        "label": "Note",
+        "variant": "disclaimer",
+        "description": "Part of the big tech monopolies.",
+        "url": null
+      }
+    ],
+    "origin": "Apple"
+  },
+  {
+    "id": "ecosia",
+    "label": "Ecosia",
+    "logo": "https://example.com/ecosia-logo.png",
+    "description": "Offers a fully featured mobile app and cross-functional experience.",
+    "indicators": ["environmental"],
+    "category": "browser",
+    "incumbent": false,
+    "additional": [],
+    "origin": "Ecosia"
+  },
+  {
+    "id": "vivaldi",
+    "label": "Vivaldi",
+    "logo": "https://example.com/vivaldi-logo.png",
+    "description": "A feature-rich and mature ecosystem for those looking for an easy switch.",
+    "indicators": ["environmental", "open-source"],
+    "category": "browser",
+    "incumbent": false,
+    "additional": [],
+    "origin": "Vivaldi"
+  },
+  {
+    "id": "brave",
+    "label": "Brave",
+    "logo": "https://example.com/brave-logo.png",
+    "description": "Optimized for privacy while maintaining usability, but updates are a few weeks behind Firefox.",
+    "indicators": ["privacy"],
+    "category": "browser",
+    "incumbent": false,
+    "additional": [
+      {
+        "label": "Note",
+        "variant": "resource",
+        "description": "Brave's CEO, Brendan Eich, has shown support for all-right causes and supported the banning of same-sex marriages. See response by Brave to each in the comment section.",
+        "url": "https://tly/brave-history"
+      }
+    ],
+    "origin": "Brave"
+  },
+  {
+    "id": "orion",
+    "label": "Orion",
+    "logo": "https://example.com/orion-logo.png",
+    "description": "No tracking or analytical data reported back to the company.",
+    "indicators": ["privacy"],
+    "category": "browser",
+    "incumbent": false,
+    "additional": [
+      {
+        "label": "Note",
+        "variant": "disclaimer",
+        "description": "Orion is only available on iOS/macOS and is based on Webkit.",
+        "url": null
+      }
+    ],
+    "origin": "Orion"
+  },
+  {
+    "id": "waterfox",
+    "label": "Waterfox",
+    "logo": "https://example.com/waterfox-logo.png",
+    "description": "Isn't impacted by Google's decisions e.g. dropping support for ad-blocking extensions.",
+    "indicators": ["open-source"],
+    "category": "browser",
+    "incumbent": false,
+    "additional": [],
+    "origin": "Waterfox"
+  },
+  {
+    "id": "firefox",
+    "label": "Firefox",
+    "logo": "https://example.com/firefox-logo.png",
+    "description": "Isn't impacted by Google's decisions e.g. dropping support for ad-blocking extensions.",
+    "indicators": ["open-source"],
+    "category": "browser",
+    "incumbent": false,
+    "additional": [
+      {
+        "label": "Note",
+        "variant": "resource",
+        "description": "Firefox changed its data collection policies. See consumer rights wiki/Mozilla introduces TOS to Firefox and was heavily criticized. Zero telemetry has to be configured.",
+        "url": "https://tly/firefox-telemetry"
+      }
+    ],
+    "origin": "Mozilla"
+  },
+  {
+    "id": "librewolf",
+    "label": "LibreWolf",
+    "logo": "https://example.com/librewolf-logo.png",
+    "description": "Isn't impacted by Google's decisions e.g. dropping support for ad-blocking extensions.",
+    "indicators": ["open-source", "privacy"],
+    "category": "browser",
+    "incumbent": false,
+    "additional": [],
+    "origin": "LibreWolf"
+  },
+  {
+    "id": "czen-browser",
+    "label": "Czen Browser",
+    "logo": "https://example.com/czen-browser-logo.png",
+    "description": "Isn't impacted by Google's decisions e.g. dropping support for ad-blocking extensions.",
+    "indicators": ["open-source"],
+    "category": "browser",
+    "incumbent": false,
+    "additional": [],
+    "origin": "Czen"
+  },
+  {
+    "id": "floorp",
+    "label": "Floorp",
+    "logo": "https://example.com/floorp-logo.png",
+    "description": "Highly customizable and privacy-focused - Firefox based.",
+    "indicators": ["privacy"],
+    "category": "browser",
+    "incumbent": false,
+    "additional": [],
+    "origin": "Floorp"
+  },
+  {
+    "id": "mullvad",
+    "label": "Mullvad",
+    "logo": "https://example.com/mullvad-logo.png",
+    "description": "Secure and private, that is part of a larger ecosystem of privacy tools - Firefox based.",
+    "indicators": "privacy",
+    "category": "browser",
+    "incumbent": false,
+    "additional": [],
+    "origin": "Mullvad"
+  },
+  {
+    "id": "duckduckgo",
+    "label": "DuckDuckGo",
+    "logo": "https://example.com/duckduckgo-logo.png",
+    "description": "Well-supported and easy to use - Chrome based.",
+    "indicators": ["privacy"],
+    "category": "browser",
+    "incumbent": false,
+    "additional": [],
+    "origin": "DuckDuckGo"
+  },
+  {
+    "id": "opera",
+    "label": "Opera",
+    "logo": "https://example.com/opera-logo.png",
+    "description": "Well-supported and easy to use - Chrome based.",
+    "indicators": [],
+    "category": "browser",
+    "incumbent": false,
+    "additional": [],
+    "origin": "Opera"
+  },
+  {
+    "id": "gmail",
+    "label": "Gmail",
+    "logo": "https://example.com/gmail-logo.png",
+    "description": "A widely used email service by Google.",
+    "indicators": [],
+    "category": "none",
+    "incumbent": true,
+    "additional": [
+      {
+        "label": "Note",
+        "variant": "disclaimer",
+        "description": "Part of the big tech monopolies.",
+        "url": null
+      }
+    ],
+    "origin": "Google"
+  },
+  {
+    "id": "icloud-mail",
+    "label": "iCloud Mail",
+    "logo": "https://example.com/icloud-mail-logo.png",
+    "description": "An email service provided by Apple.",
+    "indicators": [],
+    "category": "none",
+    "incumbent": true,
+    "additional": [
+      {
+        "label": "Note",
+        "variant": "disclaimer",
+        "description": "Part of the big tech monopolies.",
+        "url": null
+      }
+    ],
+    "origin": "Apple"
+  },
+  {
+    "id": "outlook",
+    "label": "Outlook",
+    "logo": "https://example.com/outlook-logo.png",
+    "description": "An email service developed by Microsoft.",
+    "indicators": [],
+    "category": "none",
+    "incumbent": true,
+    "additional": [
+      {
+        "label": "Note",
+        "variant": "disclaimer",
+        "description": "Part of the big tech monopolies.",
+        "url": null
+      }
+    ],
+    "origin": "Microsoft"
+  },
+  {
+    "id": "thunderbird",
+    "label": "Thunderbird",
+    "logo": "https://example.com/thunderbird-logo.png",
+    "description": "These can be used alongside the other email services or with your own email server.",
+    "indicators": ["open-source"],
+    "category": "none",
+    "incumbent": false,
+    "additional": [],
+    "origin": "Mozilla"
+  },
+  {
+    "id": "em-client",
+    "label": "EM Client",
+    "logo": "https://example.com/em-client-logo.png",
+    "description": "These can be used alongside the other email services or with your own email server.",
+    "indicators": [],
+    "category": "none",
+    "incumbent": false,
+    "additional": [],
+    "origin": "EM Client"
+  },
+  {
+    "id": "fairmail",
+    "label": "FairMail",
+    "logo": "https://example.com/fairmail-logo.png",
+    "description": "These can be used alongside the other email services or with your own email server.",
+    "indicators": [],
+    "category": "none",
+    "incumbent": false,
+    "additional": [],
+    "origin": "FairMail"
+  },
+  {
+    "id": "mailspring",
+    "label": "MailSpring",
+    "logo": "https://example.com/mailspring-logo.png",
+    "description": "These can be used alongside the other email services or with your own email server.",
+    "indicators": [],
+    "category": "none",
+    "incumbent": false,
+    "additional": [],
+    "origin": "MailSpring"
+  },
+  {
+    "id": "atomic-mail",
+    "label": "Atomic Mail",
+    "logo": "https://example.com/atomic-mail-logo.png",
+    "description": "A free tier available either with limits or ad-supported.",
+    "indicators": [],
+    "category": "none",
+    "incumbent": false,
+    "additional": [],
+    "origin": "Atomic Mail"
+  },
+  {
+    "id": "gmxx",
+    "label": "GMX",
+    "logo": "https://example.com/gmx-logo.png",
+    "description": "A free tier available either with limits or ad-supported.",
+    "indicators": ["environmental"],
+    "category": "none",
+    "incumbent": false,
+    "additional": [
+      {
+        "label": "Note",
+        "variant": "disclaimer",
+        "description": "GMX and Mail.com are owned by the same company (GMX) and offer similar experiences.",
+        "url": null
+      }
+    ],
+    "origin": "GMX"
+  },
+  {
+    "id": "proton-mail",
+    "label": "Proton Mail",
+    "logo": "https://example.com/proton-mail-logo.png",
+    "description": "A free tier available either with limits or ad-supported.",
+    "indicators": ["privacy"],
+    "category": "none",
+    "incumbent": false,
+    "additional": [
+      {
+        "label": "Note",
+        "variant": "resource",
+        "description": "A tweet by Proton's CEO, Andy Yen, stirred up controversy about whether he supports the far right. The validity of his position has been debated with arguments for both cases - context: https://tly/proton-andy.",
+        "url": "https://tly/proton-andy"
+      }
+    ],
+    "origin": "Proton"
+  },
+  {
+    "id": "infomaniak-email",
+    "label": "Infomaniak Email",
+    "logo": "https://example.com/infomaniak-email-logo.png",
+    "description": "A free tier available either with limits or ad-supported.",
+    "indicators": ["environmental"],
+    "category": "none",
+    "incumbent": false,
+    "additional": [],
+    "origin": "Infomaniak"
+  },
+  {
+    "id": "tuta",
+    "label": "Tuta",
+    "logo": "https://example.com/tuta-logo.png",
+    "description": "A free tier available either with limits or ad-supported.",
+    "indicators": ["privacy"],
+    "category": "none",
+    "incumbent": false,
+    "additional": [],
+    "origin": "Tuta"
+  },
+  {
+    "id": "kolab-now",
+    "label": "Kolab Now",
+    "logo": "https://example.com/kolab-now-logo.png",
+    "description": "Offers other complementary tools and/or a mobile app.",
+    "indicators": ["open-source"],
+    "category": "none",
+    "incumbent": false,
+    "additional": [],
+    "origin": "Kolab"
+  },
+  {
+    "id": "fastmail",
+    "label": "FastMail",
+    "logo": "https://example.com/fastmail-logo.png",
+    "description": "Offers other complementary tools and/or a mobile app.",
+    "indicators": [],
+    "category": "none",
+    "incumbent": false,
+    "additional": [],
+    "origin": "FastMail"
+  },
+  {
+    "id": "mailbox-org",
+    "label": "Mailbox.org",
+    "logo": "https://example.com/mailbox-org-logo.png",
+    "description": "Offers other complementary tools and/or a mobile app.",
+    "indicators": ["open-source"],
+    "category": "none",
+    "incumbent": false,
+    "additional": [],
+    "origin": "Mailbox"
+  },
+  {
+    "id": "eco-system",
+    "label": "Eco-System",
+    "logo": "https://example.com/eco-system-logo.png",
+    "description": "Offers other complementary tools and/or a mobile app.",
+    "indicators": ["environmental"],
+    "category": "none",
+    "incumbent": false,
+    "additional": [],
+    "origin": "Eco-System"
+  },
+  {
+    "id": "hushmail",
+    "label": "Hushmail",
+    "logo": "https://example.com/hushmail-logo.png",
+    "description": "Privacy and compliance-focused, with optional features targeting businesses.",
+    "indicators": ["privacy"],
+    "category": "none",
+    "incumbent": false,
+    "additional": [],
+    "origin": "Hushmail"
+  },
+  {
+    "id": "posteo",
+    "label": "Posteo",
+    "logo": "https://example.com/posteo-logo.png",
+    "description": "Simple privacy-focused email service with sustainability mandates.",
+    "indicators": ["privacy", "environmental"],
+    "category": "none",
+    "incumbent": false,
+    "additional": [],
+    "origin": "Posteo"
+  },
+  {
+    "id": "mailfence",
+    "label": "Mailfence",
+    "logo": "https://example.com/mailfence-logo.png",
+    "description": "Free-tier, sustainability mandates and support for iOS and Android. Comparable offering to Tuta.",
+    "indicators": ["privacy", "environmental"],
+    "category": "none",
+    "incumbent": false,
+    "additional": [],
+    "origin": "Mailfence"
+  },
+  {
+    "id": "startmail",
+    "label": "StartMail",
+    "logo": "https://example.com/startmail-logo.png",
+    "description": "Sleek privacy-focused email client, which prioritises security and spam (tracking prevention).",
+    "indicators": ["privacy"],
+    "category": "none",
+    "incumbent": false,
+    "additional": [],
+    "origin": "StartMail"
+  },
+  {
+    "id": "mailo",
+    "label": "Mailo",
+    "logo": "https://example.com/mailo-logo.png",
+    "description": "Simple privacy-focused email service, offers a free tier and mobile apps (although rated poorly).",
+    "indicators": ["privacy"],
+    "category": "none",
+    "incumbent": false,
+    "additional": [],
+    "origin": "Mailo"
+  },
+  {
+    "id": "runbox",
+    "label": "Runbox",
+    "logo": "https://example.com/runbox-logo.png",
+    "description": "Privacy-focused, email-only provider with sustainability mandates and excellent customer support.",
+    "indicators": ["privacy", "environmental"],
+    "category": "none",
+    "incumbent": false,
+    "additional": [],
+    "origin": "Runbox"
+  },
+  {
+    "id": "mail-com",
+    "label": "Mail.com",
+    "logo": "https://example.com/mail-com-logo.png",
+    "description": "Free-tier (with adverts) that has well-reviewed mobile apps and a few supporting tools.",
+    "indicators": [],
+    "category": "none",
+    "incumbent": false,
+    "additional": [
+      {
+        "label": "Note",
+        "variant": "disclaimer",
+        "description": "Mail.com and GMX are owned by the same company (GMX) and offer similar experiences.",
+        "url": null
+      }
+    ],
+    "origin": "Mail.com"
+  },
+  {
+    "id": "irroco",
+    "label": "Irroco",
+    "logo": "https://example.com/irroco-logo.png",
+    "description": "Open-sourced and sustainability-focused email service. A less known provider compared to the others.",
+    "indicators": ["open-source", "environmental"],
+    "category": "none",
+    "incumbent": false,
+    "additional": [],
+    "origin": "Irroco"
+  },
+  {
+    "id": "due-homen",
+    "label": "Due Homen",
+    "logo": "https://example.com/due-homen-logo.png",
+    "description": "A free tier available either with limits or ad-supported.",
+    "indicators": [],
+    "category": "none",
+    "incumbent": false,
+    "additional": [],
+    "origin": "Due Homen"
+  },
+  {
+    "id": "open-source",
+    "label": "Open Source",
+    "logo": "https://example.com/open-source-logo.png",
+    "description": "A free tier available either with limits or ad-supported.",
+    "indicators": ["open-source"],
+    "category": "none",
+    "incumbent": false,
+    "additional": [],
+    "origin": "Open Source"
+  },
+  {
+    "id": "keycast",
+    "label": "Keycast",
+    "logo": "https://example.com/keycast-logo.png",
+    "description": "Offers other complementary tools and/or a mobile app.",
+    "indicators": [],
+    "category": "none",
+    "incumbent": false,
+    "additional": [],
+    "origin": "Keycast"
+  },
+  {
+    "id": "google-search",
+    "label": "Google Search",
+    "logo": "https://example.com/google-search-logo.png",
+    "description": "A widely used search engine by Google.",
+    "indicators": [],
+    "category": "search-engine",
+    "incumbent": true,
+    "additional": [
+      {
+        "label": "Note",
+        "variant": "disclaimer",
+        "description": "Part of the big tech monopolies.",
+        "url": null
+      }
+    ],
+    "origin": "Google"
+  },
+  {
+    "id": "bing",
+    "label": "Bing",
+    "logo": "https://example.com/bing-logo.png",
+    "description": "A search engine developed by Microsoft.",
+    "indicators": [],
+    "category": "search-engine",
+    "incumbent": true,
+    "additional": [
+      {
+        "label": "Note",
+        "variant": "disclaimer",
+        "description": "Part of the big tech monopolies.",
+        "url": null
+      }
+    ],
+    "origin": "Microsoft"
+  },
+  {
+    "id": "searxng",
+    "label": "SearXNG",
+    "logo": "https://example.com/searxng-logo.png",
+    "description": "Acts as search aggregator of multiple chosen search engines to produce its own results.",
+    "indicators": ["open-source"],
+    "category": "search-engine",
+    "incumbent": false,
+    "additional": [],
+    "origin": "SearXNG"
+  },
+  {
+    "id": "metager",
+    "label": "MetaGer",
+    "logo": "https://example.com/metager-logo.png",
+    "description": "Acts as search aggregator of multiple chosen search engines to produce its own results.",
+    "indicators": ["open-source"],
+    "category": "search-engine",
+    "incumbent": false,
+    "additional": [],
+    "origin": "MetaGer"
+  },
+  {
+    "id": "qwant",
+    "label": "Qwant",
+    "logo": "https://example.com/qwant-logo.png",
+    "description": "Provides their own search results alongside of Google or Bing.",
+    "indicators": ["privacy"],
+    "category": "search-engine",
+    "incumbent": false,
+    "additional": [
+      {
+        "label": "Note",
+        "variant": "info",
+        "description": "Free with results similar to Bing. Results will become increasingly unique as their index grows. Recommended for a free and easy switch.",
+        "url": null
+      }
+    ],
+    "origin": "Qwant"
+  },
+  {
+    "id": "ecosia-search",
+    "label": "Ecosia Search",
+    "logo": "https://example.com/ecosia-search-logo.png",
+    "description": "Provides their own search results alongside of Google or Bing.",
+    "indicators": ["environmental"],
+    "category": "search-engine",
+    "incumbent": false,
+    "additional": [],
+    "origin": "Ecosia"
+  },
+  {
+    "id": "brave-search",
+    "label": "Brave Search",
+    "logo": "https://example.com/brave-search-logo.png",
+    "description": "Provides their own search results alongside of Google or Bing.",
+    "indicators": ["privacy"],
+    "category": "search-engine",
+    "incumbent": false,
+    "additional": [
+      {
+        "label": "Note",
+        "variant": "resource",
+        "description": "Brave's CEO, Brendan Eich, has shown support for all-right causes and supported the banning of same-sex marriages. See response by Brave to each in the comment section.",
+        "url": "https://tly/brave-history"
+      }
+    ],
+    "origin": "Brave"
+  },
+  {
+    "id": "mojeek",
+    "label": "Mojeek",
+    "logo": "https://example.com/mojeek-logo.png",
+    "description": "Provides their own search results alongside of Google or Bing.",
+    "indicators": ["privacy"],
+    "category": "search-engine",
+    "incumbent": false,
+    "additional": [
+      {
+        "label": "Note",
+        "variant": "info",
+        "description": "Free with only its own indexed results, but as such the quality may vary. Recommended for early adopters wanting to support independent search.",
+        "url": null
+      }
+    ],
+    "origin": "Mojeek"
+  },
+  {
+    "id": "kagi",
+    "label": "Kagi",
+    "logo": "https://example.com/kagi-logo.png",
+    "description": "Provides their own search results alongside of Google or Bing.",
+    "indicators": ["privacy"],
+    "category": "search-engine",
+    "incumbent": false,
+    "additional": [
+      {
+        "label": "Note",
+        "variant": "disclaimer",
+        "description": "Kagi doesn't collect any identifying data, but does require an account, so it is considered less private than the alternatives.",
+        "url": null
+      }
+    ],
+    "origin": "Kagi"
+  },
+  {
+    "id": "duckduckgo-search",
+    "label": "DuckDuckGo Search",
+    "logo": "https://example.com/duckduckgo-search-logo.png",
+    "description": "Does not collect any Personal Identification Information (PII).",
+    "indicators": ["privacy"],
+    "category": "search-engine",
+    "incumbent": false,
+    "additional": [],
+    "origin": "DuckDuckGo"
+  },
+  {
+    "id": "startpage",
+    "label": "Startpage",
+    "logo": "https://example.com/startpage-logo.png",
+    "description": "Does not collect any Personal Identification Information (PII).",
+    "indicators": ["privacy"],
+    "category": "search-engine",
+    "incumbent": false,
+    "additional": [],
+    "origin": "Startpage"
+  },
+  {
+    "id": "swisscows",
+    "label": "Swisscows",
+    "logo": "https://example.com/swisscows-logo.png",
+    "description": "Does not collect any Personal Identification Information (PII).",
+    "indicators": ["privacy"],
+    "category": "search-engine",
+    "incumbent": false,
+    "additional": [],
+    "origin": "Swisscows"
+  },
+  {
+    "id": "private-search",
+    "label": "Private Search",
+    "logo": "https://example.com/private-search-logo.png",
+    "description": "Does not collect any Personal Identification Information (PII).",
+    "indicators": ["privacy"],
+    "category": "search-engine",
+    "incumbent": false,
+    "additional": [],
+    "origin": "Private Search"
+  },
+  {
+    "id": "youtube",
+    "label": "YouTube",
+    "logo": "https://example.com/youtube-logo.png",
+    "description": "A widely used video streaming platform by Google.",
+    "indicators": [],
+    "category": "video-streaming",
+    "incumbent": true,
+    "additional": [
+      {
+        "label": "Note",
+        "variant": "disclaimer",
+        "description": "Part of the big tech monopolies.",
+        "url": null
+      }
+    ],
+    "origin": "Google"
+  },
+  {
+    "id": "netflix",
+    "label": "Netflix",
+    "logo": "https://example.com/netflix-logo.png",
+    "description": "A leading subscription-based streaming service offering a wide variety of TV shows, movies, and original content.",
+    "indicators": [],
+    "category": "video-streaming",
+    "incumbent": true,
+    "additional": [],
+    "origin": "Netflix"
+  },
+  {
+    "id": "amazon-prime-video",
+    "label": "Amazon Prime Video",
+    "logo": "https://example.com/amazon-prime-video-logo.png",
+    "description": "A video streaming service included with an Amazon Prime membership, featuring movies, TV shows, and Amazon Originals.",
+    "indicators": [],
+    "category": "video-streaming",
+    "incumbent": true,
+    "additional": [],
+    "origin": "Amazon"
+  },
+  {
+    "id": "hulu",
+    "label": "Hulu",
+    "logo": "https://example.com/hulu-logo.png",
+    "description": "A streaming service offering a mix of TV shows, movies, and Hulu Originals with various subscription plans.",
+    "indicators": [],
+    "category": "video-streaming",
+    "incumbent": false,
+    "additional": [],
+    "origin": "Hulu"
+  },
+  {
+    "id": "disney-plus",
+    "label": "Disney+",
+    "logo": "https://example.com/disney-plus-logo.png",
+    "description": "A family-friendly streaming service featuring content from Disney, Pixar, Marvel, Star Wars, and National Geographic.",
+    "indicators": [],
+    "category": "video-streaming",
+    "incumbent": false,
+    "additional": [],
+    "origin": "Disney"
+  },
+  {
+    "id": "hbo-max",
+    "label": "HBO Max",
+    "logo": "https://example.com/hbo-max-logo.png",
+    "description": "A premium streaming service offering HBO content, Warner Bros. movies, and exclusive originals.",
+    "indicators": [],
+    "category": "video-streaming",
+    "incumbent": false,
+    "additional": [],
+    "origin": "WarnerMedia"
+  },
+  {
+    "id": "peacock",
+    "label": "Peacock",
+    "logo": "https://example.com/peacock-logo.png",
+    "description": "A streaming service by NBCUniversal offering a mix of free and premium content, including TV shows and movies.",
+    "indicators": [],
+    "category": "video-streaming",
+    "incumbent": false,
+    "additional": [],
+    "origin": "NBCUniversal"
+  },
+  {
+    "id": "apple-tv-plus",
+    "label": "Apple TV+",
+    "logo": "https://example.com/apple-tv-plus-logo.png",
+    "description": "A subscription-based service focusing on original TV shows and movies from Apple.",
+    "indicators": [],
+    "category": "video-streaming",
+    "incumbent": false,
+    "additional": [
+      {
+        "label": "Note",
+        "variant": "disclaimer",
+        "description": "Part of the big tech monopolies.",
+        "url": null
+      }
+    ],
+    "origin": "Apple"
+  },
+  {
+    "id": "paramount-plus",
+    "label": "Paramount+",
+    "logo": "https://example.com/paramount-plus-logo.png",
+    "description": "A streaming service offering content from CBS, Paramount Pictures, and other ViacomCBS properties.",
+    "indicators": [],
+    "category": "video-streaming",
+    "incumbent": false,
+    "additional": [],
+    "origin": "ViacomCBS"
+  },
+  {
+    "id": "tubi",
+    "label": "Tubi",
+    "logo": "https://example.com/tubi-logo.png",
+    "description": "A free, ad-supported streaming service with a large library of movies and TV shows.",
+    "indicators": [],
+    "category": "video-streaming",
+    "incumbent": false,
+    "additional": [],
+    "origin": "Tubi"
+  },
+  {
+    "id": "pluto-tv",
+    "label": "Pluto TV",
+    "logo": "https://example.com/pluto-tv-logo.png",
+    "description": "A free, ad-supported streaming service offering live TV channels and on-demand content.",
+    "indicators": [],
+    "category": "video-streaming",
+    "incumbent": false,
+    "additional": [],
+    "origin": "Pluto TV"
+  }
+]
