@@ -21,6 +21,7 @@ export const CATEGORY_ID_ARRAY = [
   "browser",
   "file-storage",
   "office-suite",
+  "video-streaming",
   "search-engine",
   "audio-book",
   "none",

@@ -178,7 +178,7 @@
     "label": "Mullvad",
     "logo": "https://example.com/mullvad-logo.png",
     "description": "Secure and private, that is part of a larger ecosystem of privacy tools - Firefox based.",
-    "indicators": "privacy",
+    "indicators": ["privacy"],
     "category": "browser",
     "incumbent": false,
     "additional": [],
