@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const INDICATOR_ID_ARRAY = [
+export const CAUSE_FLAG_ID_ARRAY = [
   "environmental",
   "open-source",
   "privacy",
@@ -9,7 +9,7 @@ export const INDICATOR_ID_ARRAY = [
 
 export const validation = {
   item: z.object({
-    id: z.enum(INDICATOR_ID_ARRAY),
+    id: z.enum(CAUSE_FLAG_ID_ARRAY),
     label: z.string(),
     swatch: z.string(),
   }),

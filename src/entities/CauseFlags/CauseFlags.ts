@@ -1,5 +1,5 @@
 import * as u from "../../helpers/utilities";
-import * as schema from "./Indicator.schema";
+import * as schema from "./CauseFlags.schema";
 
 export const items: u.Collection<schema.Item> = {
   "open-source": {

@@ -1,5 +1,5 @@
 import * as u from "../../helpers/utilities";
-import * as schema from "./Category.schema";
+import * as schema from "./Privacy.schema";
 
 export const items: u.Collection<schema.Item> = {
   "audio-book": {
