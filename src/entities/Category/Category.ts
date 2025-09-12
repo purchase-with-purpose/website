@@ -27,11 +27,6 @@ export const items: u.Collection<schema.Item> = {
     label: "Search Engine",
     tags: [],
   },
-  "video-streaming": {
-    id: "video-streaming",
-    label: "Video Streaming",
-    tags: [],
-  },
   browser: {
     id: "browser",
     label: "Browser",

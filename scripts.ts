@@ -4,6 +4,7 @@ import { z } from "zod";
 import { zodToJsonSchema } from "zod-to-json-schema";
 
 const file = zodToJsonSchema(z.array(Software.validation.item));
+
 fs.writeFileSync(
   "src/data/software.schema.json",
   JSON.stringify(file, null, 2)
