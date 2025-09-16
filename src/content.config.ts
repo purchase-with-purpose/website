@@ -1,22 +1,10 @@
 import { defineCollection } from "astro:content";
 import { file } from "astro/loaders";
-import * as Category from "./entities/Category";
-import * as Origin from "./entities/Origin";
-import * as Software from "./entities/Software";
-
-const categories = defineCollection({
-  loader: () => Category.items,
-  schema: Category.validation.item,
-});
-
-const origins = defineCollection({
-  loader: () => Origin.items,
-  schema: Origin.validation.item,
-});
+import * as entity from "./schemas/software";
 
 const software = defineCollection({
   loader: file("./src/data/software.json"),
-  schema: Software.validation.item,
+  schema: entity.validation,
 });
 
-export const collections = { categories, software, origins };
+export const collections = { software };

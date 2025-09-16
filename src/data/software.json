@@ -2,19 +2,18 @@
   {
     "id": "chrome",
     "label": "Chrome",
-    "logo": "https://example.com/chrome-logo.png",
     "description": "A widely used browser by Google.",
     "indicators": [],
     "category": "browser",
     "incumbent": true,
-    "additional": [
+    "logo": "/images/software/chrome.png",
+    "tags": [],
+    "notes": [
       {
-        "label": "Note",
         "variant": "disclaimer",
-        "description": "Part of the big tech monopolies.",
-        "url": null
+        "content": "Part of the big tech monopolies."
       }
     ],
-    "origin": "Google"
+    "origin": "eu"
   }
 ]

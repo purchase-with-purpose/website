@@ -232,3 +232,9 @@ export const withHook = <T extends object>(
     return component({ ...props, ...hookValue });
   };
 };
+
+export type IsEqual<A, B> = (<T>() => T extends A ? 1 : 2) extends <
+  T
+>() => T extends B ? 1 : 2
+  ? true
+  : false;

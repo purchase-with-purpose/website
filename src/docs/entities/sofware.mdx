@@ -1,0 +1,40 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+# Software
+
+<Meta title="Entities/Software" />
+
+## Associated
+
+- `src/schemas/software`
+- `src/mocks/software`
+
+## Example
+
+```ts
+const example: Software = {
+      id: "chrome",
+      label: "Chrome",
+      description: "A widely used browser by Google.",
+      indicators: [],
+      category: "browser",
+      incumbent: true,
+      logo: "/images/software/chrome.png",
+      tags: [],
+      notes: [
+        {
+          variant: "disclaimer",
+          content: "Part of the big tech monopolies.",
+        },
+      ],
+      origin: "us",
+    };
+```
+
+## Static Collections
+
+- `categories`
+- `indicators`
+- `origins`
+- `tags`
+- `notes`

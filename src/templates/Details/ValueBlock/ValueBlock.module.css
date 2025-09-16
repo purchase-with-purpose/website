@@ -1,0 +1,51 @@
+.wrapper {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  align-items: center;
+  width: 100%;
+}
+
+.wrapperLink {
+  cursor: pointer;
+}
+
+.wrapperLink:hover {
+  background: #46008005;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.5rem;
+  width: 2.5rem;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+  line-height: 1;
+  padding: 0.5rem;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.05rem;
+}
+
+.primary {
+  line-height: 1;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #333333;
+}
+
+.secondary {
+  line-height: 1;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.secondaryLink {
+  text-decoration: underline;
+}

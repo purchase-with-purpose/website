@@ -1,0 +1,22 @@
+.wrapper {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+a.item:hover {
+  background: #24224b10;
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  margin: -0.5rem -0.75rem;
+}
+
+a.item:active {
+  background: #24224b20;
+}
+
+.icon {
+  height: 0.75rem;
+  width: 0.75rem;
+}

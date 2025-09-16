@@ -1,5 +1,23 @@
+import { Shell } from "@/components/Shell";
+import { type Props, Breadcrumbs } from "./Breadcrumbs";
+
 export default {
-  title: "Details/Breadcrumbs",
+  title: "Templates/Details/Breadcrumbs",
+  parameters: {
+    layout: "fullscreen",
+  },
 };
 
-export const Basic = () => <div>12312</div>;
+const PROPS: Props = {
+  path: [
+    { label: "Home", href: "#" },
+    { label: "Browsers", href: "#" },
+    { label: "Brave", href: null },
+  ],
+};
+
+export const Basic = () => (
+  <Shell header={false}>
+    <Breadcrumbs {...PROPS} />
+  </Shell>
+);

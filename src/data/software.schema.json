@@ -27,6 +27,16 @@
           ]
         }
       },
+      "incumbent": {
+        "type": "boolean"
+      },
+      "origin": {
+        "type": "string",
+        "enum": [
+          "us",
+          "eu"
+        ]
+      },
       "category": {
         "type": "string",
         "enum": [
@@ -39,45 +49,40 @@
           "none"
         ]
       },
-      "incumbent": {
-        "type": "boolean"
+      "tags": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "global.test",
+            "photo-management.a",
+            "photo-management.b"
+          ]
+        }
       },
-      "additional": {
+      "notes": {
         "type": "array",
         "items": {
           "type": "object",
           "properties": {
-            "label": {
-              "type": "string"
-            },
             "variant": {
               "type": "string",
               "enum": [
                 "info",
                 "disclaimer",
-                "resource"
+                "warning"
               ]
             },
-            "description": {
+            "content": {
               "type": "string"
-            },
-            "url": {
-              "type": [
-                "string",
-                "null"
-              ]
             }
           },
           "required": [
-            "label",
             "variant",
-            "description"
+            "content"
           ],
           "additionalProperties": false
         }
-      },
-      "origin": {
-        "type": "string"
       }
     },
     "required": [
@@ -86,10 +91,11 @@
       "logo",
       "description",
       "indicators",
-      "category",
       "incumbent",
-      "additional",
-      "origin"
+      "origin",
+      "category",
+      "tags",
+      "notes"
     ],
     "additionalProperties": false
   },

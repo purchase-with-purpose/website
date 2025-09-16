@@ -1,5 +1,20 @@
+import { Shell } from "@/components/Shell";
+import { faker as f } from "@faker-js/faker";
+import { type Props, Description } from "./Description";
+
 export default {
-  title: "Details/Description",
+  title: "Templates/Details/Description",
+  parameters: {
+    layout: "fullscreen",
+  },
 };
 
-export const Basic = () => <div>12312</div>;
+const PROPS: Props = {
+  description: f.lorem.paragraphs(6),
+};
+
+export const Basic = () => (
+  <Shell header={false}>
+    <Description {...PROPS} />
+  </Shell>
+);
