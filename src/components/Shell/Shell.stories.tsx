@@ -8,7 +8,7 @@ export default {
 };
 
 export const Basic = () => (
-  <Shell>
+  <Shell header={false}>
     <div>Hello World</div>
   </Shell>
 );

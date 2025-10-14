@@ -1,33 +1,31 @@
-import { Breadcrumbs } from "./Breadcrumbs";
-import { Layout } from "./Layout";
-import { Description } from "./Description";
-import { Features } from "./Features";
-import { Tags } from "./Tags";
-import { TopBlock } from "./TopBlock";
-import { SideBlocks } from "./SideBlocks";
-import { categories } from "../../schemas/software";
-import { createItem } from "@/mocks/software";
+import { Breadcrumbs } from "./components/Breadcrumbs";
+import { Layout } from "./components/Layout";
+import { Description } from "./components/Description";
+import { Features } from "./components/Features";
+import { Tags } from "./components/Tags";
+import { TopBlock } from "./components/TopBlock";
+import { Notes } from "./components/Notes";
+import { SideBlocks } from "./components/SideBlocks";
+import { Gallery } from "./components/Gallery";
+import * as Software from "@/entities/Software";
+import * as u from "@/helpers/utilities";
 
-const item = createItem();
+export const Details = (props: Software.Item) => {
+  const {
+    category,
+    label,
+    description,
+    notes,
+    evaluations,
+    logo,
+    url,
+    tags,
+    indicators,
+    company,
+    tiers,
+    features,
+  } = props;
 
-const icons = {
-  capterra: (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="4.978 2.022 320.044 325.956"
-    >
-      <path fill="#ff9d28" d="m4.978 121.868 135.18.027 82.2.014V40.475z" />
-      <path fill="#68c5ed" d="M222.357 40.475v287.503L325.022 2.022z" />
-      <path fill="#044d80" d="m222.357 121.909-82.199-.014 82.2 206.083z" />
-      <path
-        fill="#e54747"
-        d="m4.978 121.868 156.26 52.905-21.08-52.878-135.18-.027z"
-      />
-    </svg>
-  ),
-};
-
-export const Details = () => {
   return (
     <Layout
       breadcrumbs={
@@ -38,107 +36,96 @@ export const Details = () => {
               href: "#",
             },
             {
-              label: categories[item.category].label,
+              label: Software.categories[category].label,
               href: "#",
             },
             {
-              label: item.label,
+              label: label,
               href: null,
             },
           ]}
         />
       }
-      description={<Description description={item.description} />}
-      features={<Features features={[]} />}
-      disclaimers={<div>Disclaimers</div>}
-      screenshots={<div>Screenshots</div>}
+      description={<Description description={description} />}
+      features={<Features features={features} />}
+      disclaimers={
+        <>
+          {notes.map((x, i) => {
+            return <Notes key={i} value={x.value} variant={x.variant} />;
+          })}
+        </>
+      }
+      screenshots={<Gallery />}
       company={
         <SideBlocks
-          title="Ownership"
-          blocks={[
+          title="Company"
+          blocks={u.filter([
             {
-              primary: "Puppy Inc.",
+              primary: company.name,
               secondary: "Company",
-              children: <div>.</div>,
+              icon: "company",
             },
             {
-              primary: "Puppy Inc.",
-              secondary: "Company",
-              children: <div>.</div>,
+              primary: Software.ORIGIN_LABELS[company.ownership],
+              secondary: "Ownership",
+              icon: `flag-${company.ownership}` as const,
+            },
+            company.headquarters && {
+              primary: Software.ORIGIN_LABELS[company.headquarters],
+              secondary: "Headquarters",
+              icon: `flag-${company.headquarters}` as const,
             },
             {
-              primary: "Puppy Inc.",
-              secondary: "Company",
-              children: <div>.</div>,
+              primary: company.structure,
+              secondary: "Structure",
+              icon: "person",
             },
-          ]}
+          ])}
         />
       }
       tiers={
         <SideBlocks
           title="Tiers"
-          blocks={[
-            {
-              primary: "Puppy Inc.",
-              secondary: "Company",
-              children: <div>.</div>,
+          blocks={u.filter([
+            tiers.free && {
+              primary: Software.tiers.free.label,
+              secondary: tiers.free.value,
+              icon: "level-one",
+              color: "#543BF1",
             },
-            {
-              primary: "Puppy Inc.",
-              secondary: "Company",
-              children: <div>.</div>,
+            tiers.basic && {
+              primary: Software.tiers.basic.label,
+              secondary: tiers.basic.value,
+              icon: "level-two",
+              color: "#543BF1",
             },
-            {
-              primary: "Puppy Inc.",
-              secondary: "Company",
-              children: <div>.</div>,
+            tiers.premium && {
+              primary: Software.tiers.premium.label,
+              secondary: tiers.premium.value,
+              icon: "level-three",
+              color: "#543BF1",
             },
-          ]}
+          ])}
         />
       }
       privacy={
         <SideBlocks
           title="Privacy"
-          blocks={[
-            {
-              primary: "Puppy Inc.",
-              secondary: "Company",
-              children: <div>.</div>,
-            },
-            {
-              primary: "Puppy Inc.",
-              secondary: "Company",
-              children: <div>.</div>,
-            },
-            {
-              primary: "Puppy Inc.",
-              secondary: "Company",
-              children: <div>.</div>,
-            },
-          ]}
+          blocks={u.filter([Software.calcEvaluationDisplay(evaluations.cspp)])}
         />
       }
       reviews={
         <SideBlocks
           title="Reviews"
-          blocks={[
-            {
-              primary: "87%",
-              secondary: "Capterra",
-              url: "#asd",
-              children: icons.capterra,
-            },
-          ]}
+          blocks={u.filter([
+            Software.calcEvaluationDisplay(evaluations.capterra),
+            Software.calcEvaluationDisplay(evaluations.trustpilot),
+          ])}
         />
       }
-      tags={<Tags tags={item.tags} />}
+      tags={<Tags tags={tags} />}
       top={
-        <TopBlock
-          indicators={item.indicators}
-          label={item.label}
-          logo={item.logo}
-          url={item.url}
-        />
+        <TopBlock indicators={indicators} label={label} logo={logo} url={url} />
       }
     />
   );

@@ -1,0 +1,51 @@
+.wrapper {
+  border: 1px solid rgba(0, 0, 0, 0);
+  background: rgba(36, 34, 75, 0.05);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border-radius: 16px;
+  fill: rgb(36, 34, 75);
+  max-width: 50rem;
+}
+
+.wrapperDisclaimer {
+  border-color: #543bf1;
+  background: #f6f5fe;
+  fill: #6a69ec;
+}
+
+.wrapperWarning {
+  border-color: #ec0b43;
+  background: #ec0b4310;
+  fill: #ec0b43;
+}
+
+.top {
+  display: flex;
+  flex-direction: row;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.title {
+  color: 0C0F0E;
+  font-size: 1.2rem;
+  letter-spacing: -0.25px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.paragraph {
+  color: #24224b;
+  font-size: 1rem;
+  line-height: 1.6;
+  font-weight: 500;
+  margin: 0;
+}
+
+.icon {
+  width: 1rem;
+  height: 1rem;
+}

@@ -16,5 +16,9 @@
 }
 
 .main {
-  padding: 2rem;
+  padding: 1rem;
+
+  @media (min-width: 70rem) {
+    padding: 2rem;
+  }
 }

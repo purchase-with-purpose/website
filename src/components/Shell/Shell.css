@@ -9,4 +9,5 @@ body {
   font-family: "Inter", sans-serif;
   color: #24224b;
   font-weight: 500;
+  overflow-x: hidden;
 }

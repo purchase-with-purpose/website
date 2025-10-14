@@ -1,9 +1,9 @@
 import fs from "fs";
-import * as software from "../src/schemas/software";
+import * as Software from "../src/entities/Software";
 import { z } from "zod";
 import { zodToJsonSchema } from "zod-to-json-schema";
 
-const file = zodToJsonSchema(z.array(software.validation));
+const file = zodToJsonSchema(z.array(Software.validation));
 
 fs.writeFileSync(
   "src/data/software.schema.json",
