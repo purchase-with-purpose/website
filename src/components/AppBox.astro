@@ -1,0 +1,268 @@
+---
+const { data } = Astro.props;
+---
+
+<div class="appbox flex flex-col gap-2">
+  <div class="mb-1 text-[#aeaeae]">{data.label}</div>
+
+  <div
+    class="flex flex-row flex-wrap items-center justify-between gap-4 lg:gap-3 xl:gap-1 2xl:gap-3 2xl:p-6 sm:w-100 md:w-100 lg:w-110 xl:w-110 2xl:w-120 rounded-3xl bg-[#fff]/2 p-4 sm:justify-between md:rounded-4xl">
+    <!-- From box -->
+    <div
+      class="flex cursor-pointer flex-col items-center rounded-2xl bg-[#2B2B2B] p-4 text-[#aeaeae] transition hover:bg-[#ededed] hover:text-black md:rounded-3xl relative"
+      data-trigger="from">
+      <div class="h-18 w-18 lg:h-24 lg:w-24 xl:h-25 xl:w-25 2xl:h-30 2xl:w-30">
+        <img
+          alt={data.from.selected.name}
+          loading="lazy"
+          class="h-full w-full rounded-xl object-cover md:rounded-2xl"
+          src={data.from.selected.logo}
+        />
+      </div>
+      <div
+        class="mt-5 text-center text-xs leading-tight font-medium tracking-tight lg:text-base">
+        {data.from.selected.name}
+      </div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="lucide lucide-chevron-down mt-1 h-4 w-4"
+        aria-hidden="true">
+        <path d="m6 9 6 6 6-6"></path>
+      </svg>
+      <div
+        class="absolute bottom-[-5px] left-0 w-40 translate-y-full rounded-2xl bg-white px-2 py-2 text-black text-xs shadow-lg hidden"
+        data-dropdown="from">
+        <ul class="flex flex-col gap-1 py-1">
+          {
+            data.from.options
+              .filter((option: any) => option.name !== data.from.selected.name)
+              .map((option: any) => (
+                <li>
+                  <button
+                    type="button"
+                    data-name={option.name}
+                    data-logo={option.logo}
+                    class="flex w-full items-center gap-2 hover:bg-gray-100 px-3 py-2 rounded-md cursor-pointer text-left">
+                    <img
+                      alt={option.name}
+                      loading="lazy"
+                      class="w-5 rounded-md object-cover"
+                      src={option.logo}
+                    />
+                    <span class="flex-1">{option.name}</span>
+                  </button>
+                </li>
+              ))
+          }
+        </ul>
+      </div>
+    </div>
+
+    <!-- Arrow -->
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="#aeaeae" 
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M5 12h14"></path>
+  <path d="m12 5 7 7-7 7"></path>
+</svg>
+
+
+    <!-- To box -->
+    <div
+      class="relative flex cursor-pointer flex-col items-center rounded-2xl bg-[#2B2B2B] p-4 text-[#aeaeae] transition hover:bg-[#ededed] hover:text-black md:rounded-3xl"
+      data-trigger="to">
+      <div
+        class="h-18 w-18 rounded-xl md:rounded-2xl lg:h-24 lg:w-24 xl:h-25 xl:w-25 2xl:h-30 2xl:w-30 bg-[#383838]">
+        <img
+          loading="lazy"
+          class="h-full w-full rounded-xl object-cover md:rounded-2xl"
+          src={data.to.selected.logo || ""}
+        />
+      </div>
+      <div
+        class="mt-5 text-center text-xs leading-tight font-medium tracking-tight lg:text-base">
+        {data.to.selected.name || "[Pick]"}
+      </div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="lucide lucide-chevron-down mt-1 h-4 w-4"
+        aria-hidden="true">
+        <path d="m6 9 6 6 6-6"></path>
+      </svg>
+      <div
+        class="absolute bottom-[-5px] w-40 right-0 translate-y-full rounded-2xl bg-white text-black text-xs shadow-lg hidden"
+        data-dropdown="to">
+        <ul class="flex flex-col gap-1 py-1">
+          {
+            data.to.options
+              .filter((option: any) => option.name !== data.to.selected.name)
+              .map((option: any) => (
+                <li>
+                  <button
+                    type="button"
+                    data-name={option.name}
+                    data-logo={option.logo}
+                    class="flex w-full items-center gap-2 hover:bg-gray-100 px-3 py-2 rounded-md cursor-pointer text-left">
+                    <img
+                      alt={option.name}
+                      loading="lazy"
+                      class="w-5 h-5 rounded-md object-cover flex-none"
+                      src={option.logo}
+                    />
+                    <span class="flex-1 text-left">{option.name}</span>
+                  </button>
+                </li>
+              ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="module">
+(function () {
+  document.querySelectorAll('.appbox').forEach((box) => {
+
+    function buildState(trigger) {
+      const dropdown = trigger.querySelector('[data-dropdown]');
+      const labelEl = trigger.querySelector('.mt-5');
+      const imgEl = trigger.querySelector('img');
+
+      
+      let selectedName = labelEl ? (labelEl.textContent || '').trim() : '';
+      let selectedLogo = imgEl ? (imgEl.getAttribute('src') || '').trim() : '';
+
+      
+      const PLACEHOLDER_NAMES = ['[Pick]', 'Pick', '—', '']; 
+      if (PLACEHOLDER_NAMES.includes(selectedName)) {
+        selectedName = '';
+        selectedLogo = '';
+    
+        if (imgEl) imgEl.style.display = 'none';
+      }
+
+      const selected = { name: selectedName, logo: selectedLogo };
+
+      const opts = Array.from(dropdown.querySelectorAll('button[data-name]')).map(btn => ({
+        name: btn.getAttribute('data-name'),
+        logo: btn.getAttribute('data-logo')
+      }));
+
+      const filteredOpts = opts.filter(o => o.name !== selected.name);
+
+      return { trigger, dropdown, labelEl, imgEl, state: { selected, options: filteredOpts } };
+    }
+
+    function renderDropdown(dropdown, state) {
+      const html = `
+        <ul class="flex flex-col gap-1 py-1">
+          ${state.options.map(opt => `
+            <li>
+              <button type="button" data-name="${opt.name}" data-logo="${opt.logo}"
+                class="flex w-full items-center gap-2 hover:bg-gray-100 px-3 py-2 rounded-md cursor-pointer text-left">
+                <img alt="${opt.name}" loading="lazy" class="w-5 h-5 rounded-md object-cover flex-none" src="${opt.logo}">
+                <span class="flex-1 text-left">${opt.name}</span>
+              </button>
+            </li>
+          `).join('')}
+        </ul>
+      `;
+      dropdown.innerHTML = html;
+    }
+
+    function setupTrigger(trigger) {
+      if (!trigger) return;
+      const dropdown = trigger.querySelector('[data-dropdown]');
+      if (!dropdown) return;
+
+      const ctx = buildState(trigger);
+
+      dropdown.classList.add('hidden');
+
+      renderDropdown(dropdown, ctx.state);
+
+      trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        box.querySelectorAll('[data-dropdown]').forEach(d => { if (d !== dropdown) d.classList.add('hidden'); });
+        dropdown.classList.toggle('hidden');
+      });
+
+      dropdown.addEventListener('click', (e) => e.stopPropagation());
+
+      dropdown.addEventListener('click', (e) => {
+        const btn = e.target.closest('button[data-name]');
+        if (!btn) return;
+
+        const chosenName = btn.getAttribute('data-name');
+        const chosenLogo = btn.getAttribute('data-logo');
+
+        const prevSelected = { ...ctx.state.selected };
+
+        ctx.state.selected = { name: chosenName, logo: chosenLogo };
+
+        ctx.state.options = ctx.state.options.filter(o => o.name !== chosenName);
+
+        const PLACEHOLDER_NAMES = ['[Pick]', 'Pick', '—', ''];
+        if (prevSelected.name && !PLACEHOLDER_NAMES.includes(prevSelected.name) && prevSelected.name !== chosenName) {
+          if (!ctx.state.options.find(o => o.name === prevSelected.name)) {
+            ctx.state.options.push(prevSelected);
+          }
+        }
+
+        // Update UI label + image
+        if (ctx.labelEl) {
+          ctx.labelEl.textContent = chosenName || (ctx.labelEl.textContent && ctx.labelEl.textContent); // if chosenName empty, keep existing
+        }
+        if (ctx.imgEl) {
+          if (chosenLogo) {
+            ctx.imgEl.src = chosenLogo;
+            ctx.imgEl.alt = chosenName || '';
+            ctx.imgEl.style.display = '';
+          } else {
+            ctx.imgEl.style.display = 'none';
+          }
+        }
+
+        // Re-render dropdown with updated options
+        renderDropdown(dropdown, ctx.state);
+
+        dropdown.classList.add('hidden');
+      });
+    }
+
+    const fromTrigger = box.querySelector('[data-trigger="from"]');
+    const toTrigger = box.querySelector('[data-trigger="to"]');
+    setupTrigger(fromTrigger);
+    setupTrigger(toTrigger);
+  });
+
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.appbox [data-dropdown]').forEach(d => d.classList.add('hidden'));
+  });
+})();
+</script>
+
