@@ -7,7 +7,7 @@ export const Layout = (props: schema.Props) => {
       <main className={s.content}>
         <div className={s.breadcrumbs}>{props.breadcrumbs}</div>
         <div>{props.top}</div>
-        <div>{props.tags}</div>
+        <div>{props.platforms}</div>
         <div>{props.description}</div>
 
         <div>{props.features}</div>

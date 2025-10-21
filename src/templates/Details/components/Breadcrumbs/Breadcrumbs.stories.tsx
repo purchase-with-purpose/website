@@ -18,7 +18,7 @@ const PROPS: Props = {
 };
 
 export const Basic = () => (
-  <Shell header={false}>
+  <Shell>
     <Breadcrumbs {...PROPS} />
   </Shell>
 );

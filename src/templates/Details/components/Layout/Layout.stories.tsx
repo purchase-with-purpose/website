@@ -13,7 +13,7 @@ const PROPS: Props = {
   breadcrumbs: <div>Breadcrumbs</div>,
   top: <div>Top</div>,
   description: <div>Description</div>,
-  tags: <div>Tags</div>,
+  platforms: <div>Platforms</div>,
   features: <div>Features</div>,
   disclaimers: <div>Disclaimers</div>,
   screenshots: <div>Screenshots</div>,

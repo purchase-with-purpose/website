@@ -1,4 +1,4 @@
-import { type Props as IconProps } from "../Icon";
+import { type Props as IconProps } from "@/components/Icon";
 
 export type Props = {
   secondary: string;

@@ -1,20 +1,20 @@
 import { Shell } from "@/components/Shell";
 import { faker as f } from "@faker-js/faker";
 import { Icon } from "./Icon";
-import * as schema from "./Icon.schema";
 import * as Software from "@/entities/Software";
+import * as Display from "@/entities/Display";
 
 export default {
-  title: "Templates/Details/Icon",
+  title: "Components/Icon",
   parameters: {
     layout: "fullscreen",
   },
 };
 
 export const Basic = () => (
-  <Shell header={false}>
+  <Shell>
     <>
-      {schema.VARIANTS_ARRAY.map((variant) => (
+      {Display.GENERAL_ICON_VARIANTS.map((variant) => (
         <Icon key={variant} variant={variant} />
       ))}
 

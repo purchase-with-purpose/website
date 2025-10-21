@@ -1,4 +1,4 @@
-import { type EvaluationValue, evaluations } from "../schema";
+import { type EvaluationValue, evaluations, type Item } from "../schema";
 import * as u from "@/helpers/utilities";
 
 /**
@@ -57,25 +57,5 @@ export const calcEvaluationScore = (
   return {
     color: "red",
     icon: "cross",
-  };
-};
-
-export const calcEvaluationDisplay = (
-  props: Pick<EvaluationValue, "id" | "value"> | undefined
-) => {
-  if (!props) return null;
-  const { id, value } = props;
-
-  if (!value && value !== 0) return null;
-  const { label, url } = evaluations[id];
-
-  const { icon, color } = u.assert(calcEvaluationScore(props));
-
-  return {
-    primary: calcEvaluationDisplayValue(props),
-    secondary: label,
-    icon,
-    url,
-    color,
   };
 };

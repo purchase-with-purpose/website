@@ -4,7 +4,7 @@ export type Props = {
   breadcrumbs: JSX.Element;
   top: JSX.Element;
   description: JSX.Element;
-  tags: JSX.Element;
+  platforms: JSX.Element;
   features: JSX.Element;
   disclaimers: JSX.Element;
   screenshots: JSX.Element;

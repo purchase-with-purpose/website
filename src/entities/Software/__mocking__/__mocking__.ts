@@ -1,35 +1,46 @@
 import { faker as f } from "@faker-js/faker";
 import * as u from "@/helpers/utilities";
-import { FEATURE_ICON_ARRAY } from "../schema";
+import { FEATURES_ID_ARRAY, PLATFORMS_ID_ARRAY } from "../schema";
 
 import {
   type Item as Software,
   categories,
   indicators,
   origins,
-  tags,
 } from "@/entities/Software";
 
 export const createItem = (): Software => {
   const category = f.helpers.arrayElement(u.keys(categories));
 
+  const { logo, swatch } = f.helpers.arrayElement([
+    { logo: "/images/logos/brave.svg", swatch: "#e13927" },
+    { logo: "/images/logos/chrome.png", swatch: "#fbc10a" },
+    { logo: "/images/logos/firefox.png", swatch: "#6f61ec" },
+    { logo: "/images/logos/safari.png", swatch: "#1b8bf7" },
+  ]);
+
   return {
     id: u.createBrand("SOFTWARE_ID")!,
+    features: f.helpers
+      .arrayElements(FEATURES_ID_ARRAY, { min: 2, max: 6 })
+      .map((x) => {
+        return {
+          id: x,
+          value: f.lorem.words({ min: 1, max: 3 }),
+        };
+      }),
+
     company: {
       id: f.lorem.slug(3),
       headquarters: f.helpers.arrayElement(u.keys(origins)),
-      ownership: f.helpers.arrayElement(u.keys(origins)),
       name: f.company.name(),
-      structure: f.helpers.arrayElement(["Private", "Public", "Nonprofit"]),
       url: f.internet.url(),
+
+      ownership: f.datatype.boolean()
+        ? f.helpers.arrayElement(u.keys(origins))
+        : null,
     },
-    features: new Array(f.number.int({ min: 2, max: 12 }))
-      .fill(null)
-      .map(() => ({
-        label: f.lorem.words({ min: 1, max: 3 }),
-        value: f.lorem.words({ min: 1, max: 2 }),
-        icon: f.helpers.arrayElement(FEATURE_ICON_ARRAY),
-      })),
+
     evaluations: {
       capterra: {
         id: "capterra",
@@ -58,20 +69,17 @@ export const createItem = (): Software => {
         value: f.lorem.sentence(),
       },
     },
+
     category,
     description: f.lorem.paragraphs(3),
     indicators: f.helpers.arrayElements(u.keys(indicators), { min: 0, max: 2 }),
     incumbent: f.datatype.boolean(),
-    logo: f.image.urlPicsumPhotos(),
-    url: f.internet.url(),
-    origin: f.helpers.arrayElement(u.keys(origins)),
 
-    tags: f.helpers.arrayElements(
-      u
-        .keys(tags)
-        .filter((x) => x.startsWith("global.") || x.startsWith(category)),
-      f.datatype.boolean() ? { min: 1, max: 3 } : { min: 9, max: 12 }
-    ),
+    logo,
+    swatch,
+
+    url: f.internet.url(),
+    platforms: f.helpers.arrayElements(PLATFORMS_ID_ARRAY, { min: 1, max: 4 }),
 
     label: f.datatype.boolean()
       ? f.lorem.words({ min: 1, max: 3 })
@@ -88,43 +96,3 @@ export const createItem = (): Software => {
 
 export const createList = (): u.Collection<Software> =>
   u.fromArray(new Array(200).fill(null).map(() => createItem()));
-
-export const examples = {
-  basic: (): Software => {
-    return {
-      id: u.createBrand("SOFTWARE_ID")!,
-      label: "Chrome",
-      company: {
-        id: "chrome",
-        headquarters: "US",
-        ownership: "US",
-        name: "Alphabet Inc.",
-        url: "https://abc.xyz/",
-        structure: "Public",
-      },
-      features: [
-        {
-          label: "Extensions",
-          value: "Supported",
-          icon: "check",
-        },
-      ],
-      evaluations: {} as any,
-      tiers: {} as any,
-      description: "A widely used browser by Google.",
-      indicators: [],
-      category: "browser",
-      incumbent: true,
-      logo: "/images/software/chrome.png",
-      tags: [],
-      url: "https://www.google.com/chrome/",
-      notes: [
-        {
-          variant: "disclaimer",
-          value: "Part of the big tech monopolies.",
-        },
-      ],
-      origin: "US",
-    };
-  },
-};

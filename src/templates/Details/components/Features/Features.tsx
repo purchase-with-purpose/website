@@ -1,25 +1,29 @@
-import { ValueBlock } from "../ValueBlock";
 import { type Props } from "./Features.schema";
+import { display } from "@/entities/Display";
 import s from "./Features.module.css";
-import { Icon } from "../Icon";
+import { Icon } from "@/components/Icon";
 
 export const Features = (props: Props) => {
   const { features } = props;
 
   return (
     <div className={s.wrapper}>
-      {features.map((x) => (
-        <div className={s.item}>
-          <div className={s.icon}>
-            <Icon variant={x.icon} size="s" />
-          </div>
+      {features.map((x) => {
+        const { label, icon } = display[`software.features.${x.id}`];
 
-          <div className={s.content}>
-            <div className={s.secondary}>{x.label}</div>
-            <div className={s.primary}>{x.value}</div>
+        return (
+          <div className={s.item}>
+            <div className={s.icon}>
+              <Icon variant={icon} size="s" />
+            </div>
+
+            <div className={s.content}>
+              <div className={s.secondary}>{label}</div>
+              <div className={s.primary}>{x.value}</div>
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 };

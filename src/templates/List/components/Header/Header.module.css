@@ -1,0 +1,136 @@
+.icon {
+  height: 1.5rem;
+  width: 1.5rem;
+  fill: white;
+}
+
+.controlsWrapper {
+  width: 100%;
+  overflow-x: scroll;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.controlsWrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.controlsInner {
+  display: flex;
+  gap: 0.25rem;
+  white-space: nowrap;
+  flex-wrap: nowrap;
+  padding: 0.5rem 0;
+  padding-right: 10rem;
+  padding-left: 1rem;
+}
+
+.spacer {
+  width: 4rem;
+}
+
+.controlButton {
+  background: #eeecfe;
+  color: #543bf1;
+  font-size: 0.9rem;
+  font-family: Inter, sans-serif;
+  line-height: 1;
+  height: 2.5rem;
+  border-width: 0;
+  border-radius: 8px;
+  font-weight: 700;
+  padding: 0 1rem;
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  &:active {
+    opacity: 0.8;
+  }
+}
+
+.controlButton.active {
+  color: white;
+  background: #543bf1;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.move {
+  background: #24224b;
+  color: white;
+  fill: white;
+  font-size: 0.9rem;
+  font-family: Inter, sans-serif;
+  line-height: 1;
+  border-width: 0;
+  border-radius: 8px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 8px;
+  border: 2px solid white;
+}
+
+.move:hover {
+  opacity: 0.9;
+}
+
+.move:active {
+  opacity: 0.8;
+}
+
+.right {
+  position: absolute;
+  right: 0.1rem;
+
+  z-index: 900;
+}
+
+.left {
+  position: absolute;
+  left: 0.1rem;
+
+  z-index: 900;
+}
+
+/* 
+
+.overlay {
+  height: 80vh;
+  width: 100vw;
+  position: fixed;
+  bottom: -100vh;
+  left: 0;
+  transition: bottom 0.3s ease-in-out;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  border-radius: 6px 6px 0 0;
+}
+
+.overlay.visible {
+  bottom: 0;
+}
+
+.overlayBehind {
+  background: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+} 
+
+*/

@@ -17,13 +17,13 @@ const PROPS: Props = {
 };
 
 export const Basic = () => (
-  <Shell header={false}>
+  <Shell>
     <ValueBlock {...PROPS} />
   </Shell>
 );
 
 export const WithIcon = () => (
-  <Shell header={false}>
+  <Shell>
     <ValueBlock {...PROPS} />
   </Shell>
 );

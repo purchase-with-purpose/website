@@ -1,5 +1,5 @@
 import { type Feature } from "@/entities/Software";
 
 export type Props = {
-  features: Feature[];
+  features: { id: Feature["id"]; value: string | null }[];
 };

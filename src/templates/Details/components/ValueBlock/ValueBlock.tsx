@@ -1,6 +1,6 @@
 import c from "classnames";
 import s from "./ValueBlock.module.css";
-import { Icon } from "../Icon";
+import { Icon } from "@/components/Icon";
 import { type Props } from "./ValueBlock.schema";
 import { TinyColor } from "@ctrl/tinycolor";
 

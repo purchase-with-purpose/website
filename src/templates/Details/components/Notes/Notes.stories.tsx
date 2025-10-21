@@ -15,13 +15,13 @@ const PROPS: Props = {
 };
 
 export const Warning = () => (
-  <Shell header={false}>
+  <Shell>
     <Notes {...PROPS} variant="warning" />
   </Shell>
 );
 
 export const Disclaimer = () => (
-  <Shell header={false}>
+  <Shell>
     <Notes {...PROPS} variant="disclaimer" />
   </Shell>
 );

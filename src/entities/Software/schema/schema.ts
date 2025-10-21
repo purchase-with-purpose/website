@@ -2,11 +2,11 @@ import { z, ZodType } from "zod";
 import { type Indicator, INDICATOR_ID_ARRAY } from "./schema.indicators";
 import { type Origin, ORIGIN_ID_ARRAY } from "./schema.origins";
 import { type Category, CATEGORY_ID_ARRAY } from "./schema.categories";
-import { type Tag, TAGS_ID_ARRAY } from "./schema.tags";
+import { type Platform, PLATFORMS_ID_ARRAY } from "./schema.platforms";
 import { type Note, NOTE_ID_ARRAY } from "./schema.notes";
 import { type Tier, TIER_ID_ARRAY } from "./schema.tiers";
 import { type Evaluation, EVALUATION_ID_ARRAY } from "./schema.evaluations";
-import { type Feature, FEATURE_ICON_ARRAY } from "./schema.features";
+import { type Feature, FEATURES_ID_ARRAY } from "./schema.features";
 import * as u from "@/helpers/utilities";
 
 /**
@@ -65,7 +65,7 @@ export type Company = {
    *
    * See the `Origin` type for more information.
    */
-  ownership: Origin["id"];
+  ownership: Origin["id"] | null;
 
   /**
    * Where the company headquarters are located. If the company does not have a
@@ -73,13 +73,7 @@ export type Company = {
    *
    * See the `Origin` type for more information.
    */
-  headquarters: Origin["id"] | null;
-
-  /**
-   * A freeform string to indicate the ownership structure, for example:
-   * `independent`, `publicly traded`, `privately-held`, `government`, etc.
-   */
-  structure: string;
+  headquarters: Origin["id"];
 };
 
 /**
@@ -117,6 +111,11 @@ export type Item = {
   label: string;
 
   /**
+   *
+   */
+  swatch: string;
+
+  /**
    * The official URL of the software tool's website.
    */
   url: string;
@@ -134,7 +133,7 @@ export type Item = {
   /**
    *
    */
-  features: Feature[];
+  features: { id: Feature["id"]; value: string | null }[];
 
   /**
    * A list of `Indicator` ID values that this software adheres to.
@@ -148,19 +147,14 @@ export type Item = {
   incumbent: boolean;
 
   /**
-   * See the `Origin` type for more information.
-   */
-  origin: Origin["id"];
-
-  /**
    * See the `Category` type for more information.
    */
   category: Category["id"];
 
   /**
-   * See the `Tag` type for more information.
+   * See the `Platform` type for more information.
    */
-  tags: Tag["id"][];
+  platforms: Platform["id"][];
 
   /**
    * See the `NoteValue` type for more information.
@@ -175,7 +169,7 @@ export type Item = {
   /**
    * See the `Tier` type for more information.
    */
-  tiers: Partial<u.Collection<TierValue>>;
+  tiers: Partial<Record<Tier["id"], TierValue>>;
 
   /**
    *
@@ -192,37 +186,32 @@ export const validation = z
     description: z.string(),
     indicators: z.array(z.enum(INDICATOR_ID_ARRAY)),
     incumbent: z.boolean(),
-    origin: z.enum(ORIGIN_ID_ARRAY),
+    swatch: z.string(),
     category: z.enum(CATEGORY_ID_ARRAY),
-    tags: z.array(z.enum(TAGS_ID_ARRAY)),
+    platforms: z.array(z.enum(PLATFORMS_ID_ARRAY)),
 
     company: z.object({
       id: z.string(),
       name: z.string(),
       url: z.string(),
-      ownership: z.enum(ORIGIN_ID_ARRAY),
-      headquarters: z.enum(ORIGIN_ID_ARRAY).nullable(),
-      structure: z.string(),
+      ownership: z.enum(ORIGIN_ID_ARRAY).nullable(),
+      headquarters: z.enum(ORIGIN_ID_ARRAY),
     }),
 
     features: z.array(
       z.object({
-        label: z.string(),
+        id: z.enum(FEATURES_ID_ARRAY),
         value: z.string(),
-        icon: z.enum(FEATURE_ICON_ARRAY),
       })
     ),
 
-    tiers: z
-      .record(
-        z.enum(TIER_ID_ARRAY),
-        z.object({
-          id: z.enum(TIER_ID_ARRAY),
-          value: z.string(),
-        })
-      )
-      .optional()
-      .default({}),
+    tiers: z.record(
+      z.enum(TIER_ID_ARRAY),
+      z.object({
+        id: z.enum(TIER_ID_ARRAY),
+        value: z.string(),
+      })
+    ),
 
     notes: z.array(
       z.object({

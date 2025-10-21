@@ -14,7 +14,7 @@ const PROPS: Props = {
 };
 
 export const Basic = () => (
-  <Shell header={false}>
+  <Shell>
     <Description {...PROPS} />
   </Shell>
 );
