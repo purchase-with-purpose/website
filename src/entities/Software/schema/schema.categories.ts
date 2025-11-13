@@ -1,11 +1,13 @@
 import * as u from "@/helpers/utilities";
+import { type GeneralIconVariant } from "@/entities/Display";
 
 export const CATEGORY_ID_ARRAY = [
-  "photo-management",
   "browser",
-  "file-storage",
-  "office-suite",
   "search-engine",
+  "office-suite",
+  "music-streaming",
+  "file-storage",
+  "photo-management",
   "audio-book",
   "none",
 ] as const;
@@ -35,12 +37,24 @@ type Category = {
 
 const CATEGORY_LABELS: Record<CategoryId, string> = {
   "photo-management": "Photo Management",
-  browser: "Browser",
+  browser: "Browsers",
   "file-storage": "File Storage",
   "office-suite": "Office Suite",
-  "search-engine": "Search Engine",
-  "audio-book": "Audio Book",
-  none: "None",
+  "search-engine": "Search Engines",
+  "audio-book": "Audio Books",
+  "music-streaming": "Music Streaming",
+  none: "Other",
+};
+
+const CATEGORY_ICONS: Record<CategoryId, GeneralIconVariant> = {
+  "photo-management": "image",
+  "audio-book": "audiobook",
+  "file-storage": "box",
+  "office-suite": "writing",
+  "search-engine": "search",
+  browser: "globe",
+  "music-streaming": "speaker",
+  none: "info",
 };
 
 const CATEGORY_DESCRIPTIONS: Record<CategoryId, string> = {
@@ -50,6 +64,7 @@ const CATEGORY_DESCRIPTIONS: Record<CategoryId, string> = {
   "office-suite": "...",
   "search-engine": "...",
   "audio-book": "...",
+  "music-streaming": "...",
   none: "...",
 };
 
@@ -58,6 +73,7 @@ const categories = u.fromArray(
     id,
     label: CATEGORY_LABELS[id],
     description: CATEGORY_DESCRIPTIONS[id],
+    icon: CATEGORY_ICONS[id],
   }))
 );
 

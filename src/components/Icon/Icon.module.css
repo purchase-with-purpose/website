@@ -8,3 +8,12 @@
   width: 0.9rem;
   height: 0.9rem;
 }
+
+.wrapper.size-xs {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.wrapper.importance-secondary {
+  opacity: 0.75;
+}

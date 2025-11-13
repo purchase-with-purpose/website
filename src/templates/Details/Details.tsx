@@ -9,24 +9,6 @@ import { Platforms } from "./components/Platforms";
 import { Gallery } from "./components/Gallery";
 import * as Software from "@/entities/Software";
 import * as u from "@/helpers/utilities";
-import { type Props as ValueBlockProps } from "./components/ValueBlock";
-
-const calcEvalBlock = (
-  evaluation: Software.EvaluationValue | null | undefined
-): ValueBlockProps | null => {
-  if (!evaluation) return null;
-
-  const primary = Software.calcEvaluationDisplayValue(evaluation);
-  const inner = Software.calcEvaluationScore(evaluation);
-
-  return {
-    primary,
-    secondary: Software.evaluations[evaluation.id].label,
-    color: inner?.color,
-    icon: inner?.icon,
-    url: Software.evaluations[evaluation.id].url,
-  };
-};
 
 export const Details = (props: Software.Item) => {
   const {
@@ -79,19 +61,17 @@ export const Details = (props: Software.Item) => {
           title="Company"
           blocks={u.filter([
             {
-              primary: company.name,
-              secondary: "Company",
-              icon: "company",
+              id: "software.company.name",
+              value: company.name,
             },
             company.ownership && {
-              primary: Software.ORIGIN_LABELS[company.ownership],
-              secondary: "Ownership",
-              icon: `flag-${company.ownership}` as const,
+              id: "software.company.ownership",
+              value: company.ownership,
             },
-            company.headquarters && {
-              primary: Software.ORIGIN_LABELS[company.headquarters],
-              secondary: "Headquarters",
-              icon: `flag-${company.headquarters}` as const,
+
+            {
+              id: "software.company.headquarters",
+              value: company.headquarters,
             },
           ])}
         />
@@ -101,22 +81,17 @@ export const Details = (props: Software.Item) => {
           title="Tiers"
           blocks={u.filter([
             tiers.free && {
-              primary: Software.tiers.free.label,
-              secondary: tiers.free.value,
-              icon: "level-one",
-              color: "#543BF1",
+              id: "software.tiers.free",
+              value: tiers.free?.value.toString(),
             },
+
             tiers.basic && {
-              primary: Software.tiers.basic.label,
-              secondary: tiers.basic.value,
-              icon: "level-two",
-              color: "#543BF1",
+              id: "software.tiers.basic",
+              value: tiers.basic?.value.toString(),
             },
             tiers.premium && {
-              primary: Software.tiers.premium.label,
-              secondary: tiers.premium.value,
-              icon: "level-three",
-              color: "#543BF1",
+              id: "software.tiers.premium",
+              value: tiers.premium?.value.toString(),
             },
           ])}
         />
@@ -124,15 +99,26 @@ export const Details = (props: Software.Item) => {
       privacy={
         <SideBlocks
           title="Privacy"
-          blocks={u.filter([calcEvalBlock(evaluations.cspp)])}
+          blocks={u.filter([
+            evaluations.cspp && {
+              id: "software.evaluations.cspp",
+              value: evaluations.cspp?.value.toString(),
+            },
+          ])}
         />
       }
       reviews={
         <SideBlocks
           title="Reviews"
           blocks={u.filter([
-            calcEvalBlock(evaluations.capterra),
-            calcEvalBlock(evaluations.trustpilot),
+            evaluations.capterra && {
+              id: "software.evaluations.capterra",
+              value: evaluations.capterra?.value.toString(),
+            },
+            evaluations.trustpilot && {
+              id: "software.evaluations.trustpilot",
+              value: evaluations.trustpilot?.value.toString(),
+            },
           ])}
         />
       }

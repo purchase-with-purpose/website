@@ -1,0 +1,154 @@
+.float {
+  position: fixed;
+  width: 20rem;
+  background: white;
+  z-index: 100;
+  top: 0;
+  left: -22rem;
+  transition: left 0.3s ease-in-out;
+  height: 100dvh;
+  padding-top: 6rem;
+
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.float.active {
+  left: 0;
+}
+
+.button {
+  background: none;
+  border-width: 0;
+  height: 100%;
+  width: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.icon {
+  height: 1.25rem;
+  width: 1.75rem;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-width: 0;
+  position: relative;
+  fill: white;
+}
+
+.first {
+  height: 2px;
+  background: white;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: 0.3s transform;
+  transform: rotate(0deg);
+}
+
+.second {
+  height: 2px;
+  background: white;
+  width: 100%;
+  position: absolute;
+  top: calc(50% - 1.5px);
+  left: 0;
+  transition: 0.3s transform;
+  transform: scale(1);
+}
+
+.third {
+  height: 2px;
+  background: white;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transition: 0.3s transform;
+  transform: rotate(0deg);
+}
+
+.first.active {
+  transform: rotate(45deg) translate(0.25rem, 0.55rem);
+}
+
+.second.active {
+  transform: scale(0);
+}
+
+.third.active {
+  transform: rotate(-45deg) translate(0.25rem, -0.55rem);
+}
+
+.row {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-left: 2rem;
+  height: 3rem;
+  display: flex;
+  font-size: 1rem;
+  align-items: center;
+  font-weight: 700;
+  align-items: center;
+  gap: 0.5rem;
+  line-height: 0.9;
+  cursor: pointer;
+}
+
+.row:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.row:active {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.spacer {
+  height: 2rem;
+}
+
+.menuButton {
+  font-size: 1rem;
+  font-family: Inter, sans-serif;
+  line-height: 1;
+  height: 2.5rem;
+  border-width: 0;
+  border-radius: 8px;
+  font-weight: 600;
+  padding: 0 1rem;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transform: scale(1);
+  transition: transform 0.1s;
+  background: #543bf1;
+  color: white;
+  margin-left: 1rem;
+}
+
+.rowIcon {
+  height: 2.5rem;
+  width: 2.5rem;
+  fill: #24224b;
+  cursor: pointer;
+}
+
+.rowIcon:hover {
+  opacity: 0.75;
+}
+
+.iconFlex {
+  padding-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding-left: 1rem;
+}

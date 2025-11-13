@@ -1,6 +1,6 @@
-import { indicators } from "@/entities/Software";
 import s from "./TopBlock.module.css";
 import * as schema from "./TopBlock.schema";
+import { Indicator } from "@/components/Indicator";
 
 export const TopBlock = (props: schema.Props) => {
   const { label, logo, url } = props;
@@ -19,17 +19,7 @@ export const TopBlock = (props: schema.Props) => {
 
           <div className={s.indicatorWrap}>
             {props.indicators.map((x) => {
-              return (
-                <div
-                  key={x}
-                  className={s.indicator}
-                  style={{
-                    backgroundColor: indicators[x].swatch,
-                  }}
-                >
-                  {indicators[x].label}
-                </div>
-              );
+              return <Indicator compact={false} key={x} id={x} />;
             })}
           </div>
         </div>

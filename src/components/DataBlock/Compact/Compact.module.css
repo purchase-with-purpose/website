@@ -11,23 +11,28 @@
   font-weight: 700;
   flex-grow: 1;
   line-height: 0.8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0.5rem 0;
 }
 
 .label {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   margin: 0;
   font-weight: 400;
   opacity: 0.5;
   line-height: 0.8;
+  white-space: nowrap;
 }
 
 .wrapper {
   display: flex;
   height: 2rem;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
   padding: 0 1rem 0 0.5rem;
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   max-width: 20rem;
   width: 100%;
 }

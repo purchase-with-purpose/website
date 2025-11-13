@@ -14,7 +14,7 @@ export const Features = (props: Props) => {
         return (
           <div className={s.item}>
             <div className={s.icon}>
-              <Icon variant={icon} size="s" />
+              <Icon variant={icon} size="m" />
             </div>
 
             <div className={s.content}>

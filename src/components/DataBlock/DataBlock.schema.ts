@@ -5,9 +5,12 @@ export type BaseProps = {
   label: string;
   value: string | null;
   icon: IconProps["variant"];
+  url?: string;
+  color?: string;
 };
 
 export type Props = {
   id: Display.ItemId;
   value: string | null;
+  variant: "compact" | "sidebar";
 };

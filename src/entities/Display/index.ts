@@ -1,2 +1,2 @@
-export * from "./Display.schema";
+export * from "./schema";
 export * from "./Display.helpers";

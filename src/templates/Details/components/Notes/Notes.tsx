@@ -8,7 +8,7 @@ export const Notes = (props: Props) => {
   const { value, variant } = props;
 
   return (
-    <p
+    <div
       className={c({
         [s.wrapper]: true,
         [s.wrapperWarning]: variant === "warning",
@@ -30,6 +30,6 @@ export const Notes = (props: Props) => {
       </div>
 
       <p className={s.paragraph}>{value}</p>
-    </p>
+    </div>
   );
 };

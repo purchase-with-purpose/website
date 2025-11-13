@@ -31,13 +31,16 @@ type Indicator = {
    * used in the tags that represent the indicator.
    */
   swatch: string;
+
+  ////
+  emoji: string;
 };
 
 const INDICATOR_LABELS: Record<IndicatorId, string> = {
-  environmental: "🌳 Environmental",
-  "open-source": "🌍 Open Source",
-  privacy: "🔒 Privacy",
-  "self-hosted": "📦 Self-Hosted",
+  environmental: "Environmental",
+  "open-source": "Open Source",
+  privacy: "Privacy",
+  "self-hosted": "Self-Hosted",
 };
 
 const INDICATOR_SWATCHES: Record<IndicatorId, string> = {
@@ -47,12 +50,24 @@ const INDICATOR_SWATCHES: Record<IndicatorId, string> = {
   "self-hosted": "#9C27B0",
 };
 
+const INDICATOR_EMOJI: Record<IndicatorId, string> = {
+  environmental: "🌳",
+  "open-source": "🌍",
+  privacy: "🔒",
+  "self-hosted": "📦",
+};
+
 const indicators: u.Collection<Indicator> = u.fromArray(
-  Object.entries(INDICATOR_LABELS).map(([id, label]) => ({
-    id: id as IndicatorId,
-    label,
-    swatch: INDICATOR_SWATCHES[id as IndicatorId],
-  }))
+  Object.entries(INDICATOR_LABELS).map(([rawId, label]) => {
+    const id = rawId as IndicatorId;
+
+    return {
+      id,
+      label,
+      swatch: INDICATOR_SWATCHES[id],
+      emoji: INDICATOR_EMOJI[id],
+    };
+  })
 );
 
 export { indicators };

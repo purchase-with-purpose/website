@@ -1,5 +1,5 @@
 import s from "./SideBlocks.module.css";
-import { ValueBlock } from "../ValueBlock";
+import { DataBlock } from "@/components/DataBlock";
 import * as schema from "./SideBlocks.schema";
 
 export const SideBlocks = (props: schema.Props) => {
@@ -12,7 +12,7 @@ export const SideBlocks = (props: schema.Props) => {
       <div className={s.content}>
         {blocks.map((x, i) => (
           <div key={i} className={s.item}>
-            <ValueBlock {...x} />
+            <DataBlock {...x} variant="sidebar" />
           </div>
         ))}
       </div>

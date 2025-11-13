@@ -1,4 +1,9 @@
-import { type EvaluationValue, evaluations, type Item } from "../schema";
+import {
+  type EvaluationValue,
+  evaluations,
+  type Item,
+  type Category,
+} from "../schema";
 import * as u from "@/helpers/utilities";
 
 /**

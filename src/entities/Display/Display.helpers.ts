@@ -1,4 +1,4 @@
-import * as schema from "./Display.schema";
+import * as schema from "./schema";
 import { type Item as Software } from "../Software";
 import * as u from "@/helpers/utilities";
 
@@ -15,6 +15,24 @@ export const extractGroup = (props: {
 
   let result: Block[] = [];
 
+  if (group === "recommended") {
+    return [
+      {
+        id: "software.company.url",
+        value: item.company.url,
+      },
+      {
+        id: "software.company.name",
+        value: item.company.name,
+      },
+      {
+        id: "software.features.music.purchase",
+        value:
+          item.features.find((f) => f.id === "music.purchase")?.value || null,
+      },
+    ];
+  }
+
   if (group === "company") {
     return u.filter([
       {
@@ -25,10 +43,6 @@ export const extractGroup = (props: {
         id: "software.company.headquarters",
         value: item.company.headquarters,
       },
-      // {
-      //   id: "software.company.structure",
-      //   value: item.company.structure,
-      // },
     ]);
   }
 
@@ -56,14 +70,16 @@ export const extractGroup = (props: {
 
   if (group === "ratings") {
     return u.filter([
-      item.evaluations.capterra && {
-        id: "software.evaluations.capterra",
-        value: item.evaluations.capterra?.value.toString() || null,
-      },
       item.evaluations.cspp && {
         id: "software.evaluations.cspp",
         value: item.evaluations.cspp?.value.toString() || null,
       },
+
+      item.evaluations.capterra && {
+        id: "software.evaluations.capterra",
+        value: item.evaluations.capterra?.value.toString() || null,
+      },
+
       item.evaluations.trustpilot && {
         id: "software.evaluations.trustpilot",
         value: item.evaluations.trustpilot?.value.toString() || null,
@@ -81,4 +97,24 @@ export const extractGroup = (props: {
   }
 
   return result;
+};
+
+export const calcColumns = (props: { item: Software }) => {
+  const { item } = props;
+
+  let max = 0;
+
+  const result = u.keys(schema.groups).map((id) => {
+    const inner = extractGroup({ group: id, item });
+    if (inner.length > max) {
+      max = inner.length;
+    }
+
+    return inner;
+  });
+
+  return {
+    columns: result,
+    max,
+  };
 };

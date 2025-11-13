@@ -58,15 +58,15 @@ export const createItem = (): Software => {
     tiers: {
       free: {
         id: "free",
-        value: f.lorem.sentence(),
+        value: "Free",
       },
       basic: {
         id: "basic",
-        value: f.lorem.sentence(),
+        value: `$ ${f.number.int({ min: 1, max: 22 })} / mo`,
       },
       premium: {
         id: "premium",
-        value: f.lorem.sentence(),
+        value: `$ ${f.number.int({ min: 23, max: 50 })} / mo`,
       },
     },
 

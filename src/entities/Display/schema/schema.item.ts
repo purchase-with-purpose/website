@@ -1,47 +1,13 @@
 import * as u from "@/helpers/utilities";
+import { type GeneralIconVariant } from "./schema.icon";
 
 import {
-  type Origin,
   type Item as Software,
   type Feature,
   type Tier,
   type Platform,
   type Evaluation,
 } from "@/entities/Software";
-
-export const GENERAL_ICON_VARIANTS = [
-  "company",
-  "person",
-  "check",
-  "warning",
-  "cross",
-  "none",
-  "unknown",
-  "slice",
-  "tag",
-  "shapes",
-  "database",
-  "combine",
-  "face",
-  "lock",
-  "bookmark",
-  "country",
-  "trophy",
-  "smartphone",
-  "eye",
-  "desktop",
-  "globe",
-  "notes",
-  "star",
-  "level-one",
-  "level-two",
-  "level-three",
-] as const;
-
-export type GeneralIconVariant = (typeof GENERAL_ICON_VARIANTS)[number];
-export type FlagIconVariant = `flag-${Origin["id"]}`;
-
-export type IconVariant = GeneralIconVariant | FlagIconVariant;
 
 export type ItemId =
   | `software.${NonNullable<u.ToPrimitivePaths<Software>>}`
@@ -52,7 +18,7 @@ export type ItemId =
 
 type Item = {
   id: ItemId;
-  icon: IconVariant;
+  icon: GeneralIconVariant;
   label: string;
 };
 
@@ -164,36 +130,4 @@ export const ICONS: Record<ItemId, GeneralIconVariant> = {
 
 export const display: u.Collection<Item> = u.fromArray(
   u.entries(LABELS).map(([id, label]) => ({ id, label, icon: ICONS[id] }))
-);
-
-export const GROUP_ID_ARRAY = [
-  // "summary",
-  "company",
-  "pricing",
-  "features",
-  "platforms",
-  "ratings",
-  "privacy",
-] as const;
-
-export const GROUP_LABELS: Record<(typeof GROUP_ID_ARRAY)[number], string> = {
-  // summary: "Summary",
-  features: "Features",
-  company: "Company",
-  pricing: "Pricing",
-  platforms: "Platforms",
-  ratings: "Reviews",
-  privacy: "Privacy",
-};
-
-export type Group = {
-  id: (typeof GROUP_ID_ARRAY)[number];
-  label: string;
-};
-
-export const groups = u.fromArray(
-  GROUP_ID_ARRAY.map((id) => ({
-    id,
-    label: GROUP_LABELS[id],
-  }))
 );
