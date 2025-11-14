@@ -10,10 +10,8 @@ export default {
 };
 
 export const Basic = () => (
-  <Shell header={true}>
-    <Details
-      {...__mocking__.createItem()}
-      logo="https://upload.wikimedia.org/wikipedia/commons/9/9d/Brave_lion_icon.svg"
-    />
-  </Shell>
+  <Details
+    {...__mocking__.createItem()}
+    logo="https://upload.wikimedia.org/wikipedia/commons/9/9d/Brave_lion_icon.svg"
+  />
 );

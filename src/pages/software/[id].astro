@@ -1,24 +1,24 @@
 ---
 import { getCollection } from "astro:content";
+import { Details } from "../../templates/Details";
+import { Shell } from "../../components/Shell";
 
 export async function getStaticPaths() {
   const array = await getCollection("software");
 
   return array.map(({ id, data }) => ({
-    params: { slug: id },
+    params: { id },
     props: { data },
   }));
 }
 
-const { label, description } = Astro.props.data;
+const props = Astro.props.data;
 ---
 
 <html>
-  <head><title>{label}</title></head>
+  <head><title>{props.label}</title></head>
 
   <body>
-    <a href="/">Home</a>
-    <h1>{label}</h1>
-    <pre>{JSON.stringify(Astro.props.data, null, 2)}</pre>
+    <Details {...props} client:load />
   </body>
 </html>

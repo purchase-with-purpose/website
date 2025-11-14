@@ -1,5 +1,15 @@
-import { getSoftware } from "./config";
+import { defineCollection, z } from "astro:content";
+import * as softwareData from "./data/software";
+import * as categoriesData from "./data/category";
 
-const response = await getSoftware();
+const software = defineCollection({
+  loader: softwareData.loader,
+  schema: softwareData.schema,
+});
 
-console.log(response);
+const categories = defineCollection({
+  schema: categoriesData.schema,
+  loader: categoriesData.loader,
+});
+
+export const collections = { software, categories };

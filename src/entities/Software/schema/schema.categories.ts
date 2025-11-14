@@ -9,6 +9,7 @@ export const CATEGORY_ID_ARRAY = [
   "file-storage",
   "photo-management",
   "audio-book",
+  "email",
   "none",
 ] as const;
 
@@ -38,6 +39,7 @@ type Category = {
 const CATEGORY_LABELS: Record<CategoryId, string> = {
   "photo-management": "Photo Management",
   browser: "Browsers",
+  email: "Email",
   "file-storage": "File Storage",
   "office-suite": "Office Suite",
   "search-engine": "Search Engines",
@@ -49,6 +51,7 @@ const CATEGORY_LABELS: Record<CategoryId, string> = {
 const CATEGORY_ICONS: Record<CategoryId, GeneralIconVariant> = {
   "photo-management": "image",
   "audio-book": "audiobook",
+  email: "star",
   "file-storage": "box",
   "office-suite": "writing",
   "search-engine": "search",
@@ -60,6 +63,7 @@ const CATEGORY_ICONS: Record<CategoryId, GeneralIconVariant> = {
 const CATEGORY_DESCRIPTIONS: Record<CategoryId, string> = {
   "photo-management": "...",
   browser: "...",
+  email: "...",
   "file-storage": "...",
   "office-suite": "...",
   "search-engine": "...",

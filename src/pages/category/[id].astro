@@ -1,0 +1,33 @@
+---
+import { getCollection } from "astro:content";
+import { List } from "../../templates/List";
+import { Shell } from "../../components/Shell";
+
+export async function getStaticPaths() {
+  const array = await getCollection("categories");
+  const software = await getCollection("software");
+
+  return array.map(({ id, data }) => {
+    const items = software
+      .filter((item) => item.data.category === id)
+      .map((x) => x.data);
+
+    return {
+      params: { id },
+      props: {
+        data: { label: data.label, items },
+      },
+    };
+  });
+}
+
+const props = Astro.props.data;
+---
+
+<html>
+  <head><title>{props.label}</title></head>
+
+  <body>
+    <List items={props.items} client:load />
+  </body>
+</html>

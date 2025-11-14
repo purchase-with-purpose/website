@@ -85,14 +85,60 @@ export const FEATURE_LABELS: Record<
   "photos-good-support": "",
 } as const;
 
+const FEATURES_DESCRIPTIONS: Record<
+  (typeof FEATURES_ID_ARRAY)[number],
+  string
+> = {
+  "browser-non-google-engine": "",
+  "browser-native-add-blocking": "",
+  "browser-built-in-vpn": "",
+  "browser-ai-helper": "",
+  "browser-ecosystem-support": "",
+  "browser-good-user-support": "",
+  "email-alias-creation": "",
+  "email-easy-unsubscribe": "",
+  "email-schedule-send": "",
+  "email-automatic-categorization": "",
+  "email-ecosystem-support": "",
+  "email-good-user-support": "",
+  "search-independent-index": "",
+  "search-no-personal-identifiers": "",
+  "search-ad-free-tier": "",
+  "search-ai-summaries": "",
+  "search-ecosystem-support": "",
+  "search-good-user-support": "",
+  "music-generous-artist-royalties": "",
+  "music-purchaseable-content": "",
+  "music-high-res-streaming": "",
+  "music-ai-content-flagged": "",
+  "music-ecosystem-support": "",
+  "music-good-user-support": "",
+  "audiobooks-drm-free": "",
+  "audiobooks-subscription": "",
+  "audiobooks-rentals": "",
+  "audiobooks-ecosystem-support": "",
+  "audiobooks-good-support": "",
+  "office-online-service": "",
+  "office-mobile-app": "",
+  "office-own-software": "",
+  "office-ai-assistance": "",
+  "office-good-support": "",
+  "photos-live-images": "",
+  "photos-facial-recognition": "",
+  "photos-file-storage-support": "",
+  "photos-good-support": "",
+};
+
 export type Feature = {
   id: (typeof FEATURES_ID_ARRAY)[number];
   label: string;
+  description: string;
 };
 
-export const features = u.fromArray(
+export const features: u.Collection<Feature> = u.fromArray(
   FEATURES_ID_ARRAY.map((id) => ({
     id,
     label: FEATURE_LABELS[id],
+    description: FEATURES_DESCRIPTIONS[id],
   }))
 );

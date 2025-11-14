@@ -6,7 +6,7 @@ import {
   FEATURES_ID_ARRAY,
   PLATFORMS_ID_ARRAY,
   ORIGIN_ID_ARRAY,
-} from "../entities/Software";
+} from "../../entities/Software";
 
 export const schema = z.object({
   sys: z.any(),
@@ -24,8 +24,6 @@ export const schema = z.object({
       fields: z.object({
         logo: z.object({
           sys: z.object({
-            type: z.string(),
-            linkType: z.string(),
             id: z.string(),
           }),
         }),
@@ -36,11 +34,11 @@ export const schema = z.object({
         url: z.string().url(),
         swatch: z.string().optional(),
 
-        description: z.string(),
+        description: z.string().default(""),
         recommended: z.boolean(),
-        indicators: z.array(z.enum(INDICATOR_ID_ARRAY)),
-        features: z.array(z.enum(FEATURES_ID_ARRAY)),
-        platforms: z.array(z.enum(PLATFORMS_ID_ARRAY)),
+        indicators: z.array(z.enum(INDICATOR_ID_ARRAY)).default([]),
+        features: z.array(z.enum(FEATURES_ID_ARRAY)).default([]),
+        platforms: z.array(z.enum(PLATFORMS_ID_ARRAY)).default([]),
 
         company_name: z.string(),
         company_url: z.string().url(),

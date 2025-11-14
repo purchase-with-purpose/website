@@ -53,9 +53,6 @@ export const Inner = (props: {
             return (
               <div key={index}>
                 <div
-                  style={{
-                    left: `${index * 16}rem`,
-                  }}
                   className={c({
                     [s.column]: true,
                     [s.focus]: index === active,

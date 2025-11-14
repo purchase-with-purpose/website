@@ -1,18 +1,18 @@
-import * as u from "../helpers/utilities";
+import * as u from "../../helpers/utilities";
 import { createClient } from "contentful";
-import { type Item } from "../entities/Software";
-import { getEnv } from "../helpers/env";
-import { schema } from "./config.schema";
+import { type Item } from "../../entities/Software";
+import { getEnv } from "../../helpers/env";
+import { schema } from "./software.schema";
 
 const { CONTENTFUL_DELIVERY_TOKEN, CONTENTFUL_SPACE_ID } = getEnv();
 
-export const client = createClient({
+const client = createClient({
   space: CONTENTFUL_SPACE_ID,
   accessToken: CONTENTFUL_DELIVERY_TOKEN,
   environment: "master",
 });
 
-export const getSoftware = async (): Promise<Item[]> => {
+export const loader = async (): Promise<Item[]> => {
   const response = await client.getEntries({
     content_type: "software",
   });

@@ -2,9 +2,7 @@
 import { getCollection } from "astro:content";
 
 const software = await getCollection("software");
-const indicators = await getCollection("indicators");
 const categories = await getCollection("categories");
-const origins = await getCollection("origins");
 ---
 
 <html lang="en">
@@ -18,37 +16,13 @@ const origins = await getCollection("origins");
   <body>
     <h1>Purchase with Purpose</h1>
 
-    <h2>Indicators</h2>
-
-    <ul>
-      {
-        indicators.map((x) => (
-          <li>
-            <a href={`/indicators/${x.id}`}>{x.data.label}</a>
-          </li>
-        ))
-      }
-    </ul>
-
-    <h2>Origins</h2>
-
-    <ul>
-      {
-        origins.map((x) => (
-          <li>
-            <a href={`/origins/${x.id}`}>{x.data.label}</a>
-          </li>
-        ))
-      }
-    </ul>
-
     <h2>Categories</h2>
 
     <ul>
       {
         categories.map((x) => (
           <li>
-            <a href={`/categories/${x.id}`}>{x.data.label}</a>
+            <a href={`/category/${x.id}`}>{x.data.label}</a>
           </li>
         ))
       }

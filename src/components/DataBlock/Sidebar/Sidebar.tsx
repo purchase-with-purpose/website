@@ -119,6 +119,7 @@ export const Sidebar = (props: schema.Props) => {
         value={content}
         icon={score!.icon}
         color={score!.color}
+        url={evaluations[innerId]?.url || null}
       />
     );
   }

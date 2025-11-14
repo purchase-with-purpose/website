@@ -12,7 +12,7 @@ type Evaluation = {
   label: string;
   group: "privacy" | "reviews";
   url: string;
-  scale: 3 | 5;
+  scale: number;
 };
 
 const LABELS: Record<Evaluation["id"], string> = {
@@ -39,13 +39,16 @@ const SCALES: Record<Evaluation["id"], number> = {
   "privacy-guide": 1,
 };
 
-const evaluations = u.fromArray(
-  EVALUATION_ID_ARRAY.map((id) => ({
-    id,
-    label: LABELS[id],
-    url: URLS[id],
-    scale: SCALES[id],
-  }))
+const evaluations: u.Collection<Evaluation> = u.fromArray(
+  EVALUATION_ID_ARRAY.map(
+    (id): Evaluation => ({
+      id,
+      label: LABELS[id],
+      url: URLS[id],
+      scale: SCALES[id],
+      group: id === "trustpilot" ? "reviews" : "privacy",
+    })
+  )
 );
 
 export { EVALUATION_ID_ARRAY, evaluations };

@@ -9,6 +9,7 @@ import { Platforms } from "./components/Platforms";
 import { Gallery } from "./components/Gallery";
 import * as Software from "@/entities/Software";
 import * as u from "@/helpers/utilities";
+import { Shell } from "../../components/Shell";
 
 export const Details = (props: Software.Item) => {
   const {
@@ -82,42 +83,49 @@ export const Details = (props: Software.Item) => {
   ] as const);
 
   return (
-    <Layout
-      breadcrumbs={
-        <Breadcrumbs
-          path={[
-            {
-              label: "Home",
-              href: "#",
-            },
-            {
-              label: Software.categories[category].label,
-              href: "#",
-            },
-            {
-              label: label,
-              href: null,
-            },
-          ]}
-        />
-      }
-      description={<Description description={description} />}
-      features={<Features features={features} />}
-      disclaimers={
-        <>
-          {notes.map((x, i) => {
-            return <Notes key={i} value={x.value} variant={x.variant} />;
-          })}
-        </>
-      }
-      screenshots={<Gallery />}
-      company={<SideBlocks title="Company" blocks={company as any} />}
-      tiers={<SideBlocks title="Tiers" blocks={tiers as any} />}
-      reviews={<SideBlocks title="Ratings" blocks={ratings as any} />}
-      platforms={<Platforms platforms={platforms} />}
-      top={
-        <TopBlock indicators={indicators} label={label} logo={logo} url={url} />
-      }
-    />
+    <Shell header={true}>
+      <Layout
+        breadcrumbs={
+          <Breadcrumbs
+            path={[
+              {
+                label: "Home",
+                href: "#",
+              },
+              {
+                label: Software.categories[category].label,
+                href: "#",
+              },
+              {
+                label: label,
+                href: null,
+              },
+            ]}
+          />
+        }
+        description={<Description description={description} />}
+        features={<Features features={features} />}
+        disclaimers={
+          <>
+            {notes.map((x, i) => {
+              return <Notes key={i} value={x.value} variant={x.variant} />;
+            })}
+          </>
+        }
+        screenshots={<Gallery />}
+        company={<SideBlocks title="Company" blocks={company as any} />}
+        tiers={<SideBlocks title="Tiers" blocks={tiers as any} />}
+        reviews={<SideBlocks title="Ratings" blocks={ratings as any} />}
+        platforms={<Platforms platforms={platforms} />}
+        top={
+          <TopBlock
+            indicators={indicators}
+            label={label}
+            logo={logo}
+            url={url}
+          />
+        }
+      />
+    </Shell>
   );
 };

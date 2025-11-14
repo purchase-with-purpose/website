@@ -111,8 +111,7 @@ export const List = (props: { items: Software.Item[] }) => {
                       }}
                     >
                       <Card
-                        offset={0}
-                        active={0}
+                        active={column}
                         item={x}
                         columns={columns[index].columns}
                       />

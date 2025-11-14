@@ -18,8 +18,8 @@ export const Features = (props: Props) => {
             </div>
 
             <div className={s.content}>
-              <div className={s.secondary}>{label}</div>
-              <div className={s.primary}>asd</div>
+              <div className={s.primary}>NAME HERE</div>
+              <div className={s.secondary}>DESCRIPTION HERE</div>
             </div>
           </div>
         );
