@@ -133,7 +133,7 @@ export type Item = {
   /**
    *
    */
-  features: { id: Feature["id"]; value: string | null }[];
+  features: Feature["id"][];
 
   /**
    * A list of `Indicator` ID values that this software adheres to.
@@ -169,68 +169,10 @@ export type Item = {
   /**
    * See the `Tier` type for more information.
    */
-  tiers: Partial<Record<Tier["id"], TierValue>>;
+  tiers: Record<Tier["id"], string | null>;
 
   /**
    *
    */
-  evaluations: Partial<u.Collection<EvaluationValue>>;
+  evaluations: Record<Evaluation["id"], number | null>;
 };
-
-export const validation = z
-  .object({
-    id: z.string() as unknown as ZodType<Item["id"]>,
-    label: z.string(),
-    logo: z.string(),
-    url: z.string().url(),
-    description: z.string(),
-    indicators: z.array(z.enum(INDICATOR_ID_ARRAY)),
-    incumbent: z.boolean(),
-    swatch: z.string(),
-    category: z.enum(CATEGORY_ID_ARRAY),
-    platforms: z.array(z.enum(PLATFORMS_ID_ARRAY)),
-
-    company: z.object({
-      id: z.string(),
-      name: z.string(),
-      url: z.string(),
-      ownership: z.enum(ORIGIN_ID_ARRAY).nullable(),
-      headquarters: z.enum(ORIGIN_ID_ARRAY),
-    }),
-
-    features: z.array(
-      z.object({
-        id: z.enum(FEATURES_ID_ARRAY),
-        value: z.string(),
-      })
-    ),
-
-    tiers: z.record(
-      z.enum(TIER_ID_ARRAY),
-      z.object({
-        id: z.enum(TIER_ID_ARRAY),
-        value: z.string(),
-      })
-    ),
-
-    notes: z.array(
-      z.object({
-        variant: z.enum(NOTE_ID_ARRAY),
-        value: z.string(),
-      })
-    ),
-
-    evaluations: z
-      .record(
-        z.enum(EVALUATION_ID_ARRAY),
-        z.object({
-          id: z.enum(EVALUATION_ID_ARRAY),
-          value: z.number(),
-        })
-      )
-      .optional()
-      .default({}),
-  })
-  .strict();
-
-export const is = (value: unknown): Item => validation.parse(value);

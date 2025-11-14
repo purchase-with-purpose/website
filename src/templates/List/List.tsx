@@ -13,10 +13,11 @@ import { Front } from "./components/Front";
 
 export const List = (props: { items: Software.Item[] }) => {
   const { items } = props;
-  const [active, setActive] = useState(0);
 
-  const [split, setSplit] = useState(calcSplit());
-  const total = u.values(Display.groups).length;
+  const [column, setColumn] = useState(0);
+  const [page, setPage] = useState(0);
+
+  // const total = u.values(Display.groups).length;
 
   const columns = useMemo(
     () => items.map((x) => Display.calcColumns({ item: x })),
@@ -29,40 +30,60 @@ export const List = (props: { items: Software.Item[] }) => {
     overscan: 2,
   });
 
-  useWindowSwipe({
-    onSwipeLeft: () => setActive((prev) => Math.min(prev + 1, total - 1)),
-    onSwipeRight: () => setActive((prev) => Math.max(prev - 1, 0)),
-  });
+  // useWindowSwipe({
+  //   onSwipeLeft: () => setActive((prev) => Math.min(prev + 1, total - 1)),
+  //   onSwipeRight: () => setActive((prev) => Math.max(prev - 1, 0)),
+  // });
 
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "ArrowRight") {
-        setActive((prev) => Math.min(prev + 1, total - 1));
-      } else if (event.key === "ArrowLeft") {
-        setActive((prev) => Math.max(prev - 1, 0));
-      }
-    };
+  // useEffect(() => {
+  //   const handleKeyDown = (event: KeyboardEvent) => {
+  //     if (event.key === "ArrowRight") {
+  //       setActive((prev) => Math.min(prev + 1, total - 1));
+  //     } else if (event.key === "ArrowLeft") {
+  //       setActive((prev) => Math.max(prev - 1, 0));
+  //     }
+  //   };
 
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [total]);
+  //   window.addEventListener("keydown", handleKeyDown);
+  //   return () => window.removeEventListener("keydown", handleKeyDown);
+  // }, [total]);
 
-  useEffect(() => {
-    const onResize = () => setSplit(calcSplit());
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
-  }, []);
+  // useEffect(() => {
+  //   const onResize = () => setSplit(calcSplit());
+  //   window.addEventListener("resize", onResize);
+  //   return () => window.removeEventListener("resize", onResize);
+  // }, []);
 
-  const offset = calcOffset({
-    active,
-    split,
-    total,
-  });
+  // const offset = calcOffset({
+  //   active,
+  //   split,
+  //   total,
+  // });
 
   return (
-    <Shell header={<Header active={active} setActive={setActive} />} title="">
+    <Shell
+      header={
+        <Header
+          page={page}
+          column={column}
+          dispatch={(action) => {
+            const { type, payload } = action;
+
+            if (type === "USER_CHANGES_PAGE") {
+              setPage(payload.index);
+            }
+
+            if (type === "USER_CHANGES_COLUMN") {
+              setColumn(payload.index);
+            }
+          }}
+        />
+      }
+      title=""
+    >
       <>
         <Front />
+
         <div className={s.list}>
           <div>
             <div
@@ -90,8 +111,8 @@ export const List = (props: { items: Software.Item[] }) => {
                       }}
                     >
                       <Card
-                        offset={offset}
-                        active={active}
+                        offset={0}
+                        active={0}
                         item={x}
                         columns={columns[index].columns}
                       />

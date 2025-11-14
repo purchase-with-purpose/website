@@ -1,5 +1,11 @@
 import * as u from "@/helpers/utilities";
-const EVALUATION_ID_ARRAY = ["capterra", "trustpilot", "cspp"] as const;
+const EVALUATION_ID_ARRAY = [
+  "trustpilot",
+  "android",
+  "ios",
+  "privacy-tools",
+  "privacy-guide",
+] as const;
 
 type Evaluation = {
   id: (typeof EVALUATION_ID_ARRAY)[number];
@@ -10,15 +16,27 @@ type Evaluation = {
 };
 
 const LABELS: Record<Evaluation["id"], string> = {
-  cspp: "Common Sense Privacy Program",
   trustpilot: "Trustpilot",
-  capterra: "Capterra",
+  android: "Google Play Store",
+  ios: "Apple App Store",
+  "privacy-tools": "Privacy Tools",
+  "privacy-guide": "Privacy Guides",
 };
 
 const URLS: Record<Evaluation["id"], string> = {
-  cspp: "https://privacy.commonsense.org/",
+  android: "https://play.google.com/store/apps",
   trustpilot: "https://www.trustpilot.com/",
-  capterra: "https://www.capterra.com/",
+  ios: "https://www.apple.com/app-store/",
+  "privacy-guide": "https://www.privacyguides.org",
+  "privacy-tools": "https://www.privacytools.io/",
+};
+
+const SCALES: Record<Evaluation["id"], number> = {
+  trustpilot: 5,
+  android: 5,
+  ios: 5,
+  "privacy-tools": 1,
+  "privacy-guide": 1,
 };
 
 const evaluations = u.fromArray(
@@ -26,7 +44,7 @@ const evaluations = u.fromArray(
     id,
     label: LABELS[id],
     url: URLS[id],
-    scale: id === "cspp" ? 3 : 5,
+    scale: SCALES[id],
   }))
 );
 

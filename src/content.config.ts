@@ -1,10 +1,5 @@
-import { defineCollection } from "astro:content";
-import { file } from "astro/loaders";
-import * as Entity from "./entities/Software";
+import { getSoftware } from "./config";
 
-const software = defineCollection({
-  loader: file("./src/data/software.json"),
-  schema: Entity.validation,
-});
+const response = await getSoftware();
 
-export const collections = { software };
+console.log(response);

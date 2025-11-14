@@ -48,16 +48,14 @@ export const Inner = (props: {
       </div>
 
       <div className={s.stackWrapper}>
-        <div
-          className={s.stack}
-          style={{
-            transform: `translateX(-${offset}px)`,
-          }}
-        >
+        <div className={s.stack}>
           {columns.map((array, index) => {
             return (
               <div key={index}>
                 <div
+                  style={{
+                    left: `${index * 16}rem`,
+                  }}
                   className={c({
                     [s.column]: true,
                     [s.focus]: index === active,

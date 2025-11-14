@@ -7,7 +7,7 @@ export type Props = Pick<Software, "platforms">;
 
 export const Platform = (props: { id: Software["platforms"][number] }) => {
   const { id } = props;
-  const { icon } = Display.display[`software.platforms.${id}`];
+  const { icon } = platforms[id];
 
   return (
     <div className={s.wrapper}>

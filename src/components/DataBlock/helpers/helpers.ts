@@ -21,14 +21,13 @@ export const calcEvaluationDisplayValue = (
     ""
   ) as keyof typeof evaluations;
 
-  if (innerId === "cspp" && value === 1) return "Fail";
-  if (innerId === "cspp" && value === 2) return "Warning";
-  if (innerId === "cspp" && value === 3) return "Pass";
+  if (innerId === "privacy-guide" && value === 0) return "Fail";
+  if (innerId === "privacy-guide" && value === 1) return "Pass";
 
-  if (innerId === "capterra") return `${calcPercentage(value, 5)} %`;
-  if (innerId === "trustpilot") return `${calcPercentage(value, 5)} %`;
+  if (innerId === "privacy-tools" && value === 0) return "Fail";
+  if (innerId === "privacy-tools" && value === 1) return "Pass";
 
-  throw new Error(`Unknown evaluation id: ${id}`);
+  return `${calcPercentage(value, 5)} %`;
 };
 
 /**

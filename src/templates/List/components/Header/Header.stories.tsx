@@ -9,6 +9,22 @@ export default {
 };
 
 export const Basic = () => {
-  const [active, setActive] = useState(0);
-  return <Header active={active} setActive={setActive} />;
+  const [page, setPage] = useState(0);
+  const [column, setColumn] = useState(0);
+
+  return (
+    <Header
+      page={page}
+      column={column}
+      dispatch={({ type, payload }) => {
+        if (type === "USER_CHANGES_PAGE") {
+          setPage(payload.index);
+        }
+
+        if (type === "USER_CHANGES_COLUMN") {
+          setColumn(payload.index);
+        }
+      }}
+    />
+  );
 };

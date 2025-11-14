@@ -21,14 +21,7 @@ export const createItem = (): Software => {
 
   return {
     id: u.createBrand("SOFTWARE_ID")!,
-    features: f.helpers
-      .arrayElements(FEATURES_ID_ARRAY, { min: 2, max: 6 })
-      .map((x) => {
-        return {
-          id: x,
-          value: f.lorem.words({ min: 1, max: 3 }),
-        };
-      }),
+    features: f.helpers.arrayElements(FEATURES_ID_ARRAY, { min: 2, max: 6 }),
 
     company: {
       id: f.lorem.slug(3),
