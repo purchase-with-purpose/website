@@ -35,32 +35,16 @@ export const createItem = (): Software => {
     },
 
     evaluations: {
-      capterra: {
-        id: "capterra",
-        value: f.number.float({ min: 1, max: 5, fractionDigits: 1 }),
-      },
-      trustpilot: {
-        id: "trustpilot",
-        value: f.number.float({ min: 1, max: 5, fractionDigits: 1 }),
-      },
-      cspp: {
-        id: "cspp",
-        value: f.number.int({ min: 1, max: 3 }),
-      },
+      trustpilot: f.number.float({ min: 1, max: 5, fractionDigits: 1 }),
+      ios: f.number.float({ min: 1, max: 5, fractionDigits: 1 }),
+      android: f.number.float({ min: 1, max: 5, fractionDigits: 1 }),
+      "privacy-guide": f.number.int({ min: 0, max: 1 }),
+      "privacy-tools": f.number.int({ min: 0, max: 1 }),
     },
     tiers: {
-      free: {
-        id: "free",
-        value: "Free",
-      },
-      basic: {
-        id: "basic",
-        value: `$ ${f.number.int({ min: 1, max: 22 })} / mo`,
-      },
-      premium: {
-        id: "premium",
-        value: `$ ${f.number.int({ min: 23, max: 50 })} / mo`,
-      },
+      free: "Free",
+      basic: `$ ${f.number.int({ min: 1, max: 22 })} / mo`,
+      premium: `$ ${f.number.int({ min: 23, max: 50 })} / mo`,
     },
 
     category,

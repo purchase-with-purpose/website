@@ -18,7 +18,6 @@ export const Layout = (props: schema.Props) => {
       <aside className={s.sidebar}>
         <div>{props.company}</div>
         <div>{props.tiers}</div>
-        <div>{props.privacy}</div>
         <div>{props.reviews}</div>
       </aside>
     </div>

@@ -9,7 +9,7 @@ export const Features = (props: Props) => {
   return (
     <div className={s.wrapper}>
       {features.map((x) => {
-        const { label, icon } = display[`software.features.${x.id}`];
+        const { label, icon } = display[`software.features.${x}`];
 
         return (
           <div className={s.item}>
@@ -19,7 +19,7 @@ export const Features = (props: Props) => {
 
             <div className={s.content}>
               <div className={s.secondary}>{label}</div>
-              <div className={s.primary}>{x.value}</div>
+              <div className={s.primary}>asd</div>
             </div>
           </div>
         );

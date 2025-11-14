@@ -19,7 +19,6 @@ const PROPS: Props = {
   screenshots: <div>Screenshots</div>,
   company: <div>Company</div>,
   tiers: <div>Tiers</div>,
-  privacy: <div>Privacy</div>,
   reviews: <div>Reviews</div>,
 };
 

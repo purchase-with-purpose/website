@@ -2,8 +2,7 @@ import { Shell } from "@/components/Shell";
 import { faker as f } from "@faker-js/faker";
 import { Features } from "./Features";
 import { type Props } from "./Features.schema";
-import { display } from "@/entities/Display";
-import * as u from "@/helpers/utilities";
+import { FEATURES_ID_ARRAY } from "@/entities/Software";
 
 export default {
   title: "Templates/Details/Features",
@@ -13,12 +12,10 @@ export default {
 };
 
 const PROPS: Props = {
-  features: new Array(8).fill(null).map(() => ({
-    value: f.lorem.words({ min: 1, max: 3 }),
-    id: f.helpers
-      .arrayElement(u.keys(display))
-      .replace("software.features.", "") as any,
-  })),
+  features: f.helpers.arrayElements(FEATURES_ID_ARRAY, {
+    min: 1,
+    max: 3,
+  }),
 };
 
 export const Basic = () => (

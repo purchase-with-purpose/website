@@ -10,6 +10,5 @@ export type Props = {
   screenshots: JSX.Element;
   company: JSX.Element;
   tiers: JSX.Element;
-  privacy: JSX.Element;
   reviews: JSX.Element;
 };

@@ -6,7 +6,6 @@ import {
   type Feature,
   type Tier,
   type Platform,
-  type Evaluation,
 } from "@/entities/Software";
 
 export type ItemId =
@@ -14,13 +13,13 @@ export type ItemId =
   | `software.features.${Feature["id"]}`
   | `software.tiers.${Tier["id"]}`
   | `software.platforms.${Platform["id"]}`
-  | `software.evaluations.${Evaluation["id"]}`;
 
 type Item = {
   id: ItemId;
   icon: GeneralIconVariant;
   label: string;
 };
+
 
 export const LABELS: Record<ItemId, string> = {
   "software.swatch": "Swatch",
@@ -49,30 +48,54 @@ export const LABELS: Record<ItemId, string> = {
   "software.company.ownership": "Ownership",
   "software.company.url": "URL",
 
-  "software.features.search.meta": "Meta-Search",
-  "software.features.search.index": "Independent Index",
-  "software.features.search.private": "Private Search",
+  "software.evaluations.android": '',
+  "software.evaluations.ios": '',
+  "software.evaluations.privacy-guide": '',
+  "software.evaluations.privacy-tools": '',
+  "software.evaluations.trustpilot": '',
+  "software.features.audiobooks-drm-free": '',
+  "software.features.audiobooks-ecosystem-support": '',
+  "software.features.audiobooks-good-support": '',
+  "software.features.audiobooks-rentals": '',
+  "software.features.audiobooks-subscription": '',
+  "software.features.browser-ai-helper": '',
 
-  "software.features.photo.facial": "Facial Recognition",
-  "software.features.photo.memories": "Memories",
+  "software.features.browser-built-in-vpn": '',
+  "software.features.browser-ecosystem-support": '',
+  "software.features.browser-good-user-support": '',
+  "software.features.browser-native-add-blocking": '',
+  "software.features.browser-non-google-engine": '',
+  "software.features.email-alias-creation": '',
+  "software.features.email-automatic-categorization": '',
 
-  "software.features.audio.library": "Library App",
-  "software.features.audio.subscription": "Subscription",
-  "software.features.audio.drm": "DRM Free",
+  "software.features.email-easy-unsubscribe": '',
+  "software.features.email-ecosystem-support": '',
+  "software.features.email-good-user-support": '',
+  "software.features.email-schedule-send": '',
+  "software.features.music-ai-content-flagged": '',
+  "software.features.music-ecosystem-support": '',
+  "software.features.music-generous-artist-royalties": '',
+  "software.features.music-good-user-support": '',
+  "software.features.music-high-res-streaming": '',
+  "software.features.music-purchaseable-content": '',
 
-  "software.features.music.purchase": "Purchase Music",
-  "software.features.music.royalties": "Generous Royalties",
-  "software.features.music.hd": "High-Res Streaming",
+  "software.features.office-ai-assistance": '',
+  "software.features.office-good-support": '',
+  "software.features.office-mobile-app": '',
+  "software.features.office-online-service": '',
+  "software.features.office-own-software": '',
 
-  "software.features.email.client": "Client App",
-  "software.features.email.ecosystem": "Ecosystem",
+  "software.features.photos-facial-recognition": '',
+  "software.features.photos-file-storage-support": '',
+  "software.features.photos-good-support": '',
+  "software.features.photos-live-images": '',
+  "software.features.search-ad-free-tier": '',
+  "software.features.search-ai-summaries": '',
+  "software.features.search-ecosystem-support": '',
+  "software.features.search-good-user-support": '',
+  "software.features.search-independent-index": '',
+  "software.features.search-no-personal-identifiers": '',
 
-  "software.features.browser.telemetry": "Zero Telemetry",
-  "software.features.browser.independent": "bolt",
-
-  "software.evaluations.capterra": "Capterra",
-  "software.evaluations.cspp": "Common Sense Privacy",
-  "software.evaluations.trustpilot": "Trustpilot",
 };
 
 export const ICONS: Record<ItemId, GeneralIconVariant> = {
@@ -102,30 +125,54 @@ export const ICONS: Record<ItemId, GeneralIconVariant> = {
   "software.company.ownership": "country",
   "software.company.url": "globe",
 
-  "software.features.search.meta": "combine",
-  "software.features.search.index": "database",
-  "software.features.search.private": "lock",
+  "software.evaluations.android": 'star',
+  "software.evaluations.ios": 'star',
+  "software.evaluations.privacy-guide": 'star',
+  "software.evaluations.privacy-tools": 'star',
+  "software.evaluations.trustpilot": 'star',
+  "software.features.audiobooks-drm-free": 'star',
+  "software.features.audiobooks-ecosystem-support": 'star',
+  "software.features.audiobooks-good-support": 'star',
+  "software.features.audiobooks-rentals": 'star',
+  "software.features.audiobooks-subscription": 'star',
+  "software.features.browser-ai-helper": 'star',
 
-  "software.features.photo.facial": "face",
-  "software.features.photo.memories": "bookmark",
+  "software.features.browser-built-in-vpn": 'star',
+  "software.features.browser-ecosystem-support": 'star',
+  "software.features.browser-good-user-support": 'star',
+  "software.features.browser-native-add-blocking": 'star',
+  "software.features.browser-non-google-engine": 'star',
+  "software.features.email-alias-creation": 'star',
+  "software.features.email-automatic-categorization": 'star',
 
-  "software.features.audio.library": "bookmark",
-  "software.features.audio.subscription": "star",
-  "software.features.audio.drm": "lock",
+  "software.features.email-easy-unsubscribe": 'star',
+  "software.features.email-ecosystem-support": 'star',
+  "software.features.email-good-user-support": 'star',
+  "software.features.email-schedule-send": 'star',
+  "software.features.music-ai-content-flagged": 'star',
+  "software.features.music-ecosystem-support": 'star',
+  "software.features.music-generous-artist-royalties": 'star',
+  "software.features.music-good-user-support": 'star',
+  "software.features.music-high-res-streaming": 'star',
+  "software.features.music-purchaseable-content": 'star',
 
-  "software.features.music.purchase": "person",
-  "software.features.music.royalties": "slice",
-  "software.features.music.hd": "eye",
+  "software.features.office-ai-assistance": 'star',
+  "software.features.office-good-support": 'star',
+  "software.features.office-mobile-app": 'star',
+  "software.features.office-online-service": 'star',
+  "software.features.office-own-software": 'star',
 
-  "software.features.email.client": "desktop",
-  "software.features.email.ecosystem": "combine",
+  "software.features.photos-facial-recognition": 'star',
+  "software.features.photos-file-storage-support": 'star',
+  "software.features.photos-good-support": 'star',
+  "software.features.photos-live-images": 'star',
+  "software.features.search-ad-free-tier": 'star',
+  "software.features.search-ai-summaries": 'star',
+  "software.features.search-ecosystem-support": 'star',
+  "software.features.search-good-user-support": 'star',
+  "software.features.search-independent-index": 'star',
+  "software.features.search-no-personal-identifiers": 'star',
 
-  "software.features.browser.telemetry": "lock",
-  "software.features.browser.independent": "database",
-
-  "software.evaluations.capterra": "star",
-  "software.evaluations.cspp": "lock",
-  "software.evaluations.trustpilot": "star",
 };
 
 export const display: u.Collection<Item> = u.fromArray(

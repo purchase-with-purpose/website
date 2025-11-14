@@ -20,11 +20,66 @@ export const Details = (props: Software.Item) => {
     logo,
     url,
     indicators,
-    company,
-    tiers,
     features,
     platforms,
   } = props;
+
+  const company = u.filter([
+    {
+      id: "software.company.name",
+      value: props.company.name,
+    },
+    props.company.ownership && {
+      id: "software.company.ownership",
+      value: props.company.ownership,
+    },
+    {
+      id: "software.company.headquarters",
+      value: props.company.headquarters,
+    },
+  ] as const);
+
+  const tiers = u.filter([
+    props.tiers.free && {
+      id: "software.tiers.free" as const,
+      value: props.tiers.free,
+    },
+    props.tiers.basic && {
+      id: "software.tiers.basic" as const,
+      value: props.tiers.basic,
+    },
+    props.tiers.premium && {
+      id: "software.tiers.premium" as const,
+      value: props.tiers.premium,
+    },
+  ] as const);
+
+  const ratings = u.filter([
+    props.evaluations.trustpilot && {
+      id: "software.evaluations.trustpilot",
+      value: props.evaluations.trustpilot?.toString(),
+    },
+
+    props.evaluations.android && {
+      id: "software.evaluations.android",
+      value: props.evaluations.android?.toString(),
+    },
+
+    props.evaluations.ios && {
+      id: "software.evaluations.ios",
+      value: props.evaluations.ios?.toString(),
+    },
+
+    props.evaluations["privacy-guide"] && {
+      id: "software.evaluations.privacy-tools",
+      value: props.evaluations["privacy-guide"]?.toString(),
+    },
+
+    props.evaluations["privacy-tools"] && {
+      id: "software.evaluations.privacy-tools",
+      value: props.evaluations["privacy-tools"]?.toString(),
+    },
+  ] as const);
 
   return (
     <Layout
@@ -56,72 +111,9 @@ export const Details = (props: Software.Item) => {
         </>
       }
       screenshots={<Gallery />}
-      company={
-        <SideBlocks
-          title="Company"
-          blocks={u.filter([
-            {
-              id: "software.company.name",
-              value: company.name,
-            },
-            company.ownership && {
-              id: "software.company.ownership",
-              value: company.ownership,
-            },
-
-            {
-              id: "software.company.headquarters",
-              value: company.headquarters,
-            },
-          ])}
-        />
-      }
-      tiers={
-        <SideBlocks
-          title="Tiers"
-          blocks={u.filter([
-            tiers.free && {
-              id: "software.tiers.free",
-              value: tiers.free?.value.toString(),
-            },
-
-            tiers.basic && {
-              id: "software.tiers.basic",
-              value: tiers.basic?.value.toString(),
-            },
-            tiers.premium && {
-              id: "software.tiers.premium",
-              value: tiers.premium?.value.toString(),
-            },
-          ])}
-        />
-      }
-      privacy={
-        <SideBlocks
-          title="Privacy"
-          blocks={u.filter([
-            evaluations.cspp && {
-              id: "software.evaluations.cspp",
-              value: evaluations.cspp?.value.toString(),
-            },
-          ])}
-        />
-      }
-      reviews={
-        <SideBlocks
-          title="Reviews"
-          blocks={u.filter([
-            evaluations.capterra && {
-              id: "software.evaluations.capterra",
-              value: evaluations.capterra?.value.toString(),
-            },
-            evaluations.trustpilot && {
-              id: "software.evaluations.trustpilot",
-              value: evaluations.trustpilot?.value.toString(),
-            },
-          ])}
-        />
-      }
+      company={<SideBlocks title="Company" blocks={company as any} />}
+      tiers={<SideBlocks title="Tiers" blocks={tiers as any} />}
+      reviews={<SideBlocks title="Ratings" blocks={ratings as any} />}
       platforms={<Platforms platforms={platforms} />}
       top={
         <TopBlock indicators={indicators} label={label} logo={logo} url={url} />

@@ -7,7 +7,7 @@
     "app:build": "astro build",
     "app:storybook": "storybook dev -p 6006",
     "task:schemas": "tsx scripts/schemas.ts",
-    "task:typecheck": "tsc --noEmit",
+    "task:typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@astrojs/markdoc": "^0.15.4",

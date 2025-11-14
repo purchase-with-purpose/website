@@ -25,11 +25,6 @@ export const extractGroup = (props: {
         id: "software.company.name",
         value: item.company.name,
       },
-      {
-        id: "software.features.music.purchase",
-        value:
-          item.features.find((f) => f.id === "music.purchase")?.value || null,
-      },
     ];
   }
 
@@ -56,44 +51,64 @@ export const extractGroup = (props: {
   }
 
   if (group === "pricing") {
-    return u.filter(
-      u.values(item.tiers).map((x) => {
-        if (!x) return null;
+    const inner = [
+      item.tiers.free && {
+        id: "software.tiers.free" as const,
+        value: item.tiers.free!,
+      },
 
-        return {
-          id: `software.tiers.${x?.id}`,
-          value: "$10",
-        };
-      })
-    );
+      item.tiers.basic && {
+        id: "software.tiers.basic" as const,
+        value: item.tiers.basic!,
+      },
+
+      item.tiers.premium && {
+        id: "software.tiers.premium" as const,
+        value: item.tiers.premium!,
+      },
+    ].filter((x) => x !== "");
+
+    return u.filter(inner);
   }
 
   if (group === "ratings") {
-    return u.filter([
-      item.evaluations.cspp && {
-        id: "software.evaluations.cspp",
-        value: item.evaluations.cspp?.value.toString() || null,
-      },
-
-      item.evaluations.capterra && {
-        id: "software.evaluations.capterra",
-        value: item.evaluations.capterra?.value.toString() || null,
-      },
-
+    const inner = [
       item.evaluations.trustpilot && {
-        id: "software.evaluations.trustpilot",
-        value: item.evaluations.trustpilot?.value.toString() || null,
+        id: "software.evaluations.trustpilot" as const,
+        value: item.evaluations.trustpilot?.toString() || null,
       },
-    ]);
+
+      item.evaluations.android && {
+        id: "software.evaluations.android" as const,
+        value: item.evaluations.android?.toString() || null,
+      },
+
+      item.evaluations.ios && {
+        id: "software.evaluations.ios" as const,
+        value: item.evaluations.ios?.toString() || null,
+      },
+
+      item.evaluations["privacy-guide"] && {
+        id: "software.evaluations.privacy-tools" as const,
+        value: item.evaluations["privacy-guide"]?.toString() || null,
+      },
+
+      item.evaluations["privacy-guide"] && {
+        id: "software.evaluations.privacy-guide" as const,
+        value: item.evaluations["privacy-guide"]?.toString() || null,
+      },
+    ].filter((x) => x !== 0);
+
+    return u.filter(inner);
   }
 
   if (group === "features") {
-    return item.features.map((x) => {
-      return {
-        id: `software.features.${x.id}`,
-        value: null,
-      };
-    });
+    const inner = item.features.map((x) => `software.features.${x}` as const);
+
+    return inner.map((id) => ({
+      id,
+      value: null,
+    }));
   }
 
   return result;
