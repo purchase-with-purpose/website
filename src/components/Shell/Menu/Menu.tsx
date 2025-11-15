@@ -35,7 +35,7 @@ export const Menu = (props: { open: boolean; toggleOpen: () => void }) => {
 
           <div className={s.spacer} />
 
-          <button className={s.menuButton}>Join Community</button>
+          <button className={s.menuButton}>Share Journey</button>
           {/* <button className={s.menuButton}>Submit Suggestion</button> */}
 
           <div className={s.iconFlex}>

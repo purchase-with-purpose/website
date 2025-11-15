@@ -18,14 +18,14 @@ export const Indicator = (props: {
       }}
     >
       <span>{emoji}</span>
-      {/* <span
+      <span
         className={c({
           [s.label]: true,
           [s.compact]: compact,
         })}
       >
         {label}
-      </span> */}
+      </span>
     </div>
   );
 };

@@ -7,12 +7,6 @@ export const Front = () => {
 
   return (
     <div className={s.wrapper}>
-      <div className={s.top}>
-        <h1 className={s.title}>Cloud Storage</h1>
-
-        <button className={s.toggle}>{expanded ? "Collapse" : "Expand"}</button>
-      </div>
-
       <div>
         <p className={s.description}>
           These guides aim to help you move away from the big tech monopolies.

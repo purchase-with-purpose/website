@@ -63,7 +63,7 @@ export const Header = (props: {
 
   return (
     <>
-      <div className={s.wrapper}>
+      {/* <div className={s.wrapper}>
         <div className={s.controlsWrapper}>
           <div className={s.controlsInner}>
             {u.keys(Software.categories).map((key, i) => (
@@ -97,7 +97,7 @@ export const Header = (props: {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className={s.wrapper}>
         <div className={s.controlsWrapper}>
