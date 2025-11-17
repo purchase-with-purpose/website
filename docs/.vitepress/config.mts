@@ -4,6 +4,7 @@ import { defineConfig } from "vitepress";
 export default defineConfig({
   title: "PWP Web Client",
   description: "Developer documentation for Purchase with Purpose web client.",
+  base: "/website/",
   themeConfig: {
     sidebar: {
       "/": [
