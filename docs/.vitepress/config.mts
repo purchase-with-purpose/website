@@ -9,22 +9,22 @@ export default defineConfig({
       "/": [
         {
           text: "📄 Overview",
-          items: [{ text: "✅ Architecture", link: "/" }],
+          items: [{ text: "Architecture", link: "/" }],
         },
         {
           text: "🚧 Entities",
           items: [
             {
-              text: "✅ Software",
+              text: "Software",
               link: "/entities/software",
             },
-            { text: "Categories", link: "/entities/categories" },
+            { text: "Categories (WIP)", link: "/entities/categories" },
             {
-              text: "Icons",
+              text: "Icons (WIP)",
               link: "/entities/icons",
             },
             {
-              text: "Blocks",
+              text: "Blocks (WIP)",
               link: "/entities/blocks",
             },
           ],
