@@ -1,6 +1,5 @@
-import { type Item as Software } from "@/entities/Software";
+import { type Software, INDICATOR_VARIANTS } from "@/entities/software";
 import s from "./Indicator.module.css";
-import { indicators } from "@/entities/Software";
 import c from "classnames";
 
 export const Indicator = (props: {
@@ -8,7 +7,7 @@ export const Indicator = (props: {
   compact: boolean;
 }) => {
   const { id, compact } = props;
-  const { label, swatch, emoji } = indicators[id];
+  const { label, swatch, emoji } = INDICATOR_VARIANTS[id];
 
   return (
     <div

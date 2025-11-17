@@ -1,16 +1,17 @@
 import { faker as f } from "@faker-js/faker";
 import * as u from "@/helpers/utilities";
-import { FEATURES_ID_ARRAY, PLATFORMS_ID_ARRAY } from "../schema";
+import { CATEGORY_VARIANTS } from "@/entities/categories";
 
 import {
-  type Item as Software,
-  categories,
-  indicators,
-  origins,
-} from "@/entities/Software";
+  FEATURE_VARIANTS,
+  PLATFORM_VARIANTS,
+  type Software,
+  INDICATOR_VARIANTS,
+  ORIGIN_VARIANTS,
+} from "../schema";
 
 export const createItem = (): Software => {
-  const category = f.helpers.arrayElement(u.keys(categories));
+  const category = f.helpers.arrayElement(u.keys(CATEGORY_VARIANTS));
 
   const { logo, swatch } = f.helpers.arrayElement([
     { logo: "/images/logos/brave.svg", swatch: "#e13927" },
@@ -21,16 +22,18 @@ export const createItem = (): Software => {
 
   return {
     id: u.createBrand("SOFTWARE_ID")!,
-    features: f.helpers.arrayElements(FEATURES_ID_ARRAY, { min: 2, max: 6 }),
+    features: f.helpers.arrayElements(u.keys(FEATURE_VARIANTS), {
+      min: 3,
+      max: 5,
+    }),
 
     company: {
-      id: f.lorem.slug(3),
-      headquarters: f.helpers.arrayElement(u.keys(origins)),
+      headquarters: f.helpers.arrayElement(u.keys(ORIGIN_VARIANTS)),
       name: f.company.name(),
       url: f.internet.url(),
 
       ownership: f.datatype.boolean()
-        ? f.helpers.arrayElement(u.keys(origins))
+        ? f.helpers.arrayElement(u.keys(ORIGIN_VARIANTS))
         : null,
     },
 
@@ -49,20 +52,26 @@ export const createItem = (): Software => {
 
     category,
     description: f.lorem.paragraphs(3),
-    indicators: f.helpers.arrayElements(u.keys(indicators), { min: 0, max: 2 }),
+    indicators: f.helpers.arrayElements(u.keys(INDICATOR_VARIANTS), {
+      min: 0,
+      max: 2,
+    }),
     incumbent: f.datatype.boolean(),
 
     logo,
     swatch,
 
     url: f.internet.url(),
-    platforms: f.helpers.arrayElements(PLATFORMS_ID_ARRAY, { min: 1, max: 4 }),
+    platforms: f.helpers.arrayElements(u.keys(PLATFORM_VARIANTS), {
+      min: 1,
+      max: 5,
+    }),
 
     label: f.datatype.boolean()
       ? f.lorem.words({ min: 1, max: 3 })
       : f.lorem.words({ min: 6, max: 9 }),
 
-    notes: new Array([1, 2, 3, 4]).map((x) => {
+    notes: new Array(f.number.int({ min: 0, max: 3 })).map((x) => {
       return {
         variant: f.helpers.arrayElement(["warning", "disclaimer"]),
         value: f.lorem.paragraph(),

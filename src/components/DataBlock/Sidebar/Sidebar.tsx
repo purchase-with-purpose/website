@@ -3,9 +3,15 @@ import s from "./Sidebar.module.css";
 import { Icon } from "@/components/Icon";
 import * as schema from "../DataBlock.schema";
 import { TinyColor } from "@ctrl/tinycolor";
-import * as Display from "@/entities/Display";
+import { BLOCK_VARIANTS } from "@/entities/blocks";
+import * as u from "@/helpers/utilities";
 import { calcEvaluationDisplayValue, calcEvaluationScore } from "../helpers";
-import { TIER_ID_ARRAY, evaluations, origins } from "@/entities/Software";
+
+import {
+  TIER_VARIANTS,
+  EVALUATION_VARIANTS,
+  ORIGIN_VARIANTS,
+} from "@/entities/software";
 
 export const SidebarBase = (props: schema.BaseProps) => {
   const { label, value, icon, url, color } = props;
@@ -57,8 +63,8 @@ export const Sidebar = (props: schema.Props) => {
 
     return (
       <SidebarBase
-        label={Display.display[id].label}
-        value={(origins as any)[value].label}
+        label={BLOCK_VARIANTS[id].label}
+        value={(ORIGIN_VARIANTS as any)[value].label}
         icon={`flag-${value}` as any}
       />
     );
@@ -69,8 +75,8 @@ export const Sidebar = (props: schema.Props) => {
 
     return (
       <SidebarBase
-        label={Display.display[id].label}
-        value={(origins as any)[value].label}
+        label={BLOCK_VARIANTS[id].label}
+        value={(ORIGIN_VARIANTS as any)[value].label}
         icon={`flag-${value}` as any}
       />
     );
@@ -82,14 +88,14 @@ export const Sidebar = (props: schema.Props) => {
     const innerId = id.replace(
       "software.tiers.",
       ""
-    ) as keyof typeof evaluations;
+    ) as keyof typeof EVALUATION_VARIANTS;
 
-    const index = TIER_ID_ARRAY.indexOf(innerId as any);
+    const index = u.keys(EVALUATION_VARIANTS).indexOf(innerId as any);
     const ICON_ARRAY = ["level-one", "level-two", "level-three"] as const;
 
     return (
       <SidebarBase
-        label={Display.display[id].label}
+        label={BLOCK_VARIANTS[id].label}
         value={value}
         icon={ICON_ARRAY[index]}
         color="#543BF1"
@@ -101,7 +107,7 @@ export const Sidebar = (props: schema.Props) => {
     const innerId = id.replace(
       "software.evaluation.",
       ""
-    ) as keyof typeof evaluations;
+    ) as keyof typeof EVALUATION_VARIANTS;
 
     const score = calcEvaluationScore({
       id: innerId,
@@ -115,20 +121,20 @@ export const Sidebar = (props: schema.Props) => {
 
     return (
       <SidebarBase
-        label={Display.display[id].label}
+        label={BLOCK_VARIANTS[id].label}
         value={content}
         icon={score!.icon}
         color={score!.color}
-        url={evaluations[innerId]?.url || null}
+        url={(EVALUATION_VARIANTS as any)[innerId]?.url || null}
       />
     );
   }
 
   return (
     <SidebarBase
-      label={Display.display[id].label}
+      label={BLOCK_VARIANTS[id].label}
       value={value}
-      icon={Display.display[id].icon}
+      icon={BLOCK_VARIANTS[id].icon}
     />
   );
 };

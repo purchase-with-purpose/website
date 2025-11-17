@@ -1,74 +1,47 @@
 import * as u from "@/helpers/utilities";
 
-export const INDICATOR_ID_ARRAY = [
+const ARRAY = [
   "environmental",
   "open-source",
   "privacy",
   "self-hosted",
 ] as const;
 
-type IndicatorId = (typeof INDICATOR_ID_ARRAY)[number];
-
-/**
- * Primarily centered around the `Indicator` type. This is used primarily used
- * to indicate whether a software tool adheres to one of the core areas of
- * concerns highlighted within Purchase with Purpose.
- */
-type Indicator = {
-  /**
-   * A unique string identifier used to indicate a specific instance amongst the
-   * set of predefined options.
-   */
-  id: IndicatorId;
-
-  /**
-   * The human-readable name of specific area of concern.
-   */
+export type Indicator = {
+  id: (typeof ARRAY)[number];
   label: string;
-
-  /**
-   * The HEX colour value associated with the specific area of concern. This is
-   * used in the tags that represent the indicator.
-   */
   swatch: string;
-
-  ////
   emoji: string;
 };
 
-const INDICATOR_LABELS: Record<IndicatorId, string> = {
+const LABELS: Record<Indicator["id"], string> = {
   environmental: "Environmental",
   "open-source": "Open Source",
   privacy: "Privacy",
   "self-hosted": "Self-Hosted",
 };
 
-const INDICATOR_SWATCHES: Record<IndicatorId, string> = {
+const SWATCHES: Record<Indicator["id"], string> = {
   environmental: "#4CAF50",
   "open-source": "#2196F3",
   privacy: "#FF9800",
   "self-hosted": "#9C27B0",
 };
 
-const INDICATOR_EMOJI: Record<IndicatorId, string> = {
+const EMOJI: Record<Indicator["id"], string> = {
   environmental: "🌳",
   "open-source": "🌍",
   privacy: "🔒",
   "self-hosted": "📦",
 };
 
-const indicators: u.Collection<Indicator> = u.fromArray(
-  Object.entries(INDICATOR_LABELS).map(([rawId, label]) => {
-    const id = rawId as IndicatorId;
-
+export const INDICATOR_VARIANTS = u.fromArray(
+  ARRAY.map((id): Indicator => {
     return {
       id,
-      label,
-      swatch: INDICATOR_SWATCHES[id],
-      emoji: INDICATOR_EMOJI[id],
+      label: LABELS[id],
+      swatch: SWATCHES[id],
+      emoji: EMOJI[id],
     };
   })
 );
-
-export { indicators };
-export type { Indicator };

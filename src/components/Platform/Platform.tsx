@@ -1,18 +1,17 @@
-import { type Item as Software, platforms } from "@/entities/Software";
+import { type Software, PLATFORM_VARIANTS } from "@/entities/software";
 import s from "./Platform.module.css";
-import * as Display from "../../entities/Display";
 import { Icon } from "@/components/Icon";
 
 export type Props = Pick<Software, "platforms">;
 
 export const Platform = (props: { id: Software["platforms"][number] }) => {
   const { id } = props;
-  const { icon } = platforms[id];
+  const { icon } = PLATFORM_VARIANTS[id];
 
   return (
     <div className={s.wrapper}>
       <Icon variant={icon} size="xs" />
-      <span>{platforms[id].label}</span>
+      <span>{PLATFORM_VARIANTS[id].label}</span>
     </div>
   );
 };

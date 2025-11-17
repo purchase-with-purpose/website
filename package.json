@@ -3,11 +3,12 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "app:dev": "astro dev",
-    "app:build": "astro build",
-    "app:storybook": "storybook dev -p 6006",
-    "task:schemas": "tsx scripts/schemas.ts",
-    "task:typecheck": "tsc --noEmit"
+    "dev": "astro dev",
+    "build": "astro build",
+    "storybook": "storybook dev -p 6006",
+    "docs": "vitepress dev src/docs",
+    "typecheck": "tsc --noEmit",
+    "examples": "tsx scripts/examples.mts"
   },
   "dependencies": {
     "@astrojs/markdoc": "^0.15.4",
@@ -23,6 +24,7 @@
     "@types/uuid": "^10.0.0",
     "astro": "^5.12.8",
     "classnames": "^2.5.1",
+    "prismjs": "^1.30.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "tsx": "^4.20.3",
@@ -42,6 +44,7 @@
     "playwright": "^1.54.1",
     "storybook": "^9.0.18",
     "vite-tsconfig-paths": "^5.1.4",
+    "vitepress": "^1.6.4",
     "vitest": "^3.2.4"
   }
 }

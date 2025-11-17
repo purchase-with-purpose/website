@@ -1,4 +1,4 @@
-import { type EvaluationValue, evaluations } from "@/entities/Software";
+import { type Evaluation, EVALUATION_VARIANTS } from "@/entities/software";
 
 /**
  * ...

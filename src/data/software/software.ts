@@ -1,6 +1,6 @@
 import * as u from "../../helpers/utilities";
 import { createClient } from "contentful";
-import { type Item } from "../../entities/Software";
+import { type Software } from "../../entities/software";
 import { getEnv } from "../../helpers/env";
 import { schema } from "./software.schema";
 
@@ -12,7 +12,7 @@ const client = createClient({
   environment: "master",
 });
 
-export const loader = async (): Promise<Item[]> => {
+export const loader = async (): Promise<Software[]> => {
   const response = await client.getEntries({
     content_type: "software",
   });
@@ -20,7 +20,7 @@ export const loader = async (): Promise<Item[]> => {
   const array = response.includes?.Asset || [];
   let success = 0;
 
-  const items = response.items.map((x): Item | null => {
+  const items = response.items.map((x): Software | null => {
     try {
       const { fields: f } = schema.shape.items.element.parse(x);
 
@@ -41,8 +41,8 @@ export const loader = async (): Promise<Item[]> => {
         };
       });
 
-      const inner: Item = {
-        id: x.sys.id as Item["id"],
+      const inner: Software = {
+        id: u.createBrand("SOFTWARE_ID", x.sys.id)!,
         label: f.label,
         logo,
         url: f.url,
@@ -64,7 +64,6 @@ export const loader = async (): Promise<Item[]> => {
         },
 
         company: {
-          id: f.company_name,
           url: f.company_url,
           headquarters: f.company_headquarters,
           name: f.company_name,

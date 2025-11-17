@@ -1,16 +1,16 @@
-import { type Props as IconProps } from "@/components/Icon";
-import * as Display from "@/entities/Display";
+import { type IconVariant } from "@/entities/icons";
+import { type Block } from "@/entities/blocks";
 
 export type BaseProps = {
   label: string;
   value: string | null;
-  icon: IconProps["variant"];
+  icon: IconVariant;
   url?: string;
   color?: string;
 };
 
 export type Props = {
-  id: Display.ItemId;
+  id: Block["id"];
   value: string | null;
   variant: "compact" | "sidebar";
 };

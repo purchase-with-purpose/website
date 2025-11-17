@@ -1,12 +1,25 @@
 import { z } from "zod";
+import { CATEGORY_VARIANTS } from "@/entities/categories";
 
 import {
-  CATEGORY_ID_ARRAY,
-  INDICATOR_ID_ARRAY,
-  FEATURES_ID_ARRAY,
-  PLATFORMS_ID_ARRAY,
-  ORIGIN_ID_ARRAY,
-} from "../../entities/Software";
+  EVALUATION_VARIANTS,
+  FEATURE_VARIANTS,
+  INDICATOR_VARIANTS,
+  PLATFORM_VARIANTS,
+  NOTE_VARIANTS,
+  ORIGIN_VARIANTS,
+  TIER_VARIANTS,
+} from "@/entities/software";
+
+const extractKeysAsEnum = <
+  T extends Record<string, any>,
+  K extends keyof T & string = keyof T & string
+>(
+  value: T
+) => {
+  const keys = Object.keys(value) as [K, ...K[]];
+  return z.enum(keys);
+};
 
 export const schema = z.object({
   sys: z.any(),
@@ -30,20 +43,20 @@ export const schema = z.object({
 
         label: z.string(),
         incumbent: z.boolean(),
-        category: z.enum(CATEGORY_ID_ARRAY),
+        category: extractKeysAsEnum(CATEGORY_VARIANTS),
         url: z.string().url(),
         swatch: z.string().optional(),
 
         description: z.string().default(""),
         recommended: z.boolean(),
-        indicators: z.array(z.enum(INDICATOR_ID_ARRAY)).default([]),
-        features: z.array(z.enum(FEATURES_ID_ARRAY)).default([]),
-        platforms: z.array(z.enum(PLATFORMS_ID_ARRAY)).default([]),
+        indicators: z.array(extractKeysAsEnum(INDICATOR_VARIANTS)).default([]),
+        features: z.array(extractKeysAsEnum(FEATURE_VARIANTS)).default([]),
+        platforms: z.array(extractKeysAsEnum(PLATFORM_VARIANTS)).default([]),
 
         company_name: z.string(),
         company_url: z.string().url(),
-        company_headquarters: z.enum(ORIGIN_ID_ARRAY),
-        company_ownership: z.enum(ORIGIN_ID_ARRAY),
+        company_headquarters: extractKeysAsEnum(ORIGIN_VARIANTS),
+        company_ownership: extractKeysAsEnum(ORIGIN_VARIANTS),
 
         trustpilotEvaluation: z.number().optional(),
         evaluations_android: z.number().optional(),

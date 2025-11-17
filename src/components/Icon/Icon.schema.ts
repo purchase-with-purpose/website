@@ -1,7 +1,7 @@
-import * as Display from "@/entities/Display";
+import { type IconVariant } from "@/entities/icons";
 
 export type Props = {
-  variant: Display.IconVariant;
+  variant: IconVariant;
   size?: "xs" | "s" | "m" | "l";
   importance?: "primary" | "secondary";
 };

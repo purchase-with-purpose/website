@@ -1,6 +1,6 @@
 import * as u from "@/helpers/utilities";
 
-export const ORIGIN_ID_ARRAY = [
+const ARRAY = [
   "AF",
   "AX",
   "AL",
@@ -252,7 +252,12 @@ export const ORIGIN_ID_ARRAY = [
   "ZW",
 ] as const;
 
-export const ORIGIN_LABELS: Record<OriginId, string> = {
+export type Origin = {
+  id: (typeof ARRAY)[number];
+  label: string;
+};
+
+const LABELS: Record<Origin["id"], string> = {
   AF: "Afghanistan",
   AX: "Åland Islands",
   AL: "Albania",
@@ -504,30 +509,9 @@ export const ORIGIN_LABELS: Record<OriginId, string> = {
   ZW: "Zimbabwe",
 };
 
-type OriginId = (typeof ORIGIN_ID_ARRAY)[number];
-
-/**
- * This is used to indicate where a specific company's headquarters is located.
- */
-type Origin = {
-  /**
-   * A unique string identifier used to indicate a specific instance amongst the
-   * set of predefined options.
-   */
-  id: OriginId;
-
-  /**
-   * Human-friendly name of the location.
-   */
-  label: string;
-};
-
-const origins = u.fromArray(
-  ORIGIN_ID_ARRAY.map((id) => ({
+export const ORIGIN_VARIANTS = u.fromArray(
+  ARRAY.map((id) => ({
     id,
-    label: ORIGIN_LABELS[id],
+    label: LABELS[id],
   }))
 );
-
-export { origins };
-export type { Origin };

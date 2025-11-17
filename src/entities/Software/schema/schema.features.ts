@@ -1,6 +1,6 @@
 import * as u from "@/helpers/utilities";
 
-export const FEATURES_ID_ARRAY = [
+const ARRAY = [
   "browser-non-google-engine",
   "browser-native-add-blocking",
   "browser-built-in-vpn",
@@ -41,10 +41,7 @@ export const FEATURES_ID_ARRAY = [
   "photos-good-support",
 ] as const;
 
-export const FEATURE_LABELS: Record<
-  (typeof FEATURES_ID_ARRAY)[number],
-  string
-> = {
+const LABELS: Record<(typeof ARRAY)[number], string> = {
   "browser-non-google-engine": "",
   "browser-native-add-blocking": "",
   "browser-built-in-vpn": "",
@@ -85,10 +82,7 @@ export const FEATURE_LABELS: Record<
   "photos-good-support": "",
 } as const;
 
-const FEATURES_DESCRIPTIONS: Record<
-  (typeof FEATURES_ID_ARRAY)[number],
-  string
-> = {
+const DESCRIPTIONS: Record<(typeof ARRAY)[number], string> = {
   "browser-non-google-engine": "",
   "browser-native-add-blocking": "",
   "browser-built-in-vpn": "",
@@ -130,15 +124,17 @@ const FEATURES_DESCRIPTIONS: Record<
 };
 
 export type Feature = {
-  id: (typeof FEATURES_ID_ARRAY)[number];
+  id: (typeof ARRAY)[number];
   label: string;
   description: string;
 };
 
-export const features: u.Collection<Feature> = u.fromArray(
-  FEATURES_ID_ARRAY.map((id) => ({
-    id,
-    label: FEATURE_LABELS[id],
-    description: FEATURES_DESCRIPTIONS[id],
-  }))
+export const FEATURE_VARIANTS = u.fromArray(
+  ARRAY.map(
+    (id): Feature => ({
+      id,
+      label: LABELS[id],
+      description: DESCRIPTIONS[id],
+    })
+  )
 );

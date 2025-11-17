@@ -3,7 +3,7 @@ import { Sidebar, SidebarBase } from "./Sidebar";
 import * as schema from "../DataBlock.schema";
 import * as u from "../../../helpers/utilities";
 import { faker as f } from "@faker-js/faker";
-import * as Display from "../../../entities/Display";
+import { BLOCK_VARIANTS } from "@/entities/blocks";
 
 export default {
   title: "Components/DataBlock/Sidebar",
@@ -20,7 +20,7 @@ const BASE_PROPS: schema.BaseProps = {
 };
 
 const PROPS: schema.Props = {
-  id: f.helpers.arrayElement(u.keys(Display.display)),
+  id: f.helpers.arrayElement(u.keys(BLOCK_VARIANTS)),
   value: f.lorem.words(3),
   variant: "compact",
 };

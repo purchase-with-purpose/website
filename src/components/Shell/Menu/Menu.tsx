@@ -1,8 +1,7 @@
 import s from "./Menu.module.css";
-import { useState } from "react";
 import c from "classnames";
 import * as u from "../../../helpers/utilities";
-import { categories } from "../../../entities/Software";
+import { CATEGORY_VARIANTS } from "@/entities/categories";
 
 export const Menu = (props: { open: boolean; toggleOpen: () => void }) => {
   const { open } = props;
@@ -23,7 +22,7 @@ export const Menu = (props: { open: boolean; toggleOpen: () => void }) => {
 
           <div className={s.spacer} />
 
-          {u.values(categories).map(({ id, label }) => {
+          {u.values(CATEGORY_VARIANTS).map(({ id, label }) => {
             if (id === "none") return null;
 
             return (

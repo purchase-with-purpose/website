@@ -1,9 +1,10 @@
 import * as u from "@/helpers/utilities";
-export const TIER_ID_ARRAY = ["free", "basic", "premium"] as const;
+const TIER_ID_ARRAY = ["free", "basic", "premium"] as const;
 
-type Tier = {
+export type Tier = {
   id: (typeof TIER_ID_ARRAY)[number];
   label: string;
+  description: string;
 };
 
 const LABELS: Record<Tier["id"], string> = {
@@ -12,12 +13,18 @@ const LABELS: Record<Tier["id"], string> = {
   premium: "Premium Plan",
 };
 
-const tiers = u.fromArray(
-  TIER_ID_ARRAY.map((id) => ({
-    id,
-    label: LABELS[id],
-  }))
-);
+const DESCRIPTIONS: Record<Tier["id"], string> = {
+  free: "Free Tier",
+  basic: "Basic Plan",
+  premium: "Premium Plan",
+};
 
-export { tiers };
-export type { Tier };
+export const TIER_VARIANTS = u.fromArray(
+  TIER_ID_ARRAY.map(
+    (id): Tier => ({
+      id,
+      label: LABELS[id],
+      description: DESCRIPTIONS[id],
+    })
+  )
+);

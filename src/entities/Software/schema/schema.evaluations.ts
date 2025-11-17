@@ -1,5 +1,6 @@
 import * as u from "@/helpers/utilities";
-const EVALUATION_ID_ARRAY = [
+
+const ARRAY = [
   "trustpilot",
   "android",
   "ios",
@@ -7,10 +8,9 @@ const EVALUATION_ID_ARRAY = [
   "privacy-guide",
 ] as const;
 
-type Evaluation = {
-  id: (typeof EVALUATION_ID_ARRAY)[number];
+export type Evaluation = {
+  id: (typeof ARRAY)[number];
   label: string;
-  group: "privacy" | "reviews";
   url: string;
   scale: number;
 };
@@ -39,17 +39,13 @@ const SCALES: Record<Evaluation["id"], number> = {
   "privacy-guide": 1,
 };
 
-const evaluations: u.Collection<Evaluation> = u.fromArray(
-  EVALUATION_ID_ARRAY.map(
+export const EVALUATION_VARIANTS = u.fromArray(
+  ARRAY.map(
     (id): Evaluation => ({
       id,
       label: LABELS[id],
       url: URLS[id],
       scale: SCALES[id],
-      group: id === "trustpilot" ? "reviews" : "privacy",
     })
   )
 );
-
-export { EVALUATION_ID_ARRAY, evaluations };
-export type { Evaluation };

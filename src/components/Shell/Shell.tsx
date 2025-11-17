@@ -5,8 +5,6 @@ import c from "classnames";
 import { type JSX } from "react";
 import { useScrollDirection } from "./Shell.useScrollDirection";
 import { Menu, Icon } from "./Menu";
-import * as u from "../../helpers/utilities";
-import { categories } from "../../entities/Software";
 
 export const Shell = (props: {
   children: JSX.Element | JSX.Element[];

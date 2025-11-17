@@ -1,7 +1,7 @@
 import * as u from "@/helpers/utilities";
-import { type GeneralIconVariant } from "../../Display/schema/schema.icon";
+import { type GeneralIconVariant } from "@/entities/icons";
 
-export const PLATFORMS_ID_ARRAY = [
+const PLATFORMS_ID_ARRAY = [
   "windows",
   "mac",
   "linux",
@@ -10,10 +10,13 @@ export const PLATFORMS_ID_ARRAY = [
   "ios",
 ] as const;
 
-export const PLATFORMS_LABELS: Record<
-  (typeof PLATFORMS_ID_ARRAY)[number],
-  string
-> = {
+export type Platform = {
+  id: (typeof PLATFORMS_ID_ARRAY)[number];
+  label: string;
+  icon: GeneralIconVariant;
+};
+
+const LABELS: Record<Platform["id"], string> = {
   windows: "Windows",
   mac: "Mac OS",
   linux: "Linux",
@@ -22,10 +25,7 @@ export const PLATFORMS_LABELS: Record<
   ios: "iOS",
 };
 
-const PLATFORM_ICONS: Record<
-  (typeof PLATFORMS_ID_ARRAY)[number],
-  GeneralIconVariant
-> = {
+const ICONS: Record<Platform["id"], GeneralIconVariant> = {
   android: "smartphone",
   ios: "smartphone",
   linux: "desktop",
@@ -34,16 +34,20 @@ const PLATFORM_ICONS: Record<
   windows: "desktop",
 };
 
-export type Platform = {
-  id: (typeof PLATFORMS_ID_ARRAY)[number];
-  label: string;
-  icon: GeneralIconVariant;
+const DESCRIPTIONS: Record<Platform["id"], string> = {
+  android: "...",
+  ios: "..",
+  linux: "..",
+  mac: "...",
+  web: "...",
+  windows: "...",
 };
 
-export const platforms = u.fromArray(
+export const PLATFORM_VARIANTS = u.fromArray(
   PLATFORMS_ID_ARRAY.map((id) => ({
     id,
-    label: PLATFORMS_LABELS[id],
-    icon: PLATFORM_ICONS[id],
+    label: LABELS[id],
+    icon: ICONS[id],
+    description: DESCRIPTIONS[id],
   }))
 );

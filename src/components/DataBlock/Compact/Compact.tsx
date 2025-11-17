@@ -1,9 +1,15 @@
 import * as schema from "../DataBlock.schema";
 import { Icon } from "@/components/Icon";
+import * as u from "@/helpers/utilities";
 import s from "./Compact.module.css";
-import * as Display from "@/entities/Display";
+import { BLOCK_VARIANTS } from "@/entities/blocks";
 import { calcEvaluationDisplayValue, calcEvaluationScore } from "../helpers";
-import { TIER_ID_ARRAY, evaluations, origins } from "@/entities/Software";
+
+import {
+  TIER_VARIANTS,
+  ORIGIN_VARIANTS,
+  EVALUATION_VARIANTS,
+} from "@/entities/software";
 
 export const CompactBase = (props: schema.BaseProps) => {
   const { label, value, icon } = props;
@@ -22,15 +28,15 @@ export const CompactBase = (props: schema.BaseProps) => {
 
 export const Compact = (props: schema.Props) => {
   const { value, id } = props;
-  const { icon, label } = Display.display[id];
+  const { icon, label } = BLOCK_VARIANTS[id];
 
   if (id === "software.company.headquarters") {
     if (!value) return null;
 
     return (
       <CompactBase
-        label={Display.display[id].label}
-        value={(origins as any)[value].label}
+        label={BLOCK_VARIANTS[id].label}
+        value={(ORIGIN_VARIANTS as any)[value].label}
         icon={`flag-${value}` as any}
       />
     );
@@ -41,8 +47,8 @@ export const Compact = (props: schema.Props) => {
 
     return (
       <CompactBase
-        label={Display.display[id].label}
-        value={(origins as any)[value].label}
+        label={BLOCK_VARIANTS[id].label}
+        value={(ORIGIN_VARIANTS as any)[value].label}
         icon={`flag-${value}` as any}
       />
     );
@@ -54,14 +60,14 @@ export const Compact = (props: schema.Props) => {
     const innerId = id.replace(
       "software.tiers.",
       ""
-    ) as keyof typeof evaluations;
+    ) as keyof typeof EVALUATION_VARIANTS;
 
-    const index = TIER_ID_ARRAY.indexOf(innerId as any);
+    const index = u.keys(TIER_VARIANTS).indexOf(innerId as any);
     const ICON_ARRAY = ["level-one", "level-two", "level-three"] as const;
 
     return (
       <CompactBase
-        label={Display.display[id].label}
+        label={BLOCK_VARIANTS[id].label}
         value={value}
         icon={ICON_ARRAY[index]}
         color="#543BF1"
@@ -73,7 +79,7 @@ export const Compact = (props: schema.Props) => {
     const innerId = id.replace(
       "software.evaluation.",
       ""
-    ) as keyof typeof evaluations;
+    ) as keyof typeof EVALUATION_VARIANTS;
 
     const score = calcEvaluationScore({
       id: innerId,
@@ -87,7 +93,7 @@ export const Compact = (props: schema.Props) => {
 
     return (
       <CompactBase
-        label={Display.display[id].label}
+        label={BLOCK_VARIANTS[id].label}
         value={content}
         icon={score!.icon}
         color={score!.color}

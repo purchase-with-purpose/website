@@ -1,8 +1,9 @@
 import { Shell } from "@/components/Shell";
 import { faker as f } from "@faker-js/faker";
 import { Icon } from "./Icon";
-import * as Software from "@/entities/Software";
-import * as Display from "@/entities/Display";
+import * as u from "@/helpers/utilities";
+import { ORIGIN_VARIANTS } from "@/entities/software";
+import { GENERAL_ICON_VARIANTS } from "@/entities/icons";
 
 export default {
   title: "Components/Icon",
@@ -14,18 +15,18 @@ export default {
 export const Basic = () => (
   <Shell>
     <>
-      {Display.GENERAL_ICON_VARIANTS.map((variant) => (
+      {GENERAL_ICON_VARIANTS.map((variant) => (
         <Icon key={variant} variant={variant} />
       ))}
 
       <Icon
-        variant={`flag-${f.helpers.arrayElement(Software.ORIGIN_ID_ARRAY)}`}
+        variant={`flag-${f.helpers.arrayElement(u.keys(ORIGIN_VARIANTS))}`}
       />
       <Icon
-        variant={`flag-${f.helpers.arrayElement(Software.ORIGIN_ID_ARRAY)}`}
+        variant={`flag-${f.helpers.arrayElement(u.keys(ORIGIN_VARIANTS))}`}
       />
       <Icon
-        variant={`flag-${f.helpers.arrayElement(Software.ORIGIN_ID_ARRAY)}`}
+        variant={`flag-${f.helpers.arrayElement(u.keys(ORIGIN_VARIANTS))}`}
       />
     </>
   </Shell>

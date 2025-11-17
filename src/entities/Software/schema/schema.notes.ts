@@ -1,29 +1,36 @@
 import * as u from "@/helpers/utilities";
-const NOTE_ID_ARRAY = ["disclaimer", "warning"] as const;
 
-type Note = {
-  id: (typeof NOTE_ID_ARRAY)[number];
+const ARRAY = ["disclaimer", "warning"] as const;
+
+export type Note = {
+  id: (typeof ARRAY)[number];
   label: string;
   swatch: string;
+  description: string;
 };
 
-const NOTE_LABELS: Record<Note["id"], string> = {
+const LABELS: Record<Note["id"], string> = {
   disclaimer: "Disclaimer",
   warning: "Warning",
 };
 
-const NOTE_SWATCHES: Record<Note["id"], string> = {
+const SWATCHES: Record<Note["id"], string> = {
   disclaimer: "yellow",
   warning: "red",
 };
 
-const noteVariants = u.fromArray(
-  NOTE_ID_ARRAY.map((id) => ({
-    id,
-    label: NOTE_LABELS[id],
-    swatch: NOTE_SWATCHES[id],
-  }))
-);
+const DESCRIPTIONS: Record<Note["id"], string> = {
+  disclaimer: "...",
+  warning: "...",
+};
 
-export { NOTE_ID_ARRAY, noteVariants };
-export type { Note };
+export const NOTE_VARIANTS = u.fromArray(
+  ARRAY.map(
+    (id): Note => ({
+      description: DESCRIPTIONS[id],
+      label: LABELS[id],
+      swatch: SWATCHES[id],
+      id,
+    })
+  )
+);
