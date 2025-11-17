@@ -1,19 +1,17 @@
-# 📄 Overview
-
-## Architecture
+# 📄 Architecture
 
 The PWP codebase consists of six different types of structures, each located in a corresponding folder within the `src` directory. These are as follows:
 
 ---
 
-### 🚧 Entities
+## 🚧 Entities
 `src/entities/`
 
 Various [TypeScript](https://www.typescriptlang.org/) types, [Zod](https://zod.dev/) validation and helper functions closely associated with common pre-defined data structures used throughout the codebase.
 
 ---
 
-### ⚡ Data  
+## ⚡ Data  
 
 `src/data/`
 
@@ -23,7 +21,7 @@ Due to the content-driven nature of PWP, there is almost no fetching and/or muta
 
 ---
 
-### 🔨 Helpers
+## 🔨 Helpers
 
 `src/helpers/`
 
@@ -31,7 +29,7 @@ Similar to `entities`, however are not centered around domain-specific data stru
 
 ---
 
-### 📺 Views
+## 📺 Views
 
 `src/views/`
 
@@ -43,7 +41,7 @@ Note that the reason why `views` are not allowed to talk directly to `data` is t
 
 ---
 
-### 💎 Components
+## 💎 Components
 
 `src/components/`
 
@@ -51,7 +49,7 @@ Effectively identical to `views`, however `components` are generally smaller, re
 
 ---
 
-### 🚦 Routes  
+## 🚦 Routes  
 
 `src/routes`
 
