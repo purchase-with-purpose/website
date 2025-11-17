@@ -27,7 +27,7 @@ export type Software = {
   company: {
     name: string;
     url: string;
-    ownership: Origin["id"] | null;
-    headquarters: Origin["id"];
+    ownership: Origin["id"];
+    headquarters: Origin["id"] | null;
   };
 };

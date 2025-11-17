@@ -513,5 +513,6 @@ export const ORIGIN_VARIANTS = u.fromArray(
   ARRAY.map((id) => ({
     id,
     label: LABELS[id],
+    icon: `flag-${id.toLowerCase()}`,
   }))
 );

@@ -1,4 +1,12 @@
 import * as u from "@/helpers/utilities";
+import { type GeneralIconVariant } from "@/entities/icons";
+
+export type Feature = {
+  id: (typeof ARRAY)[number];
+  label: string;
+  description: string;
+  icon: GeneralIconVariant;
+};
 
 const ARRAY = [
   "browser-non-google-engine",
@@ -41,7 +49,7 @@ const ARRAY = [
   "photos-good-support",
 ] as const;
 
-const LABELS: Record<(typeof ARRAY)[number], string> = {
+const LABELS: Record<Feature["id"], string> = {
   "browser-non-google-engine": "",
   "browser-native-add-blocking": "",
   "browser-built-in-vpn": "",
@@ -82,7 +90,7 @@ const LABELS: Record<(typeof ARRAY)[number], string> = {
   "photos-good-support": "",
 } as const;
 
-const DESCRIPTIONS: Record<(typeof ARRAY)[number], string> = {
+const DESCRIPTIONS: Record<Feature["id"], string> = {
   "browser-non-google-engine": "",
   "browser-native-add-blocking": "",
   "browser-built-in-vpn": "",
@@ -123,10 +131,45 @@ const DESCRIPTIONS: Record<(typeof ARRAY)[number], string> = {
   "photos-good-support": "",
 };
 
-export type Feature = {
-  id: (typeof ARRAY)[number];
-  label: string;
-  description: string;
+const ICONS: Record<Feature["id"], GeneralIconVariant> = {
+  "browser-non-google-engine": "star",
+  "browser-native-add-blocking": "star",
+  "browser-built-in-vpn": "star",
+  "browser-ai-helper": "star",
+  "browser-ecosystem-support": "star",
+  "browser-good-user-support": "star",
+  "email-alias-creation": "star",
+  "email-easy-unsubscribe": "star",
+  "email-schedule-send": "star",
+  "email-automatic-categorization": "star",
+  "email-ecosystem-support": "star",
+  "email-good-user-support": "star",
+  "search-independent-index": "star",
+  "search-no-personal-identifiers": "star",
+  "search-ad-free-tier": "star",
+  "search-ai-summaries": "star",
+  "search-ecosystem-support": "star",
+  "search-good-user-support": "star",
+  "music-generous-artist-royalties": "star",
+  "music-purchaseable-content": "star",
+  "music-high-res-streaming": "star",
+  "music-ai-content-flagged": "star",
+  "music-ecosystem-support": "star",
+  "music-good-user-support": "star",
+  "audiobooks-drm-free": "star",
+  "audiobooks-subscription": "star",
+  "audiobooks-rentals": "star",
+  "audiobooks-ecosystem-support": "star",
+  "audiobooks-good-support": "star",
+  "office-online-service": "star",
+  "office-mobile-app": "star",
+  "office-own-software": "star",
+  "office-ai-assistance": "star",
+  "office-good-support": "star",
+  "photos-live-images": "star",
+  "photos-facial-recognition": "star",
+  "photos-file-storage-support": "star",
+  "photos-good-support": "star",
 };
 
 export const FEATURE_VARIANTS = u.fromArray(
@@ -135,6 +178,7 @@ export const FEATURE_VARIANTS = u.fromArray(
       id,
       label: LABELS[id],
       description: DESCRIPTIONS[id],
+      icon: ICONS[id],
     })
   )
 );

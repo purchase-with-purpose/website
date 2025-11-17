@@ -4,7 +4,7 @@ Represents a piece of software shown to a user for evaluation purposes.
 
 The `Software` entity is the core data structure underpinning PWP.
 
-## Example
+## Basic Example
 
 <<< ./examples/example.json
 
@@ -12,3 +12,6 @@ The `Software` entity is the core data structure underpinning PWP.
 
 <<< ./examples/example.annotated.ts
 
+## Usage
+
+<<< ./examples/example.usage.ts

@@ -1,15 +1,15 @@
 # 📄 Overview
 
-## Structure
+## Architecture
 
-The PWP web client codebase is made up of six types of code modules, each located in a corresponding folder within the `src` directory:
+The PWP codebase consists of six different types of structures, each located in a corresponding folder within the `src` directory. These are as follows:
 
 ---
 
 ### [🚧 Entities](/entities)
 `src/entities/`
 
-Location of [TypeScript](https://www.typescriptlang.org/) types, [Zod](https://zod.dev/) validation and helper  unctions associated with common pre-defined data structures, for example "users", "categories", etc.
+Various [TypeScript](https://www.typescriptlang.org/) types, [Zod](https://zod.dev/) validation and helper functions closely associated with common pre-defined data structures used throughout the codebase.
 
 ---
 
@@ -17,9 +17,9 @@ Location of [TypeScript](https://www.typescriptlang.org/) types, [Zod](https://z
 
 `src/data/`
 
-Contains methods that allow getting, setting and subscribing to specific pieces of application data during runtime and/or the build pipeline. 
+Methods for getting, setting and subscribing to data. 
 
-Due to the content-driven nature of PWP, there is very little runtime data fetching and/or mutation. Most data is retrieved dynamically via HTTP from the [Contentful](https://www.contentful.com/) CMS instance when building/rebuilding the site.
+Due to the content-driven nature of PWP, there is almost no fetching and/or mutation during runtime. Most data is retrieved dynamically via HTTP from the [Contentful](https://www.contentful.com/) CMS instance during building/rebuilding the site, and fed directly to `view` templates.
 
 ---
 
@@ -27,16 +27,7 @@ Due to the content-driven nature of PWP, there is very little runtime data fetch
 
 `src/helpers/`
 
-Similar to `Entities`, however mostly consists of general-purpose functions that are often bound to built-in JavaScript types such as [`number`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), [`string`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String),  
-etc., instead of domain-specific data structures.
-
----
-
-### 💎 [Components](/components)  
-
-`src/components/`
-
-Reusable [React](https://react.dev/) UI-only components that are used across different `Views` components. These components should never have direct access to `Data` and should only receive props from their parent `Views` logic.
+Similar to `entities`, however are not centered around domain-specific data structures, but instead general or built-in TypeScript structures like numbers, strings, promises, etc.
 
 ---
 
@@ -44,7 +35,19 @@ Reusable [React](https://react.dev/) UI-only components that are used across dif
 
 `src/views/`
 
-React UI components that are meant to render a specific type of full-page route. In terms of behaviour, `Views` are identical to `Components`, however they are meant to represent a single full-page UI — meaning they are mutually exclusive when used in `Routers`.
+Specific full-page [React](https://react.dev/) component meant to render a specific UI route in full. These components are usually combined with their corresponding data in `routes` to render a fully usable page. Note that `views` are not allowed to directly query/access `data` and should instead simply accept props from their parent `routes` logic. 
+
+Due to `views` being full-page components, they are (definitionally) mutually exclusive and you are only allowed to render one `view` component per route.
+
+Note that the reason why `views` are not allowed to talk directly to `data` is to make UI components easily testable in Storybook without coupling them to data-fetching logic.
+
+---
+
+### 💎 [Components](/components)  
+
+`src/components/`
+
+Effectively identical to `views`, however `components` are generally smaller, reusable UI spread across several views. Avoid preemptively abstracting UI logic into components unless it is used across two different views first.
 
 ---
 
@@ -52,8 +55,9 @@ React UI components that are meant to render a specific type of full-page route.
 
 `src/routes`
 
-Note that this is simply the built-in `pages` folder in a standard [Astro](https://astro.build/) project, renamed to `routes` for semantic clarity. Consult the Astro [documentation for the pages folder](https://docs.astro.build/en/basics/astro-pages/) for more details.
+Effectively, the built-in `pages` folder in a standard [Astro](https://astro.build/) project, renamed to `routes` for semantic clarity. Consult the Astro [documentation for the pages folder](https://docs.astro.build/en/basics/astro-pages/) for more details.
 
-Since this folder doesn't contain any custom abstraction and is simply used to facilitate Astro's built-in routing system, there is (unlike the above types of modules) no section with individual documentation per route abstraction.
+Since this folder doesn't contain any abstractions itself, and simply facilitates Astro's built-in routing system, there is (unlike all above sections) no individual documentation per route abstraction in the folder
 
-Note that each route file typically imports content from `Data` and passes it down to a `View` component, thereby acting as the glue between the data and UI to be rendered at a specific URL.
+The primary purpose of `routes` is to import both `data` and a `view` component, and then to pass the `data` to the `view` component. Effectively functioning as the glue between data and UI components.
+

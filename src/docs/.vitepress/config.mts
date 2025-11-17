@@ -17,13 +17,13 @@ export default defineConfig({
       "/": [
         {
           text: "📄 Overview",
-          items: [{ text: "Structure", link: "/" }],
+          items: [{ text: "✅ Architecture", link: "/" }],
         },
         {
           text: "🚧 Entities",
           items: [
             {
-              text: "Software",
+              text: "✅ Software",
               link: "/entities/software",
             },
             { text: "Categories", link: "/entities/categories" },

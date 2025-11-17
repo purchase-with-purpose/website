@@ -2,8 +2,8 @@ import { type Software } from "@/entities/software";
 import * as u from "@/helpers/utilities";
 
 /**
- * Represents a specific software tool that is presented to a user via Purchase
- * with Purpose.
+ * Represents a specific software tool that is presented to a user either via a
+ * details page or as one of several in a list page.
  */
 const example: Software = {
   /**
@@ -14,12 +14,12 @@ const example: Software = {
   /**
    * Human-friendly name of the software tool.
    */
-  label: "Chrome",
+  label: "Brave",
 
   /**
    * The official URL of the software tool's website.
    */
-  url: "https://jubilant-place.com",
+  url: "https://brave.com/",
 
   /**
    * Features supported by software that user might be interested in.
@@ -28,7 +28,7 @@ const example: Software = {
    * Non-support is not shown, so if nothing is supported then this will simply
    * be an empty array.
    */
-  features: ["search-no-personal-identifiers", "audiobooks-subscription"],
+  features: ["search-no-personal-identifiers", "search-ad-free-tier"],
 
   /**
    * Whether the current tool is considered as one of the leading, commercial
@@ -46,23 +46,25 @@ const example: Software = {
      * trading name should be used here. If an individual, then their full name
      * should be used.
      */
-    name: "Schumm LLC",
+    name: "Brave Software, Inc.",
 
-    /** Where the company headquarters are located. If the company does not have
-     * a traditional headquarters, then this should be `null`.
+    /**
+     * The country where most of the ownership/control of the company resides.
      */
-    headquarters: "BV",
+    ownership: "US",
+
+    /**
+     * Where the company headquarters are located. If the company does not have
+     * a traditional headquarters or if the headquarters is different from
+     * ownership location, then this should be `null`.
+     */
+    headquarters: null,
 
     /**
      * A link to the the official website where users can learn more about the
      * owner/company.
      */
-    url: "https://proper-nephew.com/",
-
-    /**
-     * Where the primary owner or stakeholder/s are located.
-     */
-    ownership: "BS",
+    url: "https://www.crunchbase.com/organization/brave-software",
   },
 
   /**
@@ -79,7 +81,7 @@ const example: Software = {
    * This is used primarily used* to indicate whether a software tool adheres to
    * one of the core areas of concerns highlighted within Purchase with Purpose.
    */
-  indicators: ["environmental", "open-source"],
+  indicators: ["privacy", "open-source"],
 
   /**
    * Additional notes about the software tool. This will be highlighted in
@@ -87,25 +89,29 @@ const example: Software = {
    */
   notes: [
     {
-      variant: "disclaimer",
+      variant: "warning",
       value:
-        "Ultio cultellus defluo ducimus trepide angelus stultus sunt aegre. Delego arguo cogo ascisco crapula ducimus. Bestia conor deserunt attollo.",
+        "Reception of the Brave browser has been mixed. The browser has received coverage for its privacy-focused features, including its built-in ad blocker and protections against tracking techniques such as browser fingerprinting, local port enumeration, cross-site leaks, and bounce tracking.",
+    },
+    {
+      variant: "disclaimer",
+      value: `In 2020, The New York Times reported that CEO, Brandon Eich's comments about "the policy and science related to the coronavirus" on Twitter caused a backlash within the browser's user base, commenting that this echoed the criticism that led to his resignation from Mozilla.`,
     },
   ],
 
-  logo: "/images/logos/chrome.png",
-  category: "email",
+  logo: "/images/logos/brave.png",
+  category: "browser",
   swatch: "#e13927",
   platforms: ["android", "windows"],
 
   description:
-    "Eveniet coepi conspergo valeo una torqueo creator vulnero talis. Comburo cernuus curto pecco aufero vomer argumentum. Censura tandem quibusdam victoria viriliter.\nIpsum contego termes nihil laboriosam umquam torqueo nihil. Quo agnosco substantia aranea socius ad vociferor benigne. Amitto decumbo curis quisquam barba comprehendo thalassinus.\nVeritas tergeo sponte tego torqueo caries bardus arcus. Alius auxilium coniecto valetudo vinculum officia. Concedo strues condico celebrer quisquam fuga suffragium tersus facere accusantium.",
+    "Brave is a free and open-source web browser which was first released in 2016. It is developed by US-based Brave Software, Inc. and based on the Chromium web browser. The browser is marketed as a privacy-focused web browser and includes features such as built-in advertisement blocking, protections against browser fingerprinting and a private browsing mode that integrates the Tor anonymity network.",
 
   evaluations: {
     trustpilot: 2.5,
     ios: 2,
     android: 3.3,
-    "privacy-guide": 0,
-    "privacy-tools": 0,
+    "privacy-guide": 1,
+    "privacy-tools": 1,
   },
 };
