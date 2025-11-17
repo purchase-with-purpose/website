@@ -2,14 +2,10 @@
 
 The PWP codebase consists of six different types of structures, each located in a corresponding folder within the `src` directory. These are as follows:
 
----
-
 ## 🚧 Entities
 `src/entities/`
 
 Various [TypeScript](https://www.typescriptlang.org/) types, [Zod](https://zod.dev/) validation and helper functions closely associated with common pre-defined data structures used throughout the codebase.
-
----
 
 ## ⚡ Data  
 
@@ -19,15 +15,11 @@ Methods for getting, setting and subscribing to data.
 
 Due to the content-driven nature of PWP, there is almost no fetching and/or mutation during runtime. Most data is retrieved dynamically via HTTP from the [Contentful](https://www.contentful.com/) CMS instance during building/rebuilding the site, and fed directly to `view` templates.
 
----
-
 ## 🔨 Helpers
 
 `src/helpers/`
 
 Similar to `entities`, however are not centered around domain-specific data structures, but instead general or built-in TypeScript structures like numbers, strings, promises, etc.
-
----
 
 ## 📺 Views
 
@@ -39,15 +31,11 @@ Due to `views` being full-page components, they are (definitionally) mutually ex
 
 Note that the reason why `views` are not allowed to talk directly to `data` is to make UI components easily testable in Storybook without coupling them to data-fetching logic.
 
----
-
 ## 💎 Components
 
 `src/components/`
 
 Effectively identical to `views`, however `components` are generally smaller, reusable UI spread across several views. Avoid preemptively abstracting UI logic into components unless it is used across two different views first.
-
----
 
 ## 🚦 Routes  
 
