@@ -6,14 +6,14 @@ The PWP codebase consists of six different types of structures, each located in 
 
 ---
 
-### [🚧 Entities](/entities)
+### 🚧 Entities
 `src/entities/`
 
 Various [TypeScript](https://www.typescriptlang.org/) types, [Zod](https://zod.dev/) validation and helper functions closely associated with common pre-defined data structures used throughout the codebase.
 
 ---
 
-### ⚡ [Data](/data)    
+### ⚡ Data  
 
 `src/data/`
 
@@ -23,7 +23,7 @@ Due to the content-driven nature of PWP, there is almost no fetching and/or muta
 
 ---
 
-### 🔨 [Helpers](/helpers)  
+### 🔨 Helpers
 
 `src/helpers/`
 
@@ -31,7 +31,7 @@ Similar to `entities`, however are not centered around domain-specific data stru
 
 ---
 
-### 📺 [Views](/views)  
+### 📺 Views
 
 `src/views/`
 
@@ -43,7 +43,7 @@ Note that the reason why `views` are not allowed to talk directly to `data` is t
 
 ---
 
-### 💎 [Components](/components)  
+### 💎 Components
 
 `src/components/`
 

@@ -6,7 +6,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "storybook": "storybook dev -p 6006",
-    "docs": "vitepress dev src/docs",
+    "docs": "npm run docs:dev",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
     "typecheck": "tsc --noEmit",
     "examples": "tsx scripts/examples.mts"
   },

@@ -28,4 +28,4 @@ pnpm-debug.log*
 storybook-static
 
 .vercel
-src/docs/.vitepress/cache
+docs/.vitepress/cache
