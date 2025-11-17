@@ -1,4 +1,4 @@
-# 📄 Architecture
+# Architecture
 
 The PWP codebase consists of six different types of structures, each located in a corresponding folder within the `src` directory. These are as follows:
 
