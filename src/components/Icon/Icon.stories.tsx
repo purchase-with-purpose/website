@@ -19,15 +19,9 @@ export const Basic = () => (
         <Icon key={variant} variant={variant} />
       ))}
 
-      <Icon
-        variant={`flag-${f.helpers.arrayElement(u.keys(ORIGIN_VARIANTS))}`}
-      />
-      <Icon
-        variant={`flag-${f.helpers.arrayElement(u.keys(ORIGIN_VARIANTS))}`}
-      />
-      <Icon
-        variant={`flag-${f.helpers.arrayElement(u.keys(ORIGIN_VARIANTS))}`}
-      />
+      <Icon variant={f.helpers.arrayElement(u.values(ORIGIN_VARIANTS)).icon} />
+      <Icon variant={f.helpers.arrayElement(u.values(ORIGIN_VARIANTS)).icon} />
+      <Icon variant={f.helpers.arrayElement(u.values(ORIGIN_VARIANTS)).icon} />
     </>
   </Shell>
 );

@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import s from "./Breadcrumbs.module.css";
 import * as schema from "./Breadcrumbs.schema";
 
@@ -10,7 +11,7 @@ export const Breadcrumbs = (props: schema.Props) => {
         const Element = x.href ? "a" : "div";
 
         return (
-          <>
+          <Fragment key={i}>
             {i > 0 && (
               <svg
                 className={s.icon}
@@ -30,7 +31,7 @@ export const Breadcrumbs = (props: schema.Props) => {
                 {x.label}
               </Element>
             </div>
-          </>
+          </Fragment>
         );
       })}
     </div>

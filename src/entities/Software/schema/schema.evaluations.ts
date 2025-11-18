@@ -31,12 +31,12 @@ const URLS: Record<Evaluation["id"], string> = {
   "privacy-tools": "https://www.privacytools.io/",
 };
 
-const SCALES: Record<Evaluation["id"], number> = {
-  trustpilot: 5,
-  android: 5,
-  ios: 5,
-  "privacy-tools": 1,
-  "privacy-guide": 1,
+const SYSTEM: Record<Evaluation["id"], Evaluation["system"]> = {
+  trustpilot: "out-of-5",
+  android: "out-of-5",
+  ios: "out-of-5",
+  "privacy-tools": "boolean",
+  "privacy-guide": "boolean",
 };
 
 export const EVALUATION_VARIANTS = u.fromArray(
@@ -45,7 +45,7 @@ export const EVALUATION_VARIANTS = u.fromArray(
       id,
       label: LABELS[id],
       url: URLS[id],
-      scale: SCALES[id],
+      system: SYSTEM[id],
     })
   )
 );

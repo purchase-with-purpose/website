@@ -105,7 +105,7 @@ export const List = (props: { category: Category["id"] }) => {
               {virtualizer
                 .getVirtualItems()
                 .map(({ index, key, size, start }) => {
-                  const x = items[index];
+                  const x = array[index];
 
                   return (
                     <div
@@ -120,9 +120,9 @@ export const List = (props: { category: Category["id"] }) => {
                       }}
                     >
                       <Card
-                        active={column}
-                        item={x}
-                        columns={columns[index].columns}
+                        active={0}
+                        item={x.software}
+                        columns={u.values(x.blocks)}
                       />
                     </div>
                   );

@@ -186,6 +186,7 @@ export const calcGroupBlocks = (props: {
 
 type PreviewData = {
   id: Software["id"];
+  software: Software;
   max: number;
   blocks: Record<Group["id"], Block[]>;
 };
@@ -199,6 +200,7 @@ export const calcCardPreview = (props: { software: Software }): PreviewData => {
 
   const result: PreviewData = {
     id: software.id,
+    software,
     blocks: {
       features: [],
       other: [],

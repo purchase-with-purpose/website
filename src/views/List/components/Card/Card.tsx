@@ -1,23 +1,19 @@
 import { memo } from "react";
 import { type Software } from "@/entities/software";
+import { type Block } from "@/entities/blocks";
 import s from "./Card.module.css";
 import { TinyColor } from "@ctrl/tinycolor";
 import c from "classnames";
 
 import { Indicator } from "@/components/Indicator";
-
-import {
-  type Props as DataBlockProps,
-  DataBlock,
-} from "@/components/DataBlock";
+import { DataBlock } from "@/components/DataBlock";
 
 export const Inner = (props: {
-  offset: number;
   active: number;
-  columns: Omit<DataBlockProps, "variant">[][];
+  columns: Block[][];
   item: Software;
 }) => {
-  const { offset, active, columns, item } = props;
+  const { active, columns, item } = props;
 
   return (
     <article className={s.wrapper}>
@@ -42,8 +38,6 @@ export const Inner = (props: {
               <Indicator id={x} compact />
             ))}
           </div>
-
-          {/* <p className={s.small}>{item.company.name}</p> */}
         </div>
       </div>
 
@@ -60,7 +54,7 @@ export const Inner = (props: {
                 >
                   {array.map((x) => {
                     return (
-                      <DataBlock id={x.id} value={x.value} variant="compact" />
+                      <DataBlock id={x.id} value={x.label} variant="compact" />
                     );
                   })}
                 </div>
@@ -74,7 +68,6 @@ export const Inner = (props: {
 };
 
 export const Card = memo(Inner, (prev, next) => {
-  if (prev.offset !== next.offset) return false;
   if (prev.active !== next.active) return false;
   return true;
 });

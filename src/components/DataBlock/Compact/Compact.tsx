@@ -2,8 +2,7 @@ import * as schema from "../DataBlock.schema";
 import { Icon } from "@/components/Icon";
 import * as u from "@/helpers/utilities";
 import s from "./Compact.module.css";
-import { BLOCK_VARIANTS } from "@/entities/blocks";
-import { calcEvaluationDisplayValue, calcEvaluationScore } from "../helpers";
+import { BLOCK_VARIANTS, calcRating } from "@/entities/blocks";
 
 import {
   TIER_VARIANTS,
@@ -81,22 +80,21 @@ export const Compact = (props: schema.Props) => {
       ""
     ) as keyof typeof EVALUATION_VARIANTS;
 
-    const score = calcEvaluationScore({
-      id: innerId,
+    const { system } = EVALUATION_VARIANTS[innerId];
+
+    const rating = calcRating({
+      system,
       value: Number(value),
     });
 
-    const content = calcEvaluationDisplayValue({
-      id: innerId,
-      value: Number(value),
-    });
+    if (rating === null) return null;
 
     return (
       <CompactBase
         label={BLOCK_VARIANTS[id].label}
-        value={content}
-        icon={score!.icon}
-        color={score!.color}
+        value={rating.label}
+        icon={rating.icon}
+        color={rating.colour}
       />
     );
   }

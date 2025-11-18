@@ -1,5 +1,5 @@
 import * as u from "@/helpers/utilities";
-import { type IconVariant } from "@/entities/icons";
+import { type IconVariant, type GeneralIconVariant } from "@/entities/icons";
 import { type Group } from "./schema.groups";
 
 import {

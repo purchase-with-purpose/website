@@ -3,9 +3,8 @@ import s from "./Sidebar.module.css";
 import { Icon } from "@/components/Icon";
 import * as schema from "../DataBlock.schema";
 import { TinyColor } from "@ctrl/tinycolor";
-import { BLOCK_VARIANTS } from "@/entities/blocks";
+import { BLOCK_VARIANTS, calcRating } from "@/entities/blocks";
 import * as u from "@/helpers/utilities";
-import { calcEvaluationDisplayValue, calcEvaluationScore } from "../helpers";
 
 import {
   TIER_VARIANTS,
@@ -88,9 +87,9 @@ export const Sidebar = (props: schema.Props) => {
     const innerId = id.replace(
       "software.tiers.",
       ""
-    ) as keyof typeof EVALUATION_VARIANTS;
+    ) as keyof typeof TIER_VARIANTS;
 
-    const index = u.keys(EVALUATION_VARIANTS).indexOf(innerId as any);
+    const index = u.keys(TIER_VARIANTS).indexOf(innerId as any);
     const ICON_ARRAY = ["level-one", "level-two", "level-three"] as const;
 
     return (
@@ -105,27 +104,28 @@ export const Sidebar = (props: schema.Props) => {
 
   if (id.startsWith("software.evaluations.")) {
     const innerId = id.replace(
-      "software.evaluation.",
+      "software.evaluations.",
       ""
     ) as keyof typeof EVALUATION_VARIANTS;
 
-    const score = calcEvaluationScore({
-      id: innerId,
+    console.log(innerId);
+
+    const { system, url } = EVALUATION_VARIANTS[innerId];
+
+    const rating = calcRating({
+      system,
       value: Number(value),
     });
 
-    const content = calcEvaluationDisplayValue({
-      id: innerId,
-      value: Number(value),
-    });
+    if (rating === null) return null;
 
     return (
       <SidebarBase
         label={BLOCK_VARIANTS[id].label}
-        value={content}
-        icon={score!.icon}
-        color={score!.color}
-        url={(EVALUATION_VARIANTS as any)[innerId]?.url || null}
+        value={rating.label}
+        icon={rating.icon}
+        color={rating.colour}
+        url={url}
       />
     );
   }

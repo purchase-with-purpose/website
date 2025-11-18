@@ -10,4 +10,4 @@ export default {
 
 const items = Array.from({ length: 20 }).map(() => __mocking__.createItem());
 
-export const Basic = () => <List items={items} />;
+export const Basic = () => <List category="audio-book" />;

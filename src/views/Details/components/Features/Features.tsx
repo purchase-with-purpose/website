@@ -12,7 +12,7 @@ export const Features = (props: Props) => {
         const { label, icon } = BLOCK_VARIANTS[`software.features.${x}`];
 
         return (
-          <div className={s.item}>
+          <div className={s.item} key={x}>
             <div className={s.icon}>
               <Icon variant={icon} size="m" />
             </div>

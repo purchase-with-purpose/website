@@ -28,11 +28,11 @@ export const createItem = (): Software => {
     }),
 
     company: {
-      headquarters: f.helpers.arrayElement(u.keys(ORIGIN_VARIANTS)),
+      ownership: f.helpers.arrayElement(u.keys(ORIGIN_VARIANTS)),
       name: f.company.name(),
       url: f.internet.url(),
 
-      ownership: f.datatype.boolean()
+      headquarters: f.datatype.boolean()
         ? f.helpers.arrayElement(u.keys(ORIGIN_VARIANTS))
         : null,
     },
