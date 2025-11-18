@@ -2,31 +2,40 @@ import { useState, useEffect, useMemo } from "react";
 import { type Software } from "@/entities/software";
 import * as u from "@/helpers/utilities";
 import s from "./List.module.css";
-import { BLOCK_VARIANTS } from "@/entities/blocks";
+import { calcCardPreview } from "@/entities/blocks";
 import { Shell } from "@/components/Shell";
 import { Header } from "./components/Header";
 import { Card } from "./components/Card";
 import { useWindowVirtualizer } from "@tanstack/react-virtual";
-import { calcOffset, calcSplit } from "./List.helpers";
-import { useWindowSwipe } from "./List.useSwipe";
+import { type Category } from "@/entities/categories";
+// import { calcOffset, calcSplit } from "./List.helpers";
+// import { useWindowSwipe } from "./List.useSwipe";
 import { Front } from "./components/Front";
+import { getCollection as getSoftwareCollection } from "@/data/software";
 
-export const List = (props: { items: Software[] }) => {
-  const { items } = props;
+const collection = getSoftwareCollection();
+
+export const List = (props: { category: Category["id"] }) => {
+  const { category } = props;
 
   const [column, setColumn] = useState(0);
   const [page, setPage] = useState(0);
 
-  // const total = u.values(Display.groups).length;
+  const array = collection.extract({
+    query: {
+      filter: (x) => x.category === category,
+      hashing: {
+        category,
+      },
+    },
+    format: (x) => calcCardPreview({ software: x }),
+  });
 
-  const columns = useMemo(
-    () => items.map((x) => Display.calcColumns({ item: x })),
-    [items]
-  );
+  // const list = useMemo(() => ), [items]);
 
   const virtualizer = useWindowVirtualizer({
-    count: items.length,
-    estimateSize: (i) => (columns[i].max * 2 + 6) * 16,
+    count: array.length,
+    estimateSize: (i) => (array[i].max * 2 + 6) * 16,
     overscan: 2,
   });
 

@@ -162,8 +162,8 @@ export const flipKV = <T extends Record<string, string>>(
  * TypeScript's default `.filter(Boolean)` does not narrow the array to
  * `NonNullable` types. This function provides a typed alternative.
  */
-export const filter = <T>(array: (T | null)[]): NonNullable<T>[] => {
-  return array.filter((x) => x !== null) as NonNullable<T>[];
+export const filter = <T>(array: (T | null | "")[]): NonNullable<T>[] => {
+  return array.filter((x): x is NonNullable<T> => x !== null && x !== "");
 };
 
 /**

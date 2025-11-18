@@ -2,7 +2,6 @@ import * as u from "@/helpers/utilities";
 
 const ARRAY = [
   "recommended",
-  "company",
   "pricing",
   "features",
   "platforms",
@@ -19,7 +18,6 @@ export type Group = {
 const LABELS: Record<Group["id"], string> = {
   recommended: "Recommended",
   features: "Features",
-  company: "Company",
   pricing: "Pricing",
   platforms: "Platforms",
   ratings: "Ratings",
@@ -29,7 +27,6 @@ const LABELS: Record<Group["id"], string> = {
 const DESCRIPTIONS: Record<Group["id"], string> = {
   recommended: "",
   features: "",
-  company: "",
   pricing: "",
   platforms: "",
   ratings: "",

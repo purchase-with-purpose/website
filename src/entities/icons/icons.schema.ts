@@ -37,6 +37,6 @@ export const GENERAL_ICON_VARIANTS = [
 ] as const;
 
 export type GeneralIconVariant = (typeof GENERAL_ICON_VARIANTS)[number];
-export type FlagIconVariant = `flag-${Origin["id"]}`;
+export type FlagIconVariant = `flag-${Lowercase<Origin["id"]>}`;
 
 export type IconVariant = GeneralIconVariant | FlagIconVariant;

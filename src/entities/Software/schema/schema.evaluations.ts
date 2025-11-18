@@ -12,7 +12,7 @@ export type Evaluation = {
   id: (typeof ARRAY)[number];
   label: string;
   url: string;
-  scale: number;
+  system: "out-of-5" | "boolean";
 };
 
 const LABELS: Record<Evaluation["id"], string> = {

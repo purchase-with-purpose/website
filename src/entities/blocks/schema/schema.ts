@@ -1,5 +1,5 @@
 import * as u from "@/helpers/utilities";
-import { type GeneralIconVariant } from "@/entities/icons";
+import { type IconVariant } from "@/entities/icons";
 import { type Group } from "./schema.groups";
 
 import {
@@ -17,9 +17,9 @@ type Id =
 
 export type Block = {
   id: Id;
-  icon: GeneralIconVariant;
+  icon: IconVariant;
   label: string;
-  group: string;
+  group: Group["id"];
 };
 
 const LABELS: Record<Id, string> = {
