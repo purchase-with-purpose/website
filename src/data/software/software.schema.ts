@@ -48,7 +48,7 @@ export const schema = z.object({
         swatch: z.string().optional(),
 
         description: z.string().default(""),
-        recommended: z.boolean(),
+        recommended: z.coerce.boolean(),
         indicators: z.array(extractKeysAsEnum(INDICATOR_VARIANTS)).default([]),
         features: z.array(extractKeysAsEnum(FEATURE_VARIANTS)).default([]),
         platforms: z.array(extractKeysAsEnum(PLATFORM_VARIANTS)).default([]),
@@ -56,7 +56,7 @@ export const schema = z.object({
         company_name: z.string(),
         company_url: z.string().url(),
         company_headquarters: extractKeysAsEnum(ORIGIN_VARIANTS),
-        company_ownership: extractKeysAsEnum(ORIGIN_VARIANTS),
+        company_ownership: extractKeysAsEnum(ORIGIN_VARIANTS).optional(),
 
         trustpilotEvaluation: z.number().optional(),
         evaluations_android: z.number().optional(),

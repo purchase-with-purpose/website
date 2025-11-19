@@ -1,6 +1,6 @@
 import { memo } from "react";
 import { type Software } from "@/entities/software";
-import { type Block } from "@/entities/blocks";
+import { type Block, getValueFromSoftware } from "@/entities/blocks";
 import s from "./Card.module.css";
 import { TinyColor } from "@ctrl/tinycolor";
 import c from "classnames";
@@ -53,8 +53,17 @@ export const Inner = (props: {
                   })}
                 >
                   {array.map((x) => {
+                    console.log(x);
+
                     return (
-                      <DataBlock id={x.id} value={x.label} variant="compact" />
+                      <DataBlock
+                        id={x.id}
+                        value={getValueFromSoftware({
+                          software: item,
+                          id: x.id,
+                        })}
+                        variant="compact"
+                      />
                     );
                   })}
                 </div>

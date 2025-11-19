@@ -85,13 +85,6 @@ export const loader = async (): Promise<Software[]> => {
     }
   });
 
-  console.log(
-    `
-    
-    Able to add ${success} / ${response.items.length} valid items.
-    
-    `
-  );
-
+  console.log(`Able to add ${success} / ${response.items.length} valid items.`);
   return u.filter(items);
 };

@@ -31,11 +31,11 @@ export const Details = (props: Software) => {
       id: "software.company.name",
       value: props.company.name,
     },
-    props.company.ownership && {
+    {
       id: "software.company.ownership",
       value: props.company.ownership,
     },
-    {
+    props.company.headquarters && {
       id: "software.company.headquarters",
       value: props.company.headquarters,
     },

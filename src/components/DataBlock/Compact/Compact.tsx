@@ -1,16 +1,16 @@
 import * as schema from "../DataBlock.schema";
 import { Icon } from "@/components/Icon";
-import * as u from "@/helpers/utilities";
+// import * as u from "@/helpers/utilities";
 import s from "./Compact.module.css";
-import { BLOCK_VARIANTS, calcRating } from "@/entities/blocks";
+// import { BLOCK_VARIANTS, calcRating } from "@/entities/blocks";
 
-import {
-  TIER_VARIANTS,
-  ORIGIN_VARIANTS,
-  EVALUATION_VARIANTS,
-} from "@/entities/software";
+// import {
+//   TIER_VARIANTS,
+//   ORIGIN_VARIANTS,
+//   EVALUATION_VARIANTS,
+// } from "@/entities/software";
 
-export const CompactBase = (props: schema.BaseProps) => {
+export const Compact = (props: schema.BaseProps) => {
   const { label, value, icon } = props;
 
   return (
@@ -25,83 +25,85 @@ export const CompactBase = (props: schema.BaseProps) => {
   );
 };
 
-export const Compact = (props: schema.Props) => {
-  const { value, id } = props;
-  const { icon, label } = BLOCK_VARIANTS[id];
+// export const Compact = (props: schema.Props) => {
+//   const { value, id } = props;
+//   const { icon, label } = BLOCK_VARIANTS[id];
 
-  if (id === "software.company.headquarters") {
-    if (!value) return null;
+//   if (id === "software.company.headquarters") {
+//     if (!value) return null;
 
-    return (
-      <CompactBase
-        label={BLOCK_VARIANTS[id].label}
-        value={(ORIGIN_VARIANTS as any)[value].label}
-        icon={`flag-${value}` as any}
-      />
-    );
-  }
+//     return (
+//       <CompactBase
+//         label={BLOCK_VARIANTS[id].label}
+//         value={(ORIGIN_VARIANTS as any)[value].label}
+//         icon={`flag-${value}` as any}
+//       />
+//     );
+//   }
 
-  if (id === "software.company.ownership") {
-    if (!value) return null;
+//   if (id === "software.company.ownership") {
+//     if (!value) return null;
 
-    return (
-      <CompactBase
-        label={BLOCK_VARIANTS[id].label}
-        value={(ORIGIN_VARIANTS as any)[value].label}
-        icon={`flag-${value}` as any}
-      />
-    );
-  }
+//     console
 
-  if (id.startsWith("software.tiers.")) {
-    if (!value) return null;
+//     return (
+//       <CompactBase
+//         label={BLOCK_VARIANTS[id].label}
+//         value={(ORIGIN_VARIANTS as any)[value].label}
+//         icon={`flag-${value}` as any}
+//       />
+//     );
+//   }
 
-    const innerId = id.replace(
-      "software.tiers.",
-      ""
-    ) as keyof typeof EVALUATION_VARIANTS;
+//   if (id.startsWith("software.tiers.")) {
+//     if (!value) return null;
 
-    const index = u.keys(TIER_VARIANTS).indexOf(innerId as any);
-    const ICON_ARRAY = ["level-one", "level-two", "level-three"] as const;
+//     const innerId = id.replace(
+//       "software.tiers.",
+//       ""
+//     ) as keyof typeof EVALUATION_VARIANTS;
 
-    return (
-      <CompactBase
-        label={BLOCK_VARIANTS[id].label}
-        value={value}
-        icon={ICON_ARRAY[index]}
-        color="#543BF1"
-      />
-    );
-  }
+//     const index = u.keys(TIER_VARIANTS).indexOf(innerId as any);
+//     const ICON_ARRAY = ["level-one", "level-two", "level-three"] as const;
 
-  if (id.startsWith("software.evaluations.")) {
-    const innerId = id.replace(
-      "software.evaluation.",
-      ""
-    ) as keyof typeof EVALUATION_VARIANTS;
+//     return (
+//       <CompactBase
+//         label={BLOCK_VARIANTS[id].label}
+//         value={value}
+//         icon={ICON_ARRAY[index]}
+//         color="#543BF1"
+//       />
+//     );
+//   }
 
-    const { system } = EVALUATION_VARIANTS[innerId];
+//   if (id.startsWith("software.evaluations.")) {
+//     const innerId = id.replace(
+//       "software.evaluations.",
+//       ""
+//     ) as keyof typeof EVALUATION_VARIANTS;
 
-    const rating = calcRating({
-      system,
-      value: Number(value),
-    });
+//     const { system } = EVALUATION_VARIANTS[innerId];
 
-    if (rating === null) return null;
+//     const rating = calcRating({
+//       system,
+//       value: Number(value),
+//     });
 
-    return (
-      <CompactBase
-        label={BLOCK_VARIANTS[id].label}
-        value={rating.label}
-        icon={rating.icon}
-        color={rating.colour}
-      />
-    );
-  }
+//     if (rating === null) return null;
 
-  return (
-    <>
-      <CompactBase label={label} value={value} icon={icon} />
-    </>
-  );
-};
+//     return (
+//       <CompactBase
+//         label={BLOCK_VARIANTS[id].label}
+//         value={rating.label}
+//         icon={rating.icon}
+//         color={rating.colour}
+//       />
+//     );
+//   }
+
+//   return (
+//     <>
+//       <CompactBase label={label} value={value} icon={icon} />
+//     </>
+//   );
+// };

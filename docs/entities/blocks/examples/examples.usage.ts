@@ -1,42 +1,15 @@
 import {
   getFromGroup,
-  calcCardPreview,
   calcGroupBlocks,
-  calcRating,
+  calcColour,
+  calcIcon,
+  calcValue,
+  type Block,
+  BLOCK_VARIANTS,
 } from "@/entities/blocks";
 
+import { type BaseProps } from "@/components/DataBlock";
 import { createItem as mockSoftware } from "@/entities/software/__mocking__";
-
-/**
- * Returns null if the provided `value` is null, generally the case if the
- * specific software does not have an evaluation value of the specific type.
- *
- * - `colour`: Will be the swatch that can optionally be applied to show the
- *   "status". E.g. red for "Fail", green for "Pass", etc.
- *
- * - `icon`: An icon that summarizes the "status". E.g. a checkmark for "Pass",
- *   a cross for "Fail", etc.
- *
- * - `label`: A human-readable label of the "status". I.e. "Fail", "81 %", etc."
- */
-const { colour, icon, label } = calcRating({
-  /**
-   * The actual rating value, generally derived from for example
-   * `software.evaluations.android`.
-   */
-  value: 2,
-
-  /**
-   * The type of rating system, can be retrieved from for example the
-   * `EVALUATION_VARIANTS.trustpilot.system`.
-   *
-   * - `boolean`: Accepts `0` for "Fail" and `1` for "Pass".
-   *
-   * - `out-of-5`: Accepts decimal values from `0` to `5`, that get converted to
-   *   a percentage.
-   */
-  system: "out-of-5",
-})!;
 
 /**
  * Returns all blocks matching a specific group. Note that result is memoized,
@@ -55,3 +28,34 @@ const validBlock = calcGroupBlocks({
   group: "ratings",
   software: mockSoftware(),
 });
+
+/**
+ * The `calcValue`, `calcColour` and `calcIcon` helpers can be used to determine
+ * the value, colour and icon to show a user based on the combination of the
+ * actual value and the associated block ID.
+ *
+ * This is used, for example, in the DataBlock component to create the UI-facing
+ * values based exclusively only on these two values (as below).
+ *
+ * Note that if the `value` passed to any of these helpers are `null`, it will
+ * simply re-return `null`. Thus the reason why icon is asserted as true (since
+ * we know `2.5` is not null).
+ */
+const props: BaseProps = {
+  label: BLOCK_VARIANTS["software.evaluations.trustpilot"].label,
+
+  value: calcValue({
+    id: "software.evaluations.trustpilot",
+    value: 2.5,
+  }),
+
+  color: calcColour({
+    id: "software.evaluations.trustpilot",
+    value: 2.5,
+  }),
+
+  icon: calcIcon({
+    id: "software.evaluations.trustpilot",
+    value: 2.5,
+  })!,
+};

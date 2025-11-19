@@ -3,16 +3,16 @@ import s from "./Sidebar.module.css";
 import { Icon } from "@/components/Icon";
 import * as schema from "../DataBlock.schema";
 import { TinyColor } from "@ctrl/tinycolor";
-import { BLOCK_VARIANTS, calcRating } from "@/entities/blocks";
-import * as u from "@/helpers/utilities";
+// import { BLOCK_VARIANTS, calcRating } from "@/entities/blocks";
+// import * as u from "@/helpers/utilities";
 
-import {
-  TIER_VARIANTS,
-  EVALUATION_VARIANTS,
-  ORIGIN_VARIANTS,
-} from "@/entities/software";
+// import {
+//   TIER_VARIANTS,
+//   EVALUATION_VARIANTS,
+//   ORIGIN_VARIANTS,
+// } from "@/entities/software";
 
-export const SidebarBase = (props: schema.BaseProps) => {
+export const Sidebar = (props: schema.BaseProps) => {
   const { label, value, icon, url, color } = props;
   const Element = url ? "a" : "div";
   const inner = new TinyColor(color || "#24224B");
@@ -54,87 +54,88 @@ export const SidebarBase = (props: schema.BaseProps) => {
   );
 };
 
-export const Sidebar = (props: schema.Props) => {
-  const { id, value } = props;
+// export const Sidebar = (props: schema.Props) => {
+//   const { id, value } = props;
+//   if (!value) return null;
 
-  if (id === "software.company.headquarters") {
-    if (!value) return null;
+//   if (id === "software.company.headquarters") {
+//     if (!value) return null;
 
-    return (
-      <SidebarBase
-        label={BLOCK_VARIANTS[id].label}
-        value={(ORIGIN_VARIANTS as any)[value].label}
-        icon={`flag-${value}` as any}
-      />
-    );
-  }
+//     return (
+//       <SidebarBase
+//         label={BLOCK_VARIANTS[id].label}
+//         value={(ORIGIN_VARIANTS as any)[value].label}
+//         icon={`flag-${value}` as any}
+//       />
+//     );
+//   }
 
-  if (id === "software.company.ownership") {
-    if (!value) return null;
+//   if (id === "software.company.ownership") {
+//     if (!value) return null;
 
-    return (
-      <SidebarBase
-        label={BLOCK_VARIANTS[id].label}
-        value={(ORIGIN_VARIANTS as any)[value].label}
-        icon={`flag-${value}` as any}
-      />
-    );
-  }
+//     return (
+//       <SidebarBase
+//         label={BLOCK_VARIANTS[id].label}
+//         value={(ORIGIN_VARIANTS as any)[value].label}
+//         icon={`flag-${value}` as any}
+//       />
+//     );
+//   }
 
-  if (id.startsWith("software.tiers.")) {
-    if (!value) return null;
+//   if (id.startsWith("software.tiers.")) {
+//     if (!value) return null;
 
-    const innerId = id.replace(
-      "software.tiers.",
-      ""
-    ) as keyof typeof TIER_VARIANTS;
+//     const innerId = id.replace(
+//       "software.tiers.",
+//       ""
+//     ) as keyof typeof TIER_VARIANTS;
 
-    const index = u.keys(TIER_VARIANTS).indexOf(innerId as any);
-    const ICON_ARRAY = ["level-one", "level-two", "level-three"] as const;
+//     const index = u.keys(TIER_VARIANTS).indexOf(innerId as any);
+//     const ICON_ARRAY = ["level-one", "level-two", "level-three"] as const;
 
-    return (
-      <SidebarBase
-        label={BLOCK_VARIANTS[id].label}
-        value={value}
-        icon={ICON_ARRAY[index]}
-        color="#543BF1"
-      />
-    );
-  }
+//     return (
+//       <SidebarBase
+//         label={BLOCK_VARIANTS[id].label}
+//         value={value}
+//         icon={ICON_ARRAY[index]}
+//         color="#543BF1"
+//       />
+//     );
+//   }
 
-  if (id.startsWith("software.evaluations.")) {
-    const innerId = id.replace(
-      "software.evaluations.",
-      ""
-    ) as keyof typeof EVALUATION_VARIANTS;
+//   if (id.startsWith("software.evaluations.")) {
+//     const innerId = id.replace(
+//       "software.evaluations.",
+//       ""
+//     ) as keyof typeof EVALUATION_VARIANTS;
 
-    console.log(innerId);
+//     console.log(innerId);
 
-    const { system, url } = EVALUATION_VARIANTS[innerId];
+//     const { system, url } = EVALUATION_VARIANTS[innerId];
 
-    const rating = calcRating({
-      system,
-      value: Number(value),
-    });
+//     const rating = calcRating({
+//       system,
+//       value: Number(value),
+//     });
 
-    if (rating === null) return null;
+//     if (rating === null) return null;
 
-    return (
-      <SidebarBase
-        label={BLOCK_VARIANTS[id].label}
-        value={rating.label}
-        icon={rating.icon}
-        color={rating.colour}
-        url={url}
-      />
-    );
-  }
+//     return (
+//       <SidebarBase
+//         label={BLOCK_VARIANTS[id].label}
+//         value={rating.label}
+//         icon={rating.icon}
+//         color={rating.colour}
+//         url={url}
+//       />
+//     );
+//   }
 
-  return (
-    <SidebarBase
-      label={BLOCK_VARIANTS[id].label}
-      value={value}
-      icon={BLOCK_VARIANTS[id].icon}
-    />
-  );
-};
+//   return (
+//     <SidebarBase
+//       label={BLOCK_VARIANTS[id].label}
+//       value={value}
+//       icon={BLOCK_VARIANTS[id].icon}
+//     />
+//   );
+// };

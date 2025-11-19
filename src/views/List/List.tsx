@@ -11,27 +11,23 @@ import { type Category } from "@/entities/categories";
 // import { calcOffset, calcSplit } from "./List.helpers";
 // import { useWindowSwipe } from "./List.useSwipe";
 import { Front } from "./components/Front";
-import { getCollection as getSoftwareCollection } from "@/data/software";
+// import { getCollection as getSoftwareCollection } from "@/data/software";
 
-const collection = getSoftwareCollection();
+// const collection = getSoftwareCollection();
 
-export const List = (props: { category: Category["id"] }) => {
-  const { category } = props;
+export const List = (props: {
+  category: Category["id"];
+  items: Software[];
+}) => {
+  const { category, items } = props;
 
   const [column, setColumn] = useState(0);
   const [page, setPage] = useState(0);
 
-  const array = collection.extract({
-    query: {
-      filter: (x) => x.category === category,
-      hashing: {
-        category,
-      },
-    },
-    format: (x) => calcCardPreview({ software: x }),
-  });
-
-  // const list = useMemo(() => ), [items]);
+  const array = useMemo(
+    () => items.map((x) => calcCardPreview({ software: x })),
+    [items]
+  );
 
   const virtualizer = useWindowVirtualizer({
     count: array.length,

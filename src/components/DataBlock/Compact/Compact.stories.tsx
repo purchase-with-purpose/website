@@ -1,6 +1,6 @@
 import { Shell } from "@/components/Shell";
 import * as schema from "../DataBlock.schema";
-import { Compact, CompactBase } from "./Compact";
+import { Compact } from "./Compact";
 import { faker as f } from "@faker-js/faker";
 import { BLOCK_VARIANTS } from "@/entities/blocks";
 import * as u from "@/helpers/utilities";
@@ -19,20 +19,8 @@ const BASE_PROPS: schema.BaseProps = {
   icon: f.helpers.arrayElement(GENERAL_ICON_VARIANTS),
 };
 
-const PROPS: schema.Props = {
-  id: f.helpers.arrayElement(u.keys(BLOCK_VARIANTS)),
-  value: f.lorem.words(3),
-  variant: "compact",
-};
-
 export const Base = () => (
   <Shell>
-    <CompactBase {...BASE_PROPS} />
-  </Shell>
-);
-
-export const Basic = () => (
-  <Shell>
-    <Compact {...PROPS} />
+    <Compact {...BASE_PROPS} />
   </Shell>
 );

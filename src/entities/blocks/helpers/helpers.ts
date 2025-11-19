@@ -1,4 +1,5 @@
-import type { GeneralIconVariant } from "@/entities/icons";
+import type { IconVariant } from "@/entities/icons";
+import * as u from "@/helpers/utilities";
 
 import {
   type Block,
@@ -12,11 +13,9 @@ import {
   FEATURE_VARIANTS,
   PLATFORM_VARIANTS,
   TIER_VARIANTS,
-  type Evaluation,
   type Software,
+  EVALUATION_VARIANTS,
 } from "@/entities/software";
-
-import * as u from "@/helpers/utilities";
 
 const CACHE = {
   getFromGroup: new Map<Group["id"], Block[]>(),
@@ -39,55 +38,129 @@ export const getFromGroup = (props: { group: Group["id"] }): Block[] => {
   return result;
 };
 
-export const calcRating = (props: {
-  value: number | null;
-  system: Evaluation["system"];
-}): { label: string; colour: string; icon: GeneralIconVariant } | null => {
-  const { value, system } = props;
+export const calcColour = (props: {
+  id: Block["id"];
+  value: number | string;
+}): string => {
+  const { id, value } = props;
+
+  if (id.startsWith("software.tiers.")) {
+    return "#543BF1";
+  }
+
+  if (id.startsWith("software.evaluations.")) {
+    const evaluation = id.replace("software.evaluations.", "");
+
+    const match =
+      EVALUATION_VARIANTS[evaluation as keyof typeof EVALUATION_VARIANTS];
+
+    if (match.system === "boolean") {
+      return value === 1 ? "#22AE29" : "#ED6C02";
+    }
+
+    if (match.system === "out-of-5") {
+      if (Number(value) >= 3) return "#22AE29";
+      if (Number(value) > 1) return "#ED6C02";
+      return "red";
+    }
+
+    throw new Error(`Unknown evaluation system for id: ${id}`);
+  }
+
+  return "black";
+};
+
+export const calcValue = (props: {
+  id: Block["id"];
+  value: number | string;
+}): string | null => {
+  const { id, value } = props;
   if (value === null) return null;
 
-  if (system === "boolean" && value === 1) {
-    return {
-      label: "Pass",
-      colour: "#22AE29",
-      icon: "check",
-    };
+  if (
+    id === "software.company.headquarters" ||
+    id === "software.company.ownership"
+  ) {
+    const match = (ORIGIN_VARIANTS as any)[value];
+    return match.label;
   }
 
-  if (system === "boolean" && value === 0) {
-    return {
-      label: "Fail",
-      colour: "red",
-      icon: "cross",
-    };
+  if (id.startsWith("software.platforms.")) {
+    const platform = id.replace("software.platforms.", "");
+    return (PLATFORM_VARIANTS as any)[platform].label;
   }
 
-  if (system === "out-of-5") {
-    const percentage = Math.floor((value / 5) * 100);
+  if (id.startsWith("software.features.")) {
+    const feature = id.replace("software.features.", "");
+    return (FEATURE_VARIANTS as any)[feature].label;
+  }
 
-    if (percentage >= 60) {
-      return {
-        label: `${percentage} %`,
-        colour: "#22AE29",
-        icon: "cross",
-      };
-    }
-    if (percentage >= 40) {
-      return {
-        label: `${percentage} %`,
-        colour: "#ED6C02",
-        icon: "cross",
-      };
+  if (id.startsWith("software.evaluations.")) {
+    const evaluation = id.replace("software.evaluations.", "");
+
+    const match =
+      EVALUATION_VARIANTS[evaluation as keyof typeof EVALUATION_VARIANTS];
+
+    if (match.system === "boolean") {
+      return value === 1 ? "Pass" : "Fail";
     }
 
-    return {
-      label: `${percentage} %`,
-      colour: "red",
-      icon: "cross",
-    };
+    if (match.system === "out-of-5") {
+      const percentage = Math.round((Number(value) / 5) * 100);
+      return `${percentage} %`;
+    }
+
+    throw new Error(`Unknown evaluation system for id: ${id}`);
   }
 
-  throw new Error(`Unknown rating system: ${system}`);
+  return value.toString();
+};
+
+export const calcIcon = (props: {
+  id: Block["id"];
+  value: number | string | null;
+}): null | IconVariant => {
+  const { id, value } = props;
+  if (value === null) return null;
+
+  if (id === "software.company.headquarters") {
+    return `flag-${value.toString().toLowerCase()}` as any;
+  }
+
+  if (id === "software.company.ownership") {
+    return `flag-${value.toString().toLowerCase()}` as any;
+  }
+
+  if (id.startsWith("software.platforms.")) {
+    const platform = id.replace("software.platforms.", "");
+    return PLATFORM_VARIANTS[platform as keyof typeof PLATFORM_VARIANTS].icon;
+  }
+
+  if (id.startsWith("software.features.")) {
+    const feature = id.replace("software.features.", "");
+    return FEATURE_VARIANTS[feature as keyof typeof FEATURE_VARIANTS].icon;
+  }
+
+  if (id.startsWith("software.evaluations.")) {
+    const evaluation = id.replace("software.evaluations.", "");
+
+    const match =
+      EVALUATION_VARIANTS[evaluation as keyof typeof EVALUATION_VARIANTS];
+
+    if (match.system === "boolean") {
+      return value === 1 ? "check" : "cross";
+    }
+
+    if (match.system === "out-of-5") {
+      if (Number(value) >= 3) return "check";
+      if (Number(value) > 2) return "cross";
+      return "cross";
+    }
+
+    throw new Error(`Unknown evaluation system for id: ${id}`);
+  }
+
+  return BLOCK_VARIANTS[id].icon;
 };
 
 export const calcGroupBlocks = (props: {
@@ -224,4 +297,13 @@ export const calcCardPreview = (props: { software: Software }): PreviewData => {
 
   CACHE.calcCardPreview.set(software.id, result);
   return result;
+};
+
+export const getValueFromSoftware = (props: {
+  software: Software;
+  id: Block["id"];
+}): number | string | null => {
+  const { software, id } = props;
+  const match = u.getFromKeys({ software }, id);
+  return match;
 };

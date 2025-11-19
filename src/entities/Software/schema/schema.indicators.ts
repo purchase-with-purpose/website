@@ -3,7 +3,7 @@ import * as u from "@/helpers/utilities";
 const ARRAY = [
   "environmental",
   "open-source",
-  "privacy",
+  "profit-share",
   "self-hosted",
 ] as const;
 
@@ -17,21 +17,21 @@ export type Indicator = {
 const LABELS: Record<Indicator["id"], string> = {
   environmental: "Environmental",
   "open-source": "Open Source",
-  privacy: "Privacy",
+  "profit-share": "Profit Share",
   "self-hosted": "Self-Hosted",
 };
 
 const SWATCHES: Record<Indicator["id"], string> = {
   environmental: "#4CAF50",
   "open-source": "#2196F3",
-  privacy: "#FF9800",
+  "profit-share": "#FF9800",
   "self-hosted": "#9C27B0",
 };
 
 const EMOJI: Record<Indicator["id"], string> = {
   environmental: "🌳",
   "open-source": "🌍",
-  privacy: "🔒",
+  "profit-share": "💰",
   "self-hosted": "📦",
 };
 

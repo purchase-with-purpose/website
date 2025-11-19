@@ -238,3 +238,20 @@ export type IsEqual<A, B> = (<T>() => T extends A ? 1 : 2) extends <
 >() => T extends B ? 1 : 2
   ? true
   : false;
+
+export function getFromKeys(obj: any, path: any) {
+  const keys = Array.isArray(path)
+    ? path
+    : path
+        .replace(/\[(\w+)\]/g, ".$1")
+        .replace(/^\./, "")
+        .split(".");
+
+  let result = obj;
+  for (const key of keys) {
+    if (result == null || !(key in result)) return null;
+    result = result[key];
+  }
+
+  return result === undefined ? null : result;
+}

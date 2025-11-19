@@ -11,6 +11,6 @@ export type BaseProps = {
 
 export type Props = {
   id: Block["id"];
-  value: string | null;
+  value: string | number | null;
   variant: "compact" | "sidebar";
 };
