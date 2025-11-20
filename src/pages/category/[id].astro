@@ -1,7 +1,6 @@
 ---
 import { getCollection } from "astro:content";
 import { List } from "../../views/List";
-import { Shell } from "../../components/Shell";
 
 export async function getStaticPaths() {
   const array = await getCollection("categories");
@@ -15,7 +14,7 @@ export async function getStaticPaths() {
     return {
       params: { id },
       props: {
-        data: { label: data.label, items },
+        data: { category: data, items },
       },
     };
   });
@@ -25,9 +24,9 @@ const props = Astro.props.data;
 ---
 
 <html>
-  <head><title>{props.label}</title></head>
+  <head><title>{props.category.label}</title></head>
 
   <body>
-    <List items={props.items} client:load />
+    <List items={props.items} category={props.category} client:load />
   </body>
 </html>

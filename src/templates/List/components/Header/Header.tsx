@@ -24,29 +24,12 @@ type Action =
 
 export const Header = (props: {
   column: number;
-  page: number;
   dispatch: (action: Action) => void;
 }) => {
-  const { column, page, dispatch } = props;
+  const { column, dispatch } = props;
 
-  const pageRef = useRef<HTMLButtonElement[]>([]);
   const columnRef = useRef<HTMLButtonElement[]>([]);
-
-  const prevPage = useRef(page);
   const prevColumn = useRef(column);
-
-  useEffect(() => {
-    if (prevPage.current === page) return;
-    prevPage.current = page;
-    const currentY = window.scrollY;
-
-    pageRef.current[page]?.scrollIntoView({
-      behavior: "smooth",
-      inline: "center",
-    });
-
-    window.scrollTo(0, currentY);
-  }, [page]);
 
   useEffect(() => {
     if (prevColumn.current === column) return;
@@ -102,31 +85,34 @@ export const Header = (props: {
       <div className={s.wrapper}>
         <div className={s.controlsWrapper}>
           <div className={s.controlsInner}>
-            {u.keys(GROUP_VARIANTS).map((key, i) => (
-              <div
-                key={key}
-                className={s.buttonWrap}
-                onClick={() => {
-                  dispatch({
-                    type: "USER_CHANGES_COLUMN",
-                    payload: { index: i, id: key },
-                  });
-                }}
-              >
-                <button
-                  ref={(x) => {
-                    columnRef.current[i] = x!;
-                  }}
+            {u
+              .keys(GROUP_VARIANTS)
+              .filter((x) => x !== "other")
+              .map((key, i) => (
+                <div
                   key={key}
-                  className={c({
-                    [s.controlButton]: true,
-                    [s.active]: column === i,
-                  })}
+                  className={s.buttonWrap}
+                  onClick={() => {
+                    dispatch({
+                      type: "USER_CHANGES_COLUMN",
+                      payload: { index: i, id: key },
+                    });
+                  }}
                 >
-                  {GROUP_VARIANTS[key].label}
-                </button>
-              </div>
-            ))}
+                  <button
+                    ref={(x) => {
+                      columnRef.current[i] = x!;
+                    }}
+                    key={key}
+                    className={c({
+                      [s.controlButton]: true,
+                      [s.active]: column === i,
+                    })}
+                  >
+                    {GROUP_VARIANTS[key].label}
+                  </button>
+                </div>
+              ))}
 
             <div>
               <div className={s.spacer} />

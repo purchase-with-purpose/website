@@ -35,8 +35,8 @@ const LABELS: Record<Id, string> = {
   "software.platforms.android": "Android",
   "software.platforms.ios": "iOS",
   "software.platforms.linux": "Linux",
-  "software.platforms.mac": "macOS",
-  "software.platforms.web": "Web",
+  "software.platforms.mac": "Mac OS",
+  "software.platforms.web": "Browser",
   "software.platforms.windows": "Windows",
 
   "software.tiers.free": "Free Tier",

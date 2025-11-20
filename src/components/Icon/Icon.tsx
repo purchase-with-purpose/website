@@ -1,6 +1,8 @@
+import { Camera } from "lucide-react";
 import s from "./Icon.module.css";
 import c from "classnames";
 import * as schema from "./Icon.schema";
+import { LUCIDE_ICONS } from "@/entities/icons";
 
 export const Icon = (props: schema.Props) => {
   const { variant, size = "m", importance = "primary" } = props;
@@ -22,6 +24,12 @@ export const Icon = (props: schema.Props) => {
         height="48"
       />
     );
+  }
+
+  const Component = LUCIDE_ICONS[variant as keyof typeof LUCIDE_ICONS];
+
+  if (Component) {
+    return <Component className={className} />;
   }
 
   if (variant === "info") {

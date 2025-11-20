@@ -81,7 +81,7 @@ const example: Software = {
    * This is used primarily used* to indicate whether a software tool adheres to
    * one of the core areas of concerns highlighted within Purchase with Purpose.
    */
-  indicators: ["privacy", "open-source"],
+  indicators: ["profit-share", "open-source"],
 
   /**
    * Additional notes about the software tool. This will be highlighted in

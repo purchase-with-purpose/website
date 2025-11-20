@@ -40,7 +40,7 @@ export const getFromGroup = (props: { group: Group["id"] }): Block[] => {
 
 export const calcColour = (props: {
   id: Block["id"];
-  value: number | string;
+  value: number | string | boolean;
 }): string => {
   const { id, value } = props;
 
@@ -72,7 +72,7 @@ export const calcColour = (props: {
 
 export const calcValue = (props: {
   id: Block["id"];
-  value: number | string;
+  value: number | string | boolean;
 }): string | null => {
   const { id, value } = props;
   if (value === null) return null;
@@ -81,6 +81,7 @@ export const calcValue = (props: {
     id === "software.company.headquarters" ||
     id === "software.company.ownership"
   ) {
+    if (typeof value !== "string") return null;
     const match = (ORIGIN_VARIANTS as any)[value];
     return match.label;
   }
@@ -118,7 +119,7 @@ export const calcValue = (props: {
 
 export const calcIcon = (props: {
   id: Block["id"];
-  value: number | string | null;
+  value: number | string | boolean | null;
 }): null | IconVariant => {
   const { id, value } = props;
   if (value === null) return null;
@@ -170,14 +171,15 @@ export const calcGroupBlocks = (props: {
   const { group, software } = props;
 
   if (group === "recommended") {
-    const ownership = ORIGIN_VARIANTS[software.company.ownership];
+    const ownership =
+      software.company.ownership && ORIGIN_VARIANTS[software.company.ownership];
 
     const headquarters =
       software.company.headquarters &&
       ORIGIN_VARIANTS[software.company.headquarters];
 
     return u.filter([
-      {
+      ownership && {
         id: "software.company.ownership",
         group: "recommended",
         icon: ownership.icon,
@@ -254,14 +256,14 @@ export const calcGroupBlocks = (props: {
     ]);
   }
 
-  return [];
+  throw new Error(`Unsupported group id: ${group}`);
 };
 
 type PreviewData = {
   id: Software["id"];
   software: Software;
   max: number;
-  blocks: Record<Group["id"], Block[]>;
+  blocks: Record<Exclude<Group["id"], "other">, Block[]>;
 };
 
 export const calcCardPreview = (props: { software: Software }): PreviewData => {
@@ -275,17 +277,18 @@ export const calcCardPreview = (props: { software: Software }): PreviewData => {
     id: software.id,
     software,
     blocks: {
+      recommended: [],
       features: [],
-      other: [],
       platforms: [],
       pricing: [],
       ratings: [],
-      recommended: [],
+      // other: [],
     },
     max: 0,
   };
 
   u.keys(GROUP_VARIANTS).forEach((x) => {
+    if (x === "other") return;
     const inner = calcGroupBlocks({ group: x, software });
 
     if (inner.length > result.max) {
@@ -302,8 +305,19 @@ export const calcCardPreview = (props: { software: Software }): PreviewData => {
 export const getValueFromSoftware = (props: {
   software: Software;
   id: Block["id"];
-}): number | string | null => {
+}): number | string | boolean | null => {
   const { software, id } = props;
+
+  if (id.startsWith("software.features.")) {
+    const feature = id.replace("software.features.", "");
+    return software.features.includes(feature as any);
+  }
+
+  if (id.startsWith("software.platforms.")) {
+    const platform = id.replace("software.platforms.", "");
+    return software.platforms.includes(platform as any);
+  }
+
   const match = u.getFromKeys({ software }, id);
   return match;
 };

@@ -67,7 +67,7 @@ export const loader = async (): Promise<Software[]> => {
           url: f.company_url,
           headquarters: f.company_headquarters,
           name: f.company_name,
-          ownership: f.company_ownership,
+          ownership: f.company_ownership || null,
         },
 
         tiers: {

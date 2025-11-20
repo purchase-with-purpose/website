@@ -2,6 +2,8 @@ import * as schema from "../DataBlock.schema";
 import { Icon } from "@/components/Icon";
 // import * as u from "@/helpers/utilities";
 import s from "./Compact.module.css";
+import { TinyColor } from "@ctrl/tinycolor";
+
 // import { BLOCK_VARIANTS, calcRating } from "@/entities/blocks";
 
 // import {
@@ -11,16 +13,23 @@ import s from "./Compact.module.css";
 // } from "@/entities/software";
 
 export const Compact = (props: schema.BaseProps) => {
-  const { label, value, icon } = props;
+  const { label, value, icon, color } = props;
+  const inner = new TinyColor(color || "#24224B");
 
   return (
     <div className={s.wrapper}>
-      <div className={s.icon}>
+      <div
+        className={s.icon}
+        style={{
+          fill: inner.toRgbString(),
+          backgroundColor: inner.setAlpha(0.05).toRgbString(),
+        }}
+      >
         <Icon variant={icon} size="s" />
       </div>
 
       <p className={s.value}>{value || label}</p>
-      {value && <p className={s.label}>{label}</p>}
+      {value && value !== label && <p className={s.label}>{label}</p>}
     </div>
   );
 };

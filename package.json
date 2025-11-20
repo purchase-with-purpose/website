@@ -29,6 +29,7 @@
     "fast-safe-stringify": "^2.1.1",
     "fast-sort": "^3.4.1",
     "immer": "^10.2.0",
+    "lucide-react": "^0.554.0",
     "prismjs": "^1.30.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",

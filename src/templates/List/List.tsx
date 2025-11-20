@@ -8,21 +8,12 @@ import { Header } from "./components/Header";
 import { Card } from "./components/Card";
 import { useWindowVirtualizer } from "@tanstack/react-virtual";
 import { type Category } from "@/entities/categories";
-// import { calcOffset, calcSplit } from "./List.helpers";
-// import { useWindowSwipe } from "./List.useSwipe";
 import { Front } from "./components/Front";
-// import { getCollection as getSoftwareCollection } from "@/data/software";
 
-// const collection = getSoftwareCollection();
-
-export const List = (props: {
-  category: Category["id"];
-  items: Software[];
-}) => {
+export const List = (props: { category: Category; items: Software[] }) => {
   const { category, items } = props;
 
   const [column, setColumn] = useState(0);
-  const [page, setPage] = useState(0);
 
   const array = useMemo(
     () => items.map((x) => calcCardPreview({ software: x })),
@@ -35,48 +26,13 @@ export const List = (props: {
     overscan: 2,
   });
 
-  // useWindowSwipe({
-  //   onSwipeLeft: () => setActive((prev) => Math.min(prev + 1, total - 1)),
-  //   onSwipeRight: () => setActive((prev) => Math.max(prev - 1, 0)),
-  // });
-
-  // useEffect(() => {
-  //   const handleKeyDown = (event: KeyboardEvent) => {
-  //     if (event.key === "ArrowRight") {
-  //       setActive((prev) => Math.min(prev + 1, total - 1));
-  //     } else if (event.key === "ArrowLeft") {
-  //       setActive((prev) => Math.max(prev - 1, 0));
-  //     }
-  //   };
-
-  //   window.addEventListener("keydown", handleKeyDown);
-  //   return () => window.removeEventListener("keydown", handleKeyDown);
-  // }, [total]);
-
-  // useEffect(() => {
-  //   const onResize = () => setSplit(calcSplit());
-  //   window.addEventListener("resize", onResize);
-  //   return () => window.removeEventListener("resize", onResize);
-  // }, []);
-
-  // const offset = calcOffset({
-  //   active,
-  //   split,
-  //   total,
-  // });
-
   return (
     <Shell
       header={
         <Header
-          page={page}
           column={column}
           dispatch={(action) => {
             const { type, payload } = action;
-
-            if (type === "USER_CHANGES_PAGE") {
-              setPage(payload.index);
-            }
 
             if (type === "USER_CHANGES_COLUMN") {
               setColumn(payload.index);
@@ -84,7 +40,7 @@ export const List = (props: {
           }}
         />
       }
-      title=""
+      title={category.label}
     >
       <>
         <Front />
@@ -116,7 +72,7 @@ export const List = (props: {
                       }}
                     >
                       <Card
-                        active={0}
+                        active={column}
                         item={x.software}
                         columns={u.values(x.blocks)}
                       />

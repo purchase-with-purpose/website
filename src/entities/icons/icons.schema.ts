@@ -1,4 +1,61 @@
 import { type Origin } from "@/entities/software";
+import {
+  Cpu,
+  ShieldCheck,
+  Shield,
+  Brain,
+  Link,
+  UserCheck,
+  Tag,
+  CheckCircle,
+  Calendar,
+  Filter,
+  Database,
+  EyeOff,
+  Award,
+  Info,
+  TrendingUp,
+  ShoppingCart,
+  Headphones,
+  Unlock,
+  PlayCircle,
+  Clock,
+  Globe,
+  Smartphone,
+  Package,
+  Camera,
+  ScanFace,
+  CloudUpload,
+} from "lucide-react";
+
+export const LUCIDE_ICONS = {
+  cpu: Cpu,
+  "shield-check": ShieldCheck,
+  shield: Shield,
+  brain: Brain,
+  link: Link,
+  "user-check": UserCheck,
+  tag: Tag,
+  "check-circle": CheckCircle,
+  calendar: Calendar,
+  filter: Filter,
+  database: Database,
+  "eye-off": EyeOff,
+  award: Award,
+  info: Info,
+  "trending-up": TrendingUp,
+  "shopping-cart": ShoppingCart,
+  headphones: Headphones,
+  unlock: Unlock,
+  "play-circle": PlayCircle,
+  clock: Clock,
+  globe: Globe,
+  smartphone: Smartphone,
+  package: Package,
+  camera: Camera,
+  "scan-face": ScanFace,
+  "cloud-upload": CloudUpload,
+} as const;
 
 export const GENERAL_ICON_VARIANTS = [
   "company",
@@ -36,7 +93,11 @@ export const GENERAL_ICON_VARIANTS = [
   "writing",
 ] as const;
 
+export type LucideIconVariant = keyof typeof LUCIDE_ICONS;
 export type GeneralIconVariant = (typeof GENERAL_ICON_VARIANTS)[number];
 export type FlagIconVariant = `flag-${Lowercase<Origin["id"]>}`;
 
-export type IconVariant = GeneralIconVariant | FlagIconVariant;
+export type IconVariant =
+  | GeneralIconVariant
+  | FlagIconVariant
+  | LucideIconVariant;

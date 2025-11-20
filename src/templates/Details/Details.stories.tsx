@@ -1,4 +1,3 @@
-import { Shell } from "@/components/Shell";
 import { Details } from "./Details";
 import * as __mocking__ from "@/entities/software/__mocking__";
 

@@ -14,7 +14,6 @@ export const Basic = () => {
 
   return (
     <Header
-      page={page}
       column={column}
       dispatch={({ type, payload }) => {
         if (type === "USER_CHANGES_PAGE") {

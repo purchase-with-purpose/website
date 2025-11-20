@@ -95,7 +95,7 @@ export const Details = (props: Software) => {
               },
               {
                 label: CATEGORY_VARIANTS[category].label,
-                href: "#",
+                href: `/category/${category}`,
               },
               {
                 label: label,

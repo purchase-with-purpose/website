@@ -5,6 +5,7 @@ import c from "classnames";
 import { type JSX } from "react";
 import { useScrollDirection } from "./Shell.useScrollDirection";
 import { Menu, Icon } from "./Menu";
+import { Logo } from "./Shell.Logo";
 
 export const Shell = (props: {
   children: JSX.Element | JSX.Element[];
@@ -23,7 +24,7 @@ export const Shell = (props: {
             className={c({ [s.header]: true, [s.up]: direction === "up" })}
           >
             <div className={s.top}>
-              <h1 className={s.title}>Cloud Storage</h1>
+              {!title ? <Logo /> : <h1 className={s.title}>{title}</h1>}
 
               <Icon open={open} toggleOpen={() => setOpen((x) => !x)} />
             </div>

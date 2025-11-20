@@ -13,7 +13,7 @@ export const Basic = () => (
     <div style={{ display: "flex", gap: "0.5rem" }}>
       <Indicator id="environmental" compact={false} />
       <Indicator id="open-source" compact={false} />
-      <Indicator id="privacy" compact={false} />
+      <Indicator id="profit-share" compact={false} />
       <Indicator id="self-hosted" compact={false} />
     </div>
   </Shell>

@@ -8,5 +8,3 @@ writeFileSync(
   JSON.stringify(inner, null, 2),
   "utf-8"
 );
-
-console.log(inner);

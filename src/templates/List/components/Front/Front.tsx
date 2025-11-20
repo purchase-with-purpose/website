@@ -3,8 +3,6 @@ import s from "./Front.module.css";
 import { TinyColor } from "@ctrl/tinycolor";
 
 export const Front = () => {
-  const [expanded, setExpanded] = useState(false);
-
   return (
     <div className={s.wrapper}>
       <div>
