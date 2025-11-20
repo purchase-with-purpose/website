@@ -13,8 +13,8 @@ import { TinyColor } from "@ctrl/tinycolor";
 // } from "@/entities/software";
 
 export const Compact = (props: schema.BaseProps) => {
-  const { label, value, icon, color } = props;
-  const inner = new TinyColor(color || "#24224B");
+  const { label, value, icon, color, fill } = props;
+  const inner = new TinyColor(color || "#231cad");
 
   return (
     <div className={s.wrapper}>
@@ -22,7 +22,11 @@ export const Compact = (props: schema.BaseProps) => {
         className={s.icon}
         style={{
           fill: inner.toRgbString(),
-          backgroundColor: inner.setAlpha(0.05).toRgbString(),
+          color: fill ? "white" : "#24224B",
+
+          backgroundColor: fill
+            ? color || "#24224B"
+            : inner.setAlpha(0.05).toRgbString(),
         }}
       >
         <Icon variant={icon} size="s" />

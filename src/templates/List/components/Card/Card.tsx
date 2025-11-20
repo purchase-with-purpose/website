@@ -69,11 +69,6 @@ export const Inner = (props: {
 
         <div>
           <h3 className={s.label}>{item.label}</h3>
-          <div style={{ display: "flex", gap: "0.5rem", paddingTop: "0.5rem" }}>
-            {item.indicators.map((x) => (
-              <Indicator id={x} compact />
-            ))}
-          </div>
         </div>
       </div>
 

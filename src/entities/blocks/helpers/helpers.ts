@@ -15,6 +15,7 @@ import {
   TIER_VARIANTS,
   type Software,
   EVALUATION_VARIANTS,
+  INDICATOR_VARIANTS,
 } from "@/entities/software";
 
 const CACHE = {
@@ -34,6 +35,9 @@ export const getFromGroup = (props: { group: Group["id"] }): Block[] => {
   }
 
   const result = u.values(BLOCK_VARIANTS).filter((x) => x.group === group);
+
+  console.log(result);
+
   CACHE.getFromGroup.set(group, result);
   return result;
 };
@@ -43,6 +47,11 @@ export const calcColour = (props: {
   value: number | string | boolean;
 }): string => {
   const { id, value } = props;
+
+  if (id.startsWith("software.indicators.")) {
+    const inner = id.replace("software.indicators.", "");
+    return INDICATOR_VARIANTS[inner as keyof typeof INDICATOR_VARIANTS].swatch;
+  }
 
   if (id.startsWith("software.tiers.")) {
     return "#543BF1";
@@ -84,6 +93,11 @@ export const calcValue = (props: {
     if (typeof value !== "string") return null;
     const match = (ORIGIN_VARIANTS as any)[value];
     return match.label;
+  }
+
+  if (id.startsWith("software.indicators.")) {
+    const platform = id.replace("software.indicators.", "");
+    return (INDICATOR_VARIANTS as any)[platform].label;
   }
 
   if (id.startsWith("software.platforms.")) {
@@ -179,6 +193,15 @@ export const calcGroupBlocks = (props: {
       ORIGIN_VARIANTS[software.company.headquarters];
 
     return u.filter([
+      ...software.indicators.map((x) => {
+        return {
+          id: `software.indicators.${x}` as const,
+          group: "recommended" as const,
+          icon: BLOCK_VARIANTS[`software.indicators.${x}`].icon,
+          label: x,
+        };
+      }),
+
       ownership && {
         id: "software.company.ownership",
         group: "recommended",
@@ -291,6 +314,8 @@ export const calcCardPreview = (props: { software: Software }): PreviewData => {
     if (x === "other") return;
     const inner = calcGroupBlocks({ group: x, software });
 
+    console.log(inner);
+
     if (inner.length > result.max) {
       result.max = inner.length;
     }
@@ -299,6 +324,7 @@ export const calcCardPreview = (props: { software: Software }): PreviewData => {
   });
 
   CACHE.calcCardPreview.set(software.id, result);
+  console.log(result);
   return result;
 };
 
@@ -311,6 +337,12 @@ export const getValueFromSoftware = (props: {
   if (id.startsWith("software.features.")) {
     const feature = id.replace("software.features.", "");
     return software.features.includes(feature as any);
+  }
+
+  if (id.startsWith("software.indicators.")) {
+    console.log(id);
+    const feature = id.replace("software.indicators.", "");
+    return software.indicators.includes(feature as any);
   }
 
   if (id.startsWith("software.platforms.")) {

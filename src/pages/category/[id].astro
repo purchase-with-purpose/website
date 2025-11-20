@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import { List } from "../../views/List";
+import { List } from "@/templates/List";
 
 export async function getStaticPaths() {
   const array = await getCollection("categories");

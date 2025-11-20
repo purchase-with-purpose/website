@@ -16,6 +16,7 @@ export const DataBlock = (props: schema.Props) => {
 
   const inner: schema.BaseProps = {
     label: match.label,
+    fill: id.includes(".indicators."),
 
     value: calcValue({
       id,

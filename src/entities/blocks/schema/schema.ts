@@ -13,7 +13,8 @@ type Id =
   | `software.${NonNullable<u.ToPrimitivePaths<Software>>}`
   | `software.features.${Feature["id"]}`
   | `software.tiers.${Tier["id"]}`
-  | `software.platforms.${Platform["id"]}`;
+  | `software.platforms.${Platform["id"]}`
+  | `software.indicators.${Software["indicators"][number]}`;
 
 export type Block = {
   id: Id;
@@ -47,6 +48,11 @@ const LABELS: Record<Id, string> = {
   "software.company.name": "Name",
   "software.company.ownership": "Ownership",
   "software.company.url": "URL",
+
+  "software.indicators.environmental": "Environmental",
+  "software.indicators.open-source": "Open Source",
+  "software.indicators.profit-share": "Profit Share",
+  "software.indicators.self-hosted": "Self-Hosted",
 
   "software.evaluations.android": "Google Play Store",
   "software.evaluations.ios": "Apple App Store",
@@ -106,6 +112,11 @@ const ICONS: Record<Id, GeneralIconVariant> = {
   "software.label": "check",
   "software.logo": "star",
   "software.url": "globe",
+
+  "software.indicators.environmental": "star",
+  "software.indicators.open-source": "star",
+  "software.indicators.profit-share": "star",
+  "software.indicators.self-hosted": "star",
 
   "software.platforms.android": "smartphone",
   "software.platforms.ios": "smartphone",
@@ -246,6 +257,11 @@ const GROUPS: Record<Id, Group["id"]> = {
   "software.features.search-good-user-support": "features",
   "software.features.search-independent-index": "features",
   "software.features.search-no-personal-identifiers": "features",
+
+  "software.indicators.environmental": "recommended",
+  "software.indicators.open-source": "recommended",
+  "software.indicators.profit-share": "recommended",
+  "software.indicators.self-hosted": "recommended",
 };
 
 export const BLOCK_VARIANTS = u.fromArray(

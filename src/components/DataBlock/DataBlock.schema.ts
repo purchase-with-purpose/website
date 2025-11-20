@@ -7,6 +7,7 @@ export type BaseProps = {
   icon: IconVariant;
   url?: string;
   color?: string;
+  fill: boolean;
 };
 
 export type Props = {
