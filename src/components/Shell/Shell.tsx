@@ -175,6 +175,7 @@ export const Shell = (props: {
         {u.values(CATEGORY_VARIANTS).map((x, i) => {
           return (
             <button
+              key={x.id}
               className={s.line}
               onClick={() => {
                 setOpen(false);

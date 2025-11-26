@@ -49,7 +49,7 @@ export const Details = (props: schema.Props) => {
               .sort((a, b) => a.description.length - b.description.length)
               .map((x) => {
                 return (
-                  <div className={s.gridItem}>
+                  <div className={s.gridItem} key={x.label}>
                     <DataBlock {...x} variant="sidebar" label={x.description} />
                   </div>
                 );
@@ -66,8 +66,8 @@ export const Details = (props: schema.Props) => {
         screenshots={
           <div className={s.gallery}>
             {screenshots.map((x, i) => (
-              <div className={s.imageWrapper}>
-                <img key={i} className={s.image} src={x} />
+              <div className={s.imageWrapper} key={i}>
+                <img className={s.image} src={x} />
               </div>
             ))}
           </div>
@@ -76,7 +76,7 @@ export const Details = (props: schema.Props) => {
           <div className={s.grid}>
             {platforms.map((x) => {
               return (
-                <div className={s.gridItem}>
+                <div className={s.gridItem} key={x.label}>
                   <DataBlock
                     variant="sidebar"
                     label={x.description}

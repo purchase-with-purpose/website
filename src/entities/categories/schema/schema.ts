@@ -1,5 +1,4 @@
 import * as u from "@/helpers/utilities";
-import { type GeneralIconVariant } from "@/entities/icons";
 
 const CATEGORY_ID_ARRAY = [
   "browser",
@@ -31,27 +30,30 @@ const CATEGORY_LABELS: Record<Category["id"], string> = {
   "music-streaming": "Music Streaming",
 };
 
-const CATEGORY_ICONS: Record<Category["id"], GeneralIconVariant> = {
-  "photo-management": "image",
-  "audio-book": "audiobook",
-  email: "star",
-  "file-storage": "box",
-  "office-suite": "writing",
-  "search-engine": "search",
-  browser: "globe",
-  "music-streaming": "speaker",
-};
-
 const CATEGORY_DESCRIPTIONS: Record<Category["id"], string> = {
-  "photo-management": "...",
+  "photo-management":
+    "These guides aim to help you move away from the big tech monopolies. This can be due to privacy concerns, environmental reasons, treatment of their customers, or their influence on politics.",
+
   browser:
     "These guides aim to help you move away from the big tech monopolies. This can be due to privacy concerns, environmental reasons, treatment of their customers, or their influence on politics.",
-  email: "...",
-  "file-storage": "...",
-  "office-suite": "...",
-  "search-engine": "...",
-  "audio-book": "...",
-  "music-streaming": "...",
+
+  email:
+    "These guides aim to help you move away from the big tech monopolies. This can be due to privacy concerns, environmental reasons, treatment of their customers, or their influence on politics.",
+
+  "file-storage":
+    "These guides aim to help you move away from the big tech monopolies. This can be due to privacy concerns, environmental reasons, treatment of their customers, or their influence on politics.",
+
+  "office-suite":
+    "These guides aim to help you move away from the big tech monopolies. This can be due to privacy concerns, environmental reasons, treatment of their customers, or their influence on politics.",
+
+  "search-engine":
+    "These guides aim to help you move away from the big tech monopolies. This can be due to privacy concerns, environmental reasons, treatment of their customers, or their influence on politics.",
+
+  "audio-book":
+    "These guides aim to help you move away from the big tech monopolies. This can be due to privacy concerns, environmental reasons, treatment of their customers, or their influence on politics.",
+
+  "music-streaming":
+    "These guides aim to help you move away from the big tech monopolies. This can be due to privacy concerns, environmental reasons, treatment of their customers, or their influence on politics.",
 };
 
 const INCUMBENTS: Record<

@@ -6,14 +6,6 @@
   max-width: calc(16rem * 5);
   margin: 0 auto;
   padding: 2rem 1rem 3rem;
-
-  /* border-radius: 6px; */
-  /* padding: 1rem 2rem; */
-  /* background: white; */
-  /* background: black; */
-
-  /* background: rgba(0, 0, 0, 0.05); */
-  /* border-bottom: 1px solid rgba(0, 0, 0, 0.1); */
 }
 
 .toggle {

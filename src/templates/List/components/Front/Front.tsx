@@ -21,25 +21,12 @@ export const Front = (
 
             <div className={s.incumbents}>
               {incumbents.map((x) => (
-                <div className={s.icon}>
+                <div className={s.icon} key={x.label}>
                   <img className={s.image} src={x.logo} alt={x.label} />
                 </div>
               ))}
             </div>
           </div>
-
-          {/* <div style={{ marginBottom: "2rem" }}>
-            <h2 className={s.subtitle}>Helpful Resources</h2>
-            <div className={s.resources}>
-              {resources.map((x) => (
-                <div>
-                  <a key={x.label} href={x.url} className={s.link}>
-                    {x.label}
-                  </a>
-                </div>
-              ))}
-            </div>
-          </div> */}
         </div>
       </div>
     </div>
