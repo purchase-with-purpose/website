@@ -45,7 +45,7 @@ export const Home = (props: schema.Props) => {
               <h2 className={s.title}>{x.title}</h2>
 
               <div className={s.left}>
-                <a href={`/categories/${x.id}`} className={s.button}>
+                <a href={`/category/${x.id}`} className={s.button}>
                   View All
                 </a>
 
