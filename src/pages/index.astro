@@ -1,43 +1,18 @@
 ---
 import { getCollection } from "astro:content";
-
+import { Container } from "@/templates/Home";
 const software = await getCollection("software");
-const categories = await getCollection("categories");
 ---
 
+<!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Astro</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Purchase with Purpose</title>
   </head>
+
   <body>
-    <h1>Purchase with Purpose</h1>
-
-    <h2>Categories</h2>
-
-    <ul>
-      {
-        categories.map((x) => (
-          <li>
-            <a href={`/category/${x.id}`}>{x.data.label}</a>
-          </li>
-        ))
-      }
-    </ul>
-
-    <h2>Software</h2>
-
-    <ul>
-      {
-        software.map((x) => (
-          <li>
-            <a href={`/software/${x.id}`}>{x.data.label}</a>
-          </li>
-        ))
-      }
-    </ul>
+    <Container software={software.map((x) => x.data)} client:load />
   </body>
 </html>

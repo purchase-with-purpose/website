@@ -1,5 +1,6 @@
 import type { Category } from "@/entities/categories/";
 import { type Props as DataBlockProps } from "@/components/DataBlock";
+import { type Software } from "@/entities/software/";
 
 type Action = {
   type: "USER_CHANGES_CATEGORY";
@@ -33,4 +34,8 @@ export type Section = {
 export type Props = {
   sections: Section[];
   dispatch: (action: Action) => void;
+};
+
+export type ContainerProps = {
+  software: Software[];
 };
