@@ -14,7 +14,8 @@ type Id =
   | `software.features.${Feature["id"]}`
   | `software.tiers.${Tier["id"]}`
   | `software.platforms.${Platform["id"]}`
-  | `software.indicators.${Software["indicators"][number]}`;
+  | `software.indicators.${Software["indicators"][number]}`
+  | "software.derived.app";
 
 export type Block = {
   id: Id;
@@ -44,7 +45,7 @@ const LABELS: Record<Id, string> = {
   "software.tiers.premium": "Premium Plan",
 
   "software.company.headquarters": "Headquarters",
-  "software.company.name": "Name",
+  "software.company.name": "Company Name",
   "software.company.ownership": "Ownership",
   "software.company.url": "URL",
 
@@ -64,6 +65,8 @@ const LABELS: Record<Id, string> = {
   "software.evaluations.privacy-guide.url": "Privacy Guides URL",
   "software.evaluations.privacy-tools.url": "Privacy Tools URL",
   "software.evaluations.trustpilot.url": "Trustpilot URL",
+
+  "software.derived.app": "Mobile App",
 
   ...(Object.fromEntries(
     u.values(FEATURE_VARIANTS).map((x) => {
@@ -114,6 +117,8 @@ const ICONS: Record<Id, IconVariant | null> = {
   "software.evaluations.privacy-guide.url": null,
   "software.evaluations.privacy-tools.url": null,
   "software.evaluations.trustpilot.url": null,
+
+  "software.derived.app": "smartphone",
 
   ...(Object.fromEntries(
     u.values(FEATURE_VARIANTS).map((x) => {

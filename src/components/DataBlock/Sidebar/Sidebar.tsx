@@ -19,18 +19,20 @@ export const Sidebar = (props: schema.Props) => {
       })}
     >
       {icon && (
-        <div
-          className={s.icon}
-          style={{
-            fill: inner.toRgbString(),
-            color: fill ? "white" : color || "#24224B",
+        <div>
+          <div
+            className={s.icon}
+            style={{
+              fill: inner.toRgbString(),
+              color: fill ? "white" : color || "#24224B",
 
-            backgroundColor: fill
-              ? color || "#24224B"
-              : inner.setAlpha(0.05).toRgbString(),
-          }}
-        >
-          <Icon variant={icon} />
+              backgroundColor: fill
+                ? color || "#24224B"
+                : inner.setAlpha(0.05).toRgbString(),
+            }}
+          >
+            <Icon variant={icon} />
+          </div>
         </div>
       )}
 

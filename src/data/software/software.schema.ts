@@ -55,19 +55,19 @@ export const schema = z.object({
         company_ownership: extractKeysAsEnum(ORIGIN_VARIANTS).nullish(),
 
         evaluations_trustpilot: z.number().optional(),
-        evaluations_trustpilot_url: z.string().url().optional(),
+        evaluation_trustpilot_url: z.string().url().optional(),
 
         evaluations_android: z.number().optional(),
-        evaluations_android_url: z.string().url().optional(),
+        evaluation_android_url: z.string().url().optional(),
 
         evaluations_ios: z.number().optional(),
-        evaluations_ios_url: z.string().url().optional(),
+        evaluation_ios_url: z.string().url().optional(),
 
         evaluations_privacyTools: z.number().optional(),
-        evaluations_privacyTools_url: z.string().url().optional(),
+        evaluation_privacyTools_url: z.string().url().optional(),
 
         evaluations_privacyGuide: z.number().optional(),
-        evaluations_privacyGuide_url: z.string().url().optional(),
+        evaluation_privacyGuide_url: z.string().url().optional(),
 
         tiers_free: z.string().optional(),
         tiers_basic: z.string().optional(),

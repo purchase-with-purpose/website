@@ -68,6 +68,7 @@ export const loader = async (): Promise<Software[]> => {
         id: u.createBrand("SOFTWARE_ID", x.sys.id)!,
         screenshots: [],
         label: f.label,
+        recommended: f.recommended || false,
         logo,
         url: f.url,
         category: f.category,
@@ -81,23 +82,23 @@ export const loader = async (): Promise<Software[]> => {
         evaluations: {
           "privacy-guide": {
             value: f.evaluations_privacyGuide || null,
-            url: f.evaluations_privacyGuide_url || null,
+            url: f.evaluation_privacyGuide_url || null,
           },
           "privacy-tools": {
             value: f.evaluations_privacyTools || null,
-            url: f.evaluations_privacyTools_url || null,
+            url: f.evaluation_privacyTools_url || null,
           },
           android: {
             value: f.evaluations_android || null,
-            url: f.evaluations_android_url || null,
+            url: f.evaluation_android_url || null,
           },
           ios: {
             value: f.evaluations_ios || null,
-            url: f.evaluations_ios_url || null,
+            url: f.evaluation_ios_url || null,
           },
           trustpilot: {
             value: f.evaluations_trustpilot || null,
-            url: f.evaluations_trustpilot_url || null,
+            url: f.evaluation_trustpilot_url || null,
           },
         },
 

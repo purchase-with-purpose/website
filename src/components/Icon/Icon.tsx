@@ -29,7 +29,11 @@ export const Icon = (props: schema.Props) => {
   const Component = LUCIDE_ICONS[variant as keyof typeof LUCIDE_ICONS];
 
   if (Component) {
-    return <Component className={className} />;
+    return (
+      <div className={s.inherit}>
+        <Component className={className} />
+      </div>
+    );
   }
 
   if (variant === "info") {
@@ -159,7 +163,10 @@ export const Icon = (props: schema.Props) => {
         className={className}
         viewBox="0 0 22 22"
       >
-        <path d="m22 11-11 6-11-6 11-6 11 6ZM4.1748 11 11 14.7246 17.8252 11 11 7.27539 4.1748 11Z" />
+        <path
+          fill="currentColor"
+          d="m22 11-11 6-11-6 11-6 11 6ZM4.1748 11 11 14.7246 17.8252 11 11 7.27539 4.1748 11Z"
+        />
       </svg>
     );
   }
@@ -171,7 +178,10 @@ export const Icon = (props: schema.Props) => {
         className={className}
         viewBox="0 0 22 22"
       >
-        <path d="M21.4248 13.3252 11 19 .575195 13.3252 2.6748 12.1748 11 16.7246l8.3252-4.5498 2.0996 1.1504ZM22 9l-11 6L0 9l11-6 11 6ZM4.1748 9 11 12.7246 17.8252 9 11 5.27539 4.1748 9Z" />
+        <path
+          fill="currentColor"
+          d="M21.4248 13.3252 11 19 .575195 13.3252 2.6748 12.1748 11 16.7246l8.3252-4.5498 2.0996 1.1504ZM22 9l-11 6L0 9l11-6 11 6ZM4.1748 9 11 12.7246 17.8252 9 11 5.27539 4.1748 9Z"
+        />
       </svg>
     );
   }
@@ -219,7 +229,10 @@ export const Icon = (props: schema.Props) => {
         className={className}
         viewBox="0 0 22 22"
       >
-        <path d="M11 13 0 7l11-6 11 6-11 6Zm0 4L.575 11.325l2.1-1.15L11 14.725l8.325-4.55 2.1 1.15L11 17Zm0 4L.575 15.325l2.1-1.15L11 18.725l8.325-4.55 2.1 1.15L11 21Zm0-10.275L17.825 7 11 3.275 4.175 7 11 10.725Z" />
+        <path
+          fill="currentColor"
+          d="M11 13 0 7l11-6 11 6-11 6Zm0 4L.575 11.325l2.1-1.15L11 14.725l8.325-4.55 2.1 1.15L11 17Zm0 4L.575 15.325l2.1-1.15L11 18.725l8.325-4.55 2.1 1.15L11 21Zm0-10.275L17.825 7 11 3.275 4.175 7 11 10.725Z"
+        />
       </svg>
     );
   }

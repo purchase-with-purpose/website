@@ -24,3 +24,9 @@ export const Basic = () => (
     <Sidebar {...BASE_PROPS} />
   </Shell>
 );
+
+export const Filled = () => (
+  <Shell>
+    <Sidebar {...BASE_PROPS} fill={true} />
+  </Shell>
+);

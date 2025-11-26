@@ -17,12 +17,19 @@ const calcColour = (props: {
 }): string => {
   const { id, value } = props;
 
+  if (
+    id === "software.company.headquarters" ||
+    id === "software.company.ownership"
+  ) {
+    return "rgba(0, 0, 0, 0.9)";
+  }
+
   if (id.startsWith("software.indicators.")) {
     const inner = id.replace("software.indicators.", "");
     return INDICATOR_VARIANTS[inner as keyof typeof INDICATOR_VARIANTS].swatch;
   }
 
-  if (id.startsWith("software.tiers.")) {
+  if (id.startsWith("software.features.")) {
     return "#543BF1";
   }
 
@@ -47,7 +54,7 @@ const calcColour = (props: {
     throw new Error(`Unknown evaluation system for id: ${id}`);
   }
 
-  return "black";
+  return "#24224b";
 };
 
 const calcValue = (props: {
@@ -111,11 +118,10 @@ const calcIcon = (props: {
   const { id, value } = props;
   if (value === null) return null;
 
-  if (id === "software.company.headquarters") {
-    return `flag-${value.toString().toLowerCase()}` as any;
-  }
-
-  if (id === "software.company.ownership") {
+  if (
+    id === "software.company.headquarters" ||
+    id === "software.company.ownership"
+  ) {
     return `flag-${value.toString().toLowerCase()}` as any;
   }
 

@@ -10,7 +10,7 @@
 
   @media (min-width: 90rem) {
     gap: 2rem;
-    padding: 2rem;
+    padding: 2rem 2rem 8rem 2rem;
     flex-direction: row;
   }
 }
@@ -45,7 +45,7 @@
 }
 
 .subtitle {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   padding-left: 0.25rem;
   font-weight: 700;
   letter-spacing: 0;

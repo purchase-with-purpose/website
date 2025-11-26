@@ -12,39 +12,47 @@ import {
 export const calcItems = (items: Software[]): Item[] => {
   return items.map((x): Item => {
     const cells: Item["cells"] = u.filter(
-      u.values(GROUP_VARIANTS).map(({ blocks }): Item["cells"][number] => {
-        const result = blocks.map(
-          (id): Item["cells"][number][number] | null => {
-            const { label } = BLOCK_VARIANTS[id];
+      u
+        .values(GROUP_VARIANTS)
+        .map(({ id: group, blocks }): Item["cells"][number] => {
+          const result = blocks.map(
+            (id): Item["cells"][number][number] | null => {
+              const { label } = BLOCK_VARIANTS[id];
 
-            const value = getValue({
-              software: x,
-              id,
-            });
-
-            if (!value) return null;
-
-            const inner = {
-              id,
-              value,
-            };
-
-            return {
-              color: display.calcColour(inner),
-              value: display.calcValue(inner),
-              fill: id.includes(".indicators."),
-              icon: display.calcIcon(inner) || "star",
-              label,
-              url: display.calcUrl({
+              const value = getValue({
                 software: x,
                 id,
-              }),
-            };
-          }
-        );
+              });
 
-        return u.filter(result);
-      })
+              if (!value) return null;
+
+              const inner = {
+                id,
+                value,
+              };
+
+              return {
+                color: display.calcColour(inner),
+                fill: group === "software.card.recommended",
+                icon: display.calcIcon(inner) || "star",
+                label,
+
+                url: display.calcUrl({
+                  software: x,
+                  id,
+                }),
+
+                value:
+                  group === "software.card.recommended" &&
+                  id === "software.tiers.free"
+                    ? "Free Tier"
+                    : display.calcValue(inner),
+              };
+            }
+          );
+
+          return u.filter(result);
+        })
     );
 
     const topHeight = 6;

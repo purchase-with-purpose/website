@@ -51,7 +51,7 @@ const createToDataBlockFn =
   };
 
 export const calcFeatures = (software: Software): schema.Props["features"] => {
-  const inner = GROUP_VARIANTS["software.card.features"].blocks;
+  const inner: Block["id"][] = GROUP_VARIANTS["software.card.features"].blocks;
   const toDataBlock = createToDataBlockFn(software);
 
   const result = inner.map((x): schema.Props["features"][number] | null => {
@@ -69,9 +69,8 @@ export const calcFeatures = (software: Software): schema.Props["features"] => {
     const match = FEATURE_VARIANTS[featureId];
 
     return {
+      ...inner,
       description: match.description,
-      icon: inner.icon,
-      label: inner.value!,
     };
   });
 
@@ -80,10 +79,7 @@ export const calcFeatures = (software: Software): schema.Props["features"] => {
 
 export const calcDataBlock = (
   software: Software
-): Pick<
-  schema.Props,
-  "ratings" | "company" | "tiers" | "indicators" | "platforms"
-> => {
+): Pick<schema.Props, "ratings" | "company" | "tiers" | "platforms"> => {
   const toDataBlock = createToDataBlockFn(software);
 
   return {
@@ -106,14 +102,11 @@ export const calcDataBlock = (
         };
       }),
 
-    indicators: u.filter([
+    company: u.filter([
       toDataBlock("software.indicators.environmental"),
       toDataBlock("software.indicators.open-source"),
       toDataBlock("software.indicators.profit-share"),
       toDataBlock("software.indicators.self-hosted"),
-    ]),
-
-    company: u.filter([
       toDataBlock("software.company.name"),
       toDataBlock("software.company.ownership"),
       toDataBlock("software.company.headquarters"),
@@ -126,10 +119,9 @@ export const calcProps = (
 ): Omit<schema.Props, "dispatch"> => {
   const features = calcFeatures(software);
   const category = CATEGORY_VARIANTS[software.category];
-  const { label: title, url, description, screenshots, logo, notes } = software;
 
-  const { company, ratings, tiers, indicators, platforms } =
-    calcDataBlock(software);
+  const { label: title, url, description, screenshots, logo, notes } = software;
+  const { company, ratings, tiers, platforms } = calcDataBlock(software);
 
   const breadcrumbs: schema.Props["breadcrumbs"] = [
     { label: "Home", url: "/" },
@@ -148,7 +140,6 @@ export const calcProps = (
     breadcrumbs,
     screenshots,
     logo,
-    indicators,
     platforms,
     notes,
   };

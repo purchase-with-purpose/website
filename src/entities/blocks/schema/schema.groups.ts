@@ -15,7 +15,7 @@ const GROUP_ID_ARRAY = [
   "software.card.pricing",
   "software.card.platforms",
   "software.card.ratings",
-];
+] as const;
 
 export type Grouped = {
   id: (typeof GROUP_ID_ARRAY)[number];
@@ -42,21 +42,42 @@ const DESCRIPTIONS: Record<Grouped["id"], string> = {
 
 const BLOCKS: Record<Grouped["id"], Block["id"][]> = {
   "software.card.recommended": [
+    "software.company.ownership",
+    "software.company.headquarters",
+
     ...u
       .keys(INDICATOR_VARIANTS)
       .map((x) => `software.indicators.${x}` as const),
-    "software.company.ownership",
-    "software.company.headquarters",
+
+    "software.features.browser-non-google-engine",
+    "software.features.browser-native-add-blocking",
+    "software.derived.app",
+    "software.features.music-generous-artist-royalties",
+    "software.features.music-purchaseable-content",
+    "software.features.audiobooks-drm-free",
+    "software.features.audiobooks-subscription",
+    "software.features.search-independent-index",
+    "software.features.search-ai-summaries",
+    "software.features.office-own-software",
+    "software.features.photos-facial-recognition",
+    "software.features.photos-memories",
+    "software.features.office-online-service",
+    "software.features.email-automatic-categorization",
+    "software.tiers.free",
   ],
+
   "software.card.features": [
     ...u.keys(FEATURE_VARIANTS).map((x) => `software.features.${x}` as const),
   ],
+
   "software.card.pricing": [
     ...u.keys(TIER_VARIANTS).map((x) => `software.tiers.${x}` as const),
   ],
+
   "software.card.platforms": [
     ...u.keys(PLATFORM_VARIANTS).map((x) => `software.platforms.${x}` as const),
   ],
+
   "software.card.ratings": [
     ...u
       .keys(EVALUATION_VARIANTS)

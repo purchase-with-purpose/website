@@ -61,71 +61,34 @@ export const Header = (
 
   return (
     <>
-      {/* <div className={s.wrapper}>
-        <div className={s.controlsWrapper} ref={pageContainer}>
+      <div className={s.wrapper}>
+        <div className={s.controlsWrapper} ref={columnContainer}>
           <div className={s.controlsInner}>
-            {u.values(CATEGORY_VARIANTS).map(({ id, label }, i) => (
+            {u.keys(GROUP_VARIANTS).map((key, i) => (
               <div
-                key={id}
+                key={key}
                 className={s.buttonWrap}
                 onClick={() => {
                   dispatch({
-                    type: "USER_CHANGES_PAGE",
-                    payload: { index: i, id },
+                    type: "USER_CHANGES_COLUMN",
+                    payload: { index: i, id: key },
                   });
                 }}
               >
                 <button
                   ref={(x) => {
-                    pageWidths.current[i] = x?.clientWidth || 0;
+                    columnWidths.current[i] = x?.clientWidth || 0;
                   }}
-                  key={id}
+                  key={key}
                   className={c({
                     [s.controlButton]: true,
-                    [s.active]: page === i,
+                    [s.active]: column === i,
                   })}
                 >
-                  {label}
+                  {GROUP_VARIANTS[key].label}
                 </button>
               </div>
             ))}
-
-            <div>.</div>
-          </div>
-        </div>
-      </div> */}
-
-      <div className={s.wrapper}>
-        <div className={s.controlsWrapper} ref={columnContainer}>
-          <div className={s.controlsInner}>
-            {u
-              .keys(GROUP_VARIANTS)
-              .filter((x) => x !== "other")
-              .map((key, i) => (
-                <div
-                  key={key}
-                  className={s.buttonWrap}
-                  onClick={() => {
-                    dispatch({
-                      type: "USER_CHANGES_COLUMN",
-                      payload: { index: i, id: key },
-                    });
-                  }}
-                >
-                  <button
-                    ref={(x) => {
-                      columnWidths.current[i] = x?.clientWidth || 0;
-                    }}
-                    key={key}
-                    className={c({
-                      [s.controlButton]: true,
-                      [s.active]: column === i,
-                    })}
-                  >
-                    {GROUP_VARIANTS[key].label}
-                  </button>
-                </div>
-              ))}
             <div>.</div>
           </div>
         </div>

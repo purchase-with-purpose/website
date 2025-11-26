@@ -23,6 +23,7 @@ export const createItem = (): Software => {
   return {
     id: u.createBrand("SOFTWARE_ID")!,
     category,
+    recommended: f.datatype.boolean(),
     logo,
     swatch,
     description: f.lorem.paragraphs(2),

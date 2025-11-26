@@ -17,3 +17,7 @@
 .wrapper.importance-secondary {
   opacity: 0.75;
 }
+
+.inherit {
+  color: inherit;
+}

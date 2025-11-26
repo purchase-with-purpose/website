@@ -2,7 +2,7 @@ import s from "./TopBlock.module.css";
 import * as schema from "../../schema";
 
 export const TopBlock = (
-  props: Pick<schema.Props, "indicators" | "title" | "logo" | "url">
+  props: Pick<schema.Props, "title" | "logo" | "url">
 ) => {
   const { title, logo, url } = props;
 

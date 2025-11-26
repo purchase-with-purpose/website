@@ -18,7 +18,6 @@ export const Details = (props: schema.Props) => {
     notes,
     ratings,
     platforms,
-    indicators,
     logo,
     screenshots,
     title,
@@ -40,22 +39,8 @@ export const Details = (props: schema.Props) => {
     >
       <Layout
         breadcrumbs={<Breadcrumbs breadcrumbs={breadcrumbs} />}
-        description={
-          <>
-            <div className={s.indicators}>
-              {indicators.map((x) => {
-                return (
-                  <div className={s.indicatorItem}>
-                    <DataBlock {...x} variant="sidebar" fill={true} />
-                  </div>
-                );
-              })}
-            </div>
-
-            <p className={s.description}>{description}</p>
-          </>
-        }
-        company={<SideBlocks title="Company" items={company} />}
+        description={<p className={s.description}>{description}</p>}
+        company={<SideBlocks title="Overview" items={company} />}
         tiers={<SideBlocks title="Tiers" items={tiers} />}
         reviews={<SideBlocks title="Ratings" items={ratings} />}
         features={
@@ -65,26 +50,18 @@ export const Details = (props: schema.Props) => {
               .map((x) => {
                 return (
                   <div className={s.gridItem}>
-                    <DataBlock
-                      variant="sidebar"
-                      label={x.description}
-                      value={x.label}
-                      color="#24224b"
-                      fill={false}
-                      icon={x.icon}
-                      url={null}
-                    />
+                    <DataBlock {...x} variant="sidebar" label={x.description} />
                   </div>
                 );
               })}
           </div>
         }
         disclaimers={
-          <>
+          <div className={s.notesWrapper}>
             {notes.map((x, i) => {
               return <Notes key={i} value={x.value} variant={x.variant} />;
             })}
-          </>
+          </div>
         }
         screenshots={
           <div className={s.gallery}>
@@ -114,14 +91,7 @@ export const Details = (props: schema.Props) => {
             })}
           </div>
         }
-        top={
-          <TopBlock
-            indicators={indicators}
-            title={title}
-            logo={logo}
-            url={url}
-          />
-        }
+        top={<TopBlock title={title} logo={logo} url={url} />}
       />
     </Shell>
   );

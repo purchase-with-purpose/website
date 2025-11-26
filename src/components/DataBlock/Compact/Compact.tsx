@@ -13,7 +13,7 @@ export const Compact = (props: schema.Props) => {
         className={s.icon}
         style={{
           fill: inner.toRgbString(),
-          color: fill ? "white" : "#24224B",
+          color: fill ? "white" : color || "#24224B",
 
           backgroundColor: fill
             ? color || "#24224B"

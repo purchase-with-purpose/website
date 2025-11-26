@@ -41,11 +41,11 @@
   font-size: 1rem;
   font-family: Inter, sans-serif;
   line-height: 1;
-  height: 2.5rem;
+  height: 2.75rem;
   border-width: 0;
   border-radius: 8px;
   font-weight: 600;
-  padding: 0 1.5rem 0 2rem;
+  padding: 0 0.75rem 0 1.25rem;
   cursor: pointer;
   border: 1px solid transparent;
   transform: scale(1);
@@ -84,9 +84,14 @@
   justify-content: space-between;
   color: white;
   width: 100%;
-
   max-width: calc(16rem * 5);
   margin: 0 auto;
+}
+
+@media (min-width: 40rem) {
+  .top {
+    padding: 0 0 0 0.5rem;
+  }
 }
 
 .logo {
@@ -98,14 +103,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
-  font-weight: 700;
   cursor: pointer;
-  margin-left: 0;
   padding: 0 1rem;
   display: none;
+  text-decoration: none;
+}
+
+.innerTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
   letter-spacing: 0;
   white-space: nowrap;
+  margin: 0;
+  color: white;
 }
 
 @media (min-width: 40rem) {
@@ -121,7 +131,6 @@
 .label {
   line-height: 1;
   color: white;
-  /* padding-left: 5rem; */
   font-weight: bold;
   padding-right: 0.5rem;
 }
@@ -189,10 +198,15 @@
 .right {
   display: flex;
   align-items: center;
-  gap: 0.25rem;
   padding-right: 0.75rem;
   justify-content: flex-end;
   width: 100%;
+}
+
+.outer {
+  background: none;
+  border-width: 0;
+  padding: 0.15rem;
 }
 
 @media (min-width: 40rem) {

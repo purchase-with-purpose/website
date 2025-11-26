@@ -16,13 +16,12 @@ export type Props = {
   breadcrumbs: { label: string; url: null | string }[];
   description: string;
   screenshots: string[];
-  features: { label: string; icon: IconVariant; description: string }[];
+  features: (DataBlockProps & { description: string })[];
   notes: { value: string; variant: Note["id"] }[];
   company: DataBlockProps[];
   tiers: DataBlockProps[];
   ratings: DataBlockProps[];
   platforms: (DataBlockProps & { description: string })[];
-  indicators: DataBlockProps[];
   logo: string;
   url: string;
   dispatch: (action: Action) => void;
