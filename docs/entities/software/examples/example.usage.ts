@@ -37,4 +37,4 @@ console.log(software.FEATURE_VARIANTS["search-no-personal-identifiers"].icon);
 const code = "US";
 const { label, icon } = software.ORIGIN_VARIANTS[code];
 
-// The `label` will be "United States" and `icon` will be `flag-us`
+// The `label` will be "USA" and `icon` will be `flag-us`

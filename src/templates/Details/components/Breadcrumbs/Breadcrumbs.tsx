@@ -1,14 +1,14 @@
 import { Fragment } from "react";
 import s from "./Breadcrumbs.module.css";
-import * as schema from "./Breadcrumbs.schema";
+import * as schema from "../../schema";
 
-export const Breadcrumbs = (props: schema.Props) => {
-  const { path } = props;
+export const Breadcrumbs = (props: Pick<schema.Props, "breadcrumbs">) => {
+  const { breadcrumbs } = props;
 
   return (
     <div className={s.wrapper}>
-      {path.map((x, i) => {
-        const Element = x.href ? "a" : "div";
+      {breadcrumbs.map((x, i) => {
+        const Element = x.url ? "a" : "div";
 
         return (
           <Fragment key={i}>
@@ -27,7 +27,7 @@ export const Breadcrumbs = (props: schema.Props) => {
             )}
 
             <div className="element-wrap">
-              <Element className={s.item} href={x.href || undefined} key={i}>
+              <Element className={s.item} href={x.url || undefined} key={i}>
                 {x.label}
               </Element>
             </div>

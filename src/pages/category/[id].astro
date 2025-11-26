@@ -1,32 +1,39 @@
 ---
 import { getCollection } from "astro:content";
-import { List } from "@/templates/List";
+import { Container, type ContainerProps } from "@/templates/List";
 
 export async function getStaticPaths() {
   const array = await getCollection("categories");
   const software = await getCollection("software");
 
   return array.map(({ id, data }) => {
-    const items = software
-      .filter((item) => item.data.category === id)
-      .map((x) => x.data);
+    const props: ContainerProps = {
+      column: 0,
+      page: 0,
+      description: data.description,
+      title: data.label,
+      software: software.map((x) => x.data),
+    };
 
     return {
       params: { id },
-      props: {
-        data: { category: data, items },
-      },
+      props,
     };
   });
 }
 
-const props = Astro.props.data;
+const props = Astro.props;
 ---
 
-<html>
-  <head><title>{props.category.label}</title></head>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{props.title}</title></head
+  >
 
   <body>
-    <List items={props.items} category={props.category} client:load />
+    <Container {...props} client:load />
   </body>
 </html>

@@ -1,9 +1,10 @@
 import s from "./TopBlock.module.css";
-import * as schema from "./TopBlock.schema";
-import { Indicator } from "@/components/Indicator";
+import * as schema from "../../schema";
 
-export const TopBlock = (props: schema.Props) => {
-  const { label, logo, url } = props;
+export const TopBlock = (
+  props: Pick<schema.Props, "indicators" | "title" | "logo" | "url">
+) => {
+  const { title, logo, url } = props;
 
   return (
     <div className={s.wrapper}>
@@ -15,11 +16,11 @@ export const TopBlock = (props: schema.Props) => {
 
       <div className={s.content}>
         <div>
-          <h1 className={s.title}>{label}</h1>
+          <h1 className={s.title}>{title}</h1>
 
           <div className={s.indicatorWrap}>
             {props.indicators.map((x) => {
-              return <Indicator compact={false} key={x} id={x} />;
+              return <div>{x.label}</div>;
             })}
           </div>
         </div>

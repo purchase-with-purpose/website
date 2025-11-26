@@ -31,10 +31,13 @@ const example: Software = {
   features: ["search-no-personal-identifiers", "search-ad-free-tier"],
 
   /**
-   * Whether the current tool is considered as one of the leading, commercial
-   * "big-tech" software tools within its category.
+   * A collection of screenshots showing the look and feel of the tools.
    */
-  incumbent: false,
+  screenshots: [
+    "/images/screenshots/brave/1.png",
+    "/images/screenshots/brave-2.png",
+    "/images/screenshots/brave-3.png",
+  ],
 
   /**
    * Information related to the person, group or organization that
@@ -108,10 +111,26 @@ const example: Software = {
     "Brave is a free and open-source web browser which was first released in 2016. It is developed by US-based Brave Software, Inc. and based on the Chromium web browser. The browser is marketed as a privacy-focused web browser and includes features such as built-in advertisement blocking, protections against browser fingerprinting and a private browsing mode that integrates the Tor anonymity network.",
 
   evaluations: {
-    trustpilot: 2.5,
-    ios: 2,
-    android: 3.3,
-    "privacy-guide": 1,
-    "privacy-tools": 1,
+    trustpilot: {
+      value: 2.5,
+      url: "https://www.trustpilot.com/review/brave.com",
+    },
+    ios: {
+      value: 2,
+      url: "https://apps.apple.com/us/app/brave-private-web-browser/id1052879175#see-all/reviews",
+    },
+    android: {
+      value: 3.3,
+      url: "https://play.google.com/store/apps/details?id=com.brave.browser&hl=en&gl=US",
+    },
+
+    "privacy-guide": {
+      value: 1,
+      url: "https://privacyguide.org/software/brave/",
+    },
+    "privacy-tools": {
+      value: 1,
+      url: "https://www.privacytools.io/browsers/#browsers-recommended",
+    },
   },
 };

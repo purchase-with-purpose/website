@@ -2,8 +2,6 @@ import { Shell } from "@/components/Shell";
 import * as schema from "../DataBlock.schema";
 import { Compact } from "./Compact";
 import { faker as f } from "@faker-js/faker";
-import { BLOCK_VARIANTS } from "@/entities/blocks";
-import * as u from "@/helpers/utilities";
 import { GENERAL_ICON_VARIANTS } from "@/entities/icons";
 
 export default {
@@ -13,10 +11,14 @@ export default {
   },
 };
 
-const BASE_PROPS: schema.BaseProps = {
+const BASE_PROPS: schema.Props = {
   label: f.lorem.words(2),
   value: f.lorem.words(3),
   icon: f.helpers.arrayElement(GENERAL_ICON_VARIANTS),
+  fill: false,
+  color: "#42A5F5",
+  url: f.internet.url(),
+  variant: "compact",
 };
 
 export const Base = () => (

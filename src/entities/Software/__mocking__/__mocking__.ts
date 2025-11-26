@@ -22,6 +22,15 @@ export const createItem = (): Software => {
 
   return {
     id: u.createBrand("SOFTWARE_ID")!,
+    category,
+    logo,
+    swatch,
+    description: f.lorem.paragraphs(2),
+
+    screenshots: new Array(f.number.int({ min: 2, max: 5 })).map(() =>
+      f.image.urlPicsumPhotos()
+    ),
+
     features: f.helpers.arrayElements(u.keys(FEATURE_VARIANTS), {
       min: 3,
       max: 5,
@@ -38,11 +47,28 @@ export const createItem = (): Software => {
     },
 
     evaluations: {
-      trustpilot: f.number.float({ min: 1, max: 5, fractionDigits: 1 }),
-      ios: f.number.float({ min: 1, max: 5, fractionDigits: 1 }),
-      android: f.number.float({ min: 1, max: 5, fractionDigits: 1 }),
-      "privacy-guide": f.number.int({ min: 0, max: 1 }),
-      "privacy-tools": f.number.int({ min: 0, max: 1 }),
+      trustpilot: {
+        value: f.number.float({ min: 1, max: 5, fractionDigits: 1 }),
+        url: f.internet.url(),
+      },
+
+      ios: {
+        value: f.number.float({ min: 1, max: 5, fractionDigits: 1 }),
+        url: f.internet.url(),
+      },
+
+      android: {
+        value: f.number.float({ min: 1, max: 5, fractionDigits: 1 }),
+        url: f.internet.url(),
+      },
+      "privacy-guide": {
+        value: f.number.int({ min: 0, max: 1 }),
+        url: f.internet.url(),
+      },
+      "privacy-tools": {
+        value: f.number.int({ min: 0, max: 1 }),
+        url: f.internet.url(),
+      },
     },
     tiers: {
       free: "Free",
@@ -50,16 +76,10 @@ export const createItem = (): Software => {
       premium: `$ ${f.number.int({ min: 23, max: 50 })} / mo`,
     },
 
-    category,
-    description: f.lorem.paragraphs(3),
     indicators: f.helpers.arrayElements(u.keys(INDICATOR_VARIANTS), {
       min: 0,
       max: 2,
     }),
-    incumbent: f.datatype.boolean(),
-
-    logo,
-    swatch,
 
     url: f.internet.url(),
     platforms: f.helpers.arrayElements(u.keys(PLATFORM_VARIANTS), {

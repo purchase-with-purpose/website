@@ -2,13 +2,10 @@ import { z } from "zod";
 import { CATEGORY_VARIANTS } from "@/entities/categories";
 
 import {
-  EVALUATION_VARIANTS,
   FEATURE_VARIANTS,
   INDICATOR_VARIANTS,
   PLATFORM_VARIANTS,
-  NOTE_VARIANTS,
   ORIGIN_VARIANTS,
-  TIER_VARIANTS,
 } from "@/entities/software";
 
 const extractKeysAsEnum = <
@@ -42,7 +39,6 @@ export const schema = z.object({
         }),
 
         label: z.string(),
-        incumbent: z.boolean(),
         category: extractKeysAsEnum(CATEGORY_VARIANTS),
         url: z.string().url(),
         swatch: z.string().optional(),
@@ -58,11 +54,20 @@ export const schema = z.object({
         company_headquarters: extractKeysAsEnum(ORIGIN_VARIANTS),
         company_ownership: extractKeysAsEnum(ORIGIN_VARIANTS).optional(),
 
-        trustpilotEvaluation: z.number().optional(),
+        evaluations_trustpilot: z.number().optional(),
+        evaluations_trustpilot_url: z.string().url().optional(),
+
         evaluations_android: z.number().optional(),
+        evaluations_android_url: z.string().url().optional(),
+
         evaluations_ios: z.number().optional(),
+        evaluations_ios_url: z.string().url().optional(),
+
         evaluations_privacyTools: z.number().optional(),
+        evaluations_privacyTools_url: z.string().url().optional(),
+
         evaluations_privacyGuide: z.number().optional(),
+        evaluations_privacyGuide_url: z.string().url().optional(),
 
         tiers_free: z.string().optional(),
         tiers_basic: z.string().optional(),

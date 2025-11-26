@@ -1,48 +1,17 @@
 import type { IconVariant } from "@/entities/icons";
 import * as u from "@/helpers/utilities";
+import { type Block, BLOCK_VARIANTS } from "../schema";
 
 import {
-  type Block,
-  type Group,
-  BLOCK_VARIANTS,
-  GROUP_VARIANTS,
-} from "../schema";
-
-import {
+  type Software,
   ORIGIN_VARIANTS,
   FEATURE_VARIANTS,
   PLATFORM_VARIANTS,
-  TIER_VARIANTS,
-  type Software,
   EVALUATION_VARIANTS,
   INDICATOR_VARIANTS,
 } from "@/entities/software";
 
-const CACHE = {
-  getFromGroup: new Map<Group["id"], Block[]>(),
-  getValidFromGroup: new Map<Group["id"], Block[]>(),
-
-  calcCardPreview: new Map<
-    Software["id"],
-    ReturnType<typeof calcCardPreview>
-  >(),
-};
-
-export const getFromGroup = (props: { group: Group["id"] }): Block[] => {
-  const { group } = props;
-  if (CACHE.getFromGroup.has(group)) {
-    return CACHE.getFromGroup.get(group)!;
-  }
-
-  const result = u.values(BLOCK_VARIANTS).filter((x) => x.group === group);
-
-  console.log(result);
-
-  CACHE.getFromGroup.set(group, result);
-  return result;
-};
-
-export const calcColour = (props: {
+const calcColour = (props: {
   id: Block["id"];
   value: number | string | boolean;
 }): string => {
@@ -58,7 +27,9 @@ export const calcColour = (props: {
   }
 
   if (id.startsWith("software.evaluations.")) {
-    const evaluation = id.replace("software.evaluations.", "");
+    const evaluation = id
+      .replace("software.evaluations.", "")
+      .replace(".value", "");
 
     const match =
       EVALUATION_VARIANTS[evaluation as keyof typeof EVALUATION_VARIANTS];
@@ -79,7 +50,7 @@ export const calcColour = (props: {
   return "black";
 };
 
-export const calcValue = (props: {
+const calcValue = (props: {
   id: Block["id"];
   value: number | string | boolean;
 }): string | null => {
@@ -111,7 +82,9 @@ export const calcValue = (props: {
   }
 
   if (id.startsWith("software.evaluations.")) {
-    const evaluation = id.replace("software.evaluations.", "");
+    const evaluation = id
+      .replace("software.evaluations.", "")
+      .replace(".value", "");
 
     const match =
       EVALUATION_VARIANTS[evaluation as keyof typeof EVALUATION_VARIANTS];
@@ -131,7 +104,7 @@ export const calcValue = (props: {
   return value.toString();
 };
 
-export const calcIcon = (props: {
+const calcIcon = (props: {
   id: Block["id"];
   value: number | string | boolean | null;
 }): null | IconVariant => {
@@ -157,7 +130,9 @@ export const calcIcon = (props: {
   }
 
   if (id.startsWith("software.evaluations.")) {
-    const evaluation = id.replace("software.evaluations.", "");
+    const evaluation = id
+      .replace("software.evaluations.", "")
+      .replace(".value", "");
 
     const match =
       EVALUATION_VARIANTS[evaluation as keyof typeof EVALUATION_VARIANTS];
@@ -178,157 +153,7 @@ export const calcIcon = (props: {
   return BLOCK_VARIANTS[id].icon;
 };
 
-export const calcGroupBlocks = (props: {
-  group: Group["id"];
-  software: Software;
-}): Block[] => {
-  const { group, software } = props;
-
-  if (group === "recommended") {
-    const ownership =
-      software.company.ownership && ORIGIN_VARIANTS[software.company.ownership];
-
-    const headquarters =
-      software.company.headquarters &&
-      ORIGIN_VARIANTS[software.company.headquarters];
-
-    return u.filter([
-      ...software.indicators.map((x) => {
-        return {
-          id: `software.indicators.${x}` as const,
-          group: "recommended" as const,
-          icon: BLOCK_VARIANTS[`software.indicators.${x}`].icon,
-          label: x,
-        };
-      }),
-
-      ownership && {
-        id: "software.company.ownership",
-        group: "recommended",
-        icon: ownership.icon,
-        label: ownership.label,
-      },
-      headquarters && {
-        id: "software.company.headquarters",
-        group: "recommended",
-        icon: headquarters.icon,
-        label: headquarters.label,
-      },
-    ]);
-  }
-
-  if (group === "features") {
-    return software.features.map((x) => {
-      const match = FEATURE_VARIANTS[x];
-
-      return {
-        id: `software.features.${x}` as const,
-        icon: match.icon,
-        group: "features",
-        label: match.label,
-      };
-    });
-  }
-
-  if (group === "platforms") {
-    return software.platforms.map((x) => {
-      const match = PLATFORM_VARIANTS[x];
-
-      return {
-        group: "platforms",
-        icon: match.icon,
-        id: `software.platforms.${x}` as const,
-        label: match.label,
-      };
-    });
-  }
-
-  if (group === "pricing") {
-    return u.filter([
-      software.tiers.free && {
-        id: "software.tiers.free",
-        group: "pricing",
-        icon: TIER_VARIANTS.free.icon,
-        label: software.tiers.free,
-      },
-
-      software.tiers.basic && {
-        id: "software.tiers.basic",
-        group: "pricing",
-        icon: TIER_VARIANTS.basic.icon,
-        label: software.tiers.basic,
-      },
-
-      software.tiers.premium && {
-        id: "software.tiers.premium",
-        group: "pricing",
-        icon: TIER_VARIANTS.premium.icon,
-        label: software.tiers.premium,
-      },
-    ]);
-  }
-
-  if (group === "ratings") {
-    return u.filter([
-      software.tiers.free && {
-        id: "software.evaluations.android",
-        group: "ratings",
-        icon: TIER_VARIANTS.free.icon,
-        label: software.tiers.free,
-      },
-    ]);
-  }
-
-  throw new Error(`Unsupported group id: ${group}`);
-};
-
-type PreviewData = {
-  id: Software["id"];
-  software: Software;
-  max: number;
-  blocks: Record<Exclude<Group["id"], "other">, Block[]>;
-};
-
-export const calcCardPreview = (props: { software: Software }): PreviewData => {
-  const { software } = props;
-
-  if (CACHE.calcCardPreview.has(software.id)) {
-    return CACHE.calcCardPreview.get(software.id)!;
-  }
-
-  const result: PreviewData = {
-    id: software.id,
-    software,
-    blocks: {
-      recommended: [],
-      features: [],
-      platforms: [],
-      pricing: [],
-      ratings: [],
-      // other: [],
-    },
-    max: 0,
-  };
-
-  u.keys(GROUP_VARIANTS).forEach((x) => {
-    if (x === "other") return;
-    const inner = calcGroupBlocks({ group: x, software });
-
-    console.log(inner);
-
-    if (inner.length > result.max) {
-      result.max = inner.length;
-    }
-
-    result.blocks[x] = inner;
-  });
-
-  CACHE.calcCardPreview.set(software.id, result);
-  console.log(result);
-  return result;
-};
-
-export const getValueFromSoftware = (props: {
+export const getValue = (props: {
   software: Software;
   id: Block["id"];
 }): number | string | boolean | null => {
@@ -336,20 +161,58 @@ export const getValueFromSoftware = (props: {
 
   if (id.startsWith("software.features.")) {
     const feature = id.replace("software.features.", "");
-    return software.features.includes(feature as any);
+    if (software.features.includes(feature as any)) return id;
+    return null;
   }
 
   if (id.startsWith("software.indicators.")) {
-    console.log(id);
     const feature = id.replace("software.indicators.", "");
-    return software.indicators.includes(feature as any);
+    if (software.indicators.includes(feature as any)) return id;
+    return null;
   }
 
   if (id.startsWith("software.platforms.")) {
     const platform = id.replace("software.platforms.", "");
-    return software.platforms.includes(platform as any);
+    if (software.platforms.includes(platform as any)) return id;
+    return null;
   }
 
   const match = u.getFromKeys({ software }, id);
   return match;
+};
+
+export const calcUrl = (props: {
+  software: Software;
+  id: Block["id"];
+}): string | null => {
+  const { software, id } = props;
+
+  if (id === "software.evaluations.ios.value") {
+    return software.evaluations.ios.url || null;
+  }
+
+  if (id === "software.evaluations.android.value") {
+    return software.evaluations.android.url || null;
+  }
+
+  if (id === "software.evaluations.privacy-guide.value") {
+    return software.evaluations["privacy-guide"].url || null;
+  }
+
+  if (id === "software.evaluations.privacy-tools.value") {
+    return software.evaluations["privacy-tools"].url || null;
+  }
+
+  if (id === "software.evaluations.trustpilot.value") {
+    return software.evaluations.trustpilot.url || null;
+  }
+
+  return null;
+};
+
+export const display = {
+  calcColour,
+  calcValue,
+  calcIcon,
+  calcUrl,
 };

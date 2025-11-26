@@ -1,89 +1,102 @@
 import s from "./Header.module.css";
 import c from "classnames";
 import { useEffect } from "react";
-import { type Group, GROUP_VARIANTS } from "@/entities/blocks";
-import { type Software } from "@/entities/software";
+import { type Grouped, GROUP_VARIANTS } from "@/entities/blocks";
+import { CATEGORY_VARIANTS, type Category } from "@/entities/categories";
 import * as u from "@/helpers/utilities";
 import { useRef } from "react";
+import * as schema from "../../schema";
 
-type Action =
-  | {
-      type: "USER_CHANGES_PAGE";
-      payload: {
-        index: number;
-        id: Software["id"];
-      };
-    }
-  | {
-      type: "USER_CHANGES_COLUMN";
-      payload: {
-        index: number;
-        id: Group["id"];
-      };
-    };
+export const Header = (
+  props: Pick<schema.Props, "column" | "page" | "dispatch">
+) => {
+  const { column, page, dispatch } = props;
 
-export const Header = (props: {
-  column: number;
-  dispatch: (action: Action) => void;
-}) => {
-  const { column, dispatch } = props;
+  const pageContainer = useRef<HTMLDivElement>(null);
+  const columnContainer = useRef<HTMLDivElement>(null);
 
-  const columnRef = useRef<HTMLButtonElement[]>([]);
+  const pageWidths = useRef<number[]>([]);
+  const columnWidths = useRef<number[]>([]);
+
+  const prevPage = useRef(page);
   const prevColumn = useRef(column);
+
+  useEffect(() => {
+    if (prevPage.current === page) return;
+    prevPage.current = page;
+
+    let offset = 0;
+
+    pageWidths.current.forEach((width, index) => {
+      if (index < page) {
+        offset += width + 4;
+      }
+    });
+
+    pageContainer.current?.scrollTo({
+      behavior: "smooth",
+      left:
+        offset - window.innerWidth / 2 + (pageWidths.current[page] || 0) / 2,
+    });
+  }, [page]);
 
   useEffect(() => {
     if (prevColumn.current === column) return;
     prevColumn.current = column;
-    const currentY = window.scrollY;
 
-    columnRef.current[column]?.scrollIntoView({
-      behavior: "smooth",
-      inline: "center",
+    let offset = 0;
+
+    columnWidths.current.forEach((width, index) => {
+      if (index < column) {
+        offset += width + 4;
+      }
     });
 
-    window.scrollTo(0, currentY);
+    columnContainer.current?.scrollTo({
+      behavior: "smooth",
+      left:
+        offset - window.innerWidth / 2 + (pageWidths.current[page] || 0) / 2,
+    });
   }, [column]);
 
   return (
     <>
       {/* <div className={s.wrapper}>
-        <div className={s.controlsWrapper}>
+        <div className={s.controlsWrapper} ref={pageContainer}>
           <div className={s.controlsInner}>
-            {u.keys(Software.categories).map((key, i) => (
+            {u.values(CATEGORY_VARIANTS).map(({ id, label }, i) => (
               <div
-                key={key}
+                key={id}
                 className={s.buttonWrap}
                 onClick={() => {
                   dispatch({
                     type: "USER_CHANGES_PAGE",
-                    payload: { index: i, id: Software.CATEGORY_ID_ARRAY[i] },
+                    payload: { index: i, id },
                   });
                 }}
               >
                 <button
                   ref={(x) => {
-                    pageRef.current[i] = x!;
+                    pageWidths.current[i] = x?.clientWidth || 0;
                   }}
-                  key={key}
+                  key={id}
                   className={c({
                     [s.controlButton]: true,
                     [s.active]: page === i,
                   })}
                 >
-                  {Software.categories[key].label}
+                  {label}
                 </button>
               </div>
             ))}
 
-            <div>
-              <div className={s.spacer} />
-            </div>
+            <div>.</div>
           </div>
         </div>
       </div> */}
 
       <div className={s.wrapper}>
-        <div className={s.controlsWrapper}>
+        <div className={s.controlsWrapper} ref={columnContainer}>
           <div className={s.controlsInner}>
             {u
               .keys(GROUP_VARIANTS)
@@ -101,7 +114,7 @@ export const Header = (props: {
                 >
                   <button
                     ref={(x) => {
-                      columnRef.current[i] = x!;
+                      columnWidths.current[i] = x?.clientWidth || 0;
                     }}
                     key={key}
                     className={c({
@@ -113,10 +126,7 @@ export const Header = (props: {
                   </button>
                 </div>
               ))}
-
-            <div>
-              <div className={s.spacer} />
-            </div>
+            <div>.</div>
           </div>
         </div>
       </div>

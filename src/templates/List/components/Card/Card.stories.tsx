@@ -1,18 +1,13 @@
 import { Card } from "./Card";
 import { useState } from "react";
 import * as __mocking__ from "@/entities/software/__mocking__";
-import { calcCardPreview } from "@/entities/blocks";
-import * as u from "@/helpers/utilities";
+import { calcItems } from "../../helpers";
 
 export default {
   title: "Templates/List/Card",
 };
 
-const item = __mocking__.createItem();
-
-const inner = calcCardPreview({
-  software: item,
-});
+const inner = calcItems([__mocking__.createItem()]);
 
 export const Basic = () => {
   const [active, setActive] = useState(0);
@@ -36,7 +31,7 @@ export const Basic = () => {
       >
         +
       </button>
-      <Card active={active} item={item} columns={u.values(inner.blocks)} />
+      <Card active={active} {...inner[0]} />
     </>
   );
 };

@@ -15,13 +15,14 @@ export const Basic = () => {
   return (
     <Header
       column={column}
+      page={page}
       dispatch={({ type, payload }) => {
-        if (type === "USER_CHANGES_PAGE") {
-          setPage(payload.index);
-        }
-
         if (type === "USER_CHANGES_COLUMN") {
           setColumn(payload.index);
+        }
+
+        if (type === "USER_CHANGES_PAGE") {
+          setPage(payload.index);
         }
       }}
     />

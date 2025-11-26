@@ -24,7 +24,7 @@ export default defineConfig({
               link: "/entities/icons",
             },
             {
-              text: "Blocks (WIP)",
+              text: "Blocks",
               link: "/entities/blocks",
             },
           ],
@@ -40,6 +40,15 @@ export default defineConfig({
         {
           text: "💎 Components",
           items: [],
+        },
+        {
+          text: "📺 Templates",
+          items: [
+            {
+              text: "List",
+              link: "/templates/List",
+            },
+          ],
         },
       ],
     },

@@ -1,14 +1,9 @@
-import { memo, createRef } from "react";
-import { type Software } from "@/entities/software";
-import { type Block, getValueFromSoftware } from "@/entities/blocks";
+import { memo } from "react";
 import s from "./Card.module.css";
 import { TinyColor } from "@ctrl/tinycolor";
 import c from "classnames";
-
-import { Indicator } from "@/components/Indicator";
 import { DataBlock } from "@/components/DataBlock";
-
-const container = createRef<HTMLDivElement>();
+import { type Item } from "../../schema";
 
 const calcCardWidth = () => {
   const total = window.innerWidth;
@@ -44,31 +39,27 @@ const calcOffset = (active: number) => {
   return active * item - (halfWay - item / 2);
 };
 
-export const Inner = (props: {
-  active: number;
-  columns: Block[][];
-  item: Software;
-}) => {
-  const { active, columns, item } = props;
+export const Inner = (props: Item & { active: number }) => {
+  const { active, cells, height, id, label, logo, swatch } = props;
 
   return (
-    <a className={s.wrapper} href={`/software/${item.id}`}>
+    <a className={s.wrapper} href={`/software/${id}`}>
       <div className={s.top}>
         <div>
           <div
             className={s.icon}
             style={{
-              backgroundColor: new TinyColor(item.swatch)
+              backgroundColor: new TinyColor(swatch)
                 .setAlpha(0.3)
                 .toRgbString(),
             }}
           >
-            <img className={s.image} src={item.logo} alt="" />
+            <img className={s.image} src={logo} alt="" />
           </div>
         </div>
 
         <div>
-          <h3 className={s.label}>{item.label}</h3>
+          <h3 className={s.label}>{label}</h3>
         </div>
       </div>
 
@@ -77,7 +68,7 @@ export const Inner = (props: {
           className={s.stack}
           style={{ transform: `translateX(-${calcOffset(active)}px)` }}
         >
-          {columns.map((array, index) => {
+          {cells.map((array, index) => {
             return (
               <div key={index}>
                 <div
@@ -90,14 +81,7 @@ export const Inner = (props: {
                   })}
                 >
                   {array.map((x) => {
-                    const value = getValueFromSoftware({
-                      software: item,
-                      id: x.id,
-                    });
-
-                    return (
-                      <DataBlock id={x.id} value={value} variant="compact" />
-                    );
+                    return <DataBlock {...x} variant="compact" />;
                   })}
                 </div>
               </div>

@@ -493,7 +493,7 @@ const LABELS: Record<Origin["id"], string> = {
   UA: "Ukraine",
   AE: "United Arab Emirates",
   GB: "United Kingdom of Great Britain and Northern Ireland",
-  US: "United States of America",
+  US: "USA",
   UM: "United States Minor Outlying Islands",
   UY: "Uruguay",
   UZ: "Uzbekistan",

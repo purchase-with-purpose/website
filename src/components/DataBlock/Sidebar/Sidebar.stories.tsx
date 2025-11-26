@@ -9,11 +9,14 @@ export default {
   },
 };
 
-const BASE_PROPS: schema.BaseProps = {
+const BASE_PROPS: schema.Props = {
   label: "Secondary Text",
   value: "Primary Text",
   icon: "check",
   url: "https://example.com",
+  fill: false,
+  color: "#42A5F5",
+  variant: "sidebar",
 };
 
 export const Basic = () => (

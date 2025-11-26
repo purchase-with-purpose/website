@@ -4,7 +4,7 @@ import { Icon } from "@/components/Icon";
 import * as schema from "../DataBlock.schema";
 import { TinyColor } from "@ctrl/tinycolor";
 
-export const Sidebar = (props: schema.BaseProps) => {
+export const Sidebar = (props: schema.Props) => {
   const { label, value, icon, url, color } = props;
   const Element = url ? "a" : "div";
   const inner = new TinyColor(color || "#24224B");

@@ -17,12 +17,19 @@ export type Software = {
   description: string;
   features: Feature["id"][];
   indicators: Indicator["id"][];
-  incumbent: boolean;
   category: Category["id"];
   platforms: Platform["id"][];
   notes: { value: string; variant: Note["id"] }[];
   tiers: Record<Tier["id"], string | null>;
-  evaluations: Record<Evaluation["id"], number | null>;
+  screenshots: string[];
+
+  evaluations: Record<
+    Evaluation["id"],
+    {
+      value: number | null;
+      url: string | null;
+    }
+  >;
 
   company: {
     name: string;

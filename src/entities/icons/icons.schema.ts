@@ -26,6 +26,11 @@ import {
   Camera,
   ScanFace,
   CloudUpload,
+  Leaf,
+  HardDrive,
+  ChartPie,
+  NotebookText,
+  ChevronDown,
 } from "lucide-react";
 
 export const LUCIDE_ICONS = {
@@ -55,6 +60,11 @@ export const LUCIDE_ICONS = {
   camera: Camera,
   "scan-face": ScanFace,
   "cloud-upload": CloudUpload,
+  leaf: Leaf,
+  harddrive: HardDrive,
+  "chart-pie": ChartPie,
+  "notebook-text": NotebookText,
+  "chevron-down": ChevronDown,
 } as const;
 
 export const GENERAL_ICON_VARIANTS = [

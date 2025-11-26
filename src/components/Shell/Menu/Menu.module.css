@@ -1,13 +1,19 @@
 .float {
   position: fixed;
-  width: 20rem;
+  width: 100%;
+  display: flex;
+  /* width: 20rem; */
   background: white;
-  z-index: 100;
-  top: 0;
-  left: -22rem;
+  z-index: 900;
+  top: 3.5rem;
+  height: 3.5rem;
+  flex-direction: row;
+  left: -100vw;
+  /* padding: 2rem; */
+  /* left: -22rem; */
   transition: left 0.3s ease-in-out;
-  height: 100dvh;
-  padding-top: 10rem;
+  /* height: 100dvh; */
+  /* padding-top: 10rem; */
 
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
     rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
@@ -19,15 +25,27 @@
 }
 
 .button {
+  line-height: 1;
   background: none;
   border-width: 0;
   height: 100%;
   width: 4rem;
+  padding: 0 1.5rem;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   cursor: pointer;
-  margin-left: -0.5rem;
+  margin-left: -1rem;
+  font-family: Inter;
+}
+
+.label {
+  color: white;
+  padding-left: 5.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  /* font-size: 0.9em;
+  font-weight: bold; */
 }
 
 .button:hover {
@@ -97,7 +115,7 @@
 .row {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   padding-left: 2rem;
-  height: 3rem;
+  height: 3.5rem;
   display: flex;
   font-size: 1rem;
   align-items: center;

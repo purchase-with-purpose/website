@@ -6,10 +6,20 @@
 
 .controlsWrapper {
   width: 100%;
+  padding: 0;
   overflow-x: scroll;
-
   -ms-overflow-style: none;
   scrollbar-width: none;
+
+  width: calc(16rem * 5);
+  margin: 0 auto;
+}
+
+@media (min-width: 40rem) {
+  .controlsWrapper {
+    padding: 0;
+    /* padding: 0 1rem; */
+  }
 }
 
 .controlsWrapper::-webkit-scrollbar {
@@ -23,10 +33,6 @@
   flex-wrap: nowrap;
   padding: 0.5rem;
   height: 3.5rem;
-}
-
-.spacer {
-  width: 4rem;
 }
 
 .controlButton {
@@ -118,6 +124,27 @@
   padding-left: 0.5rem;
   flex-grow: 1;
   text-align: right;
+}
+
+.nav {
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  justify-content: center;
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0 2rem;
+}
+
+.nav-space {
+  width: 4rem;
+}
+
+.nav:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 /* 

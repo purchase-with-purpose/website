@@ -43,24 +43,39 @@ export const loader = async (): Promise<Software[]> => {
 
       const inner: Software = {
         id: u.createBrand("SOFTWARE_ID", x.sys.id)!,
+        screenshots: [],
         label: f.label,
         logo,
         url: f.url,
         category: f.category,
         description: f.description,
         indicators: f.indicators,
-        incumbent: f.incumbent,
         features: f.features,
         notes: [...warnings, ...disclaimer],
         platforms: f.platforms,
         swatch: f.swatch || "black",
 
         evaluations: {
-          "privacy-guide": f.evaluations_privacyGuide || null,
-          "privacy-tools": f.evaluations_privacyTools || null,
-          android: f.evaluations_android || null,
-          ios: f.evaluations_ios || null,
-          trustpilot: f.trustpilotEvaluation || null,
+          "privacy-guide": {
+            value: f.evaluations_privacyGuide || null,
+            url: f.evaluations_privacyGuide_url || null,
+          },
+          "privacy-tools": {
+            value: f.evaluations_privacyTools || null,
+            url: f.evaluations_privacyTools_url || null,
+          },
+          android: {
+            value: f.evaluations_android || null,
+            url: f.evaluations_android_url || null,
+          },
+          ios: {
+            value: f.evaluations_ios || null,
+            url: f.evaluations_ios_url || null,
+          },
+          trustpilot: {
+            value: f.evaluations_trustpilot || null,
+            url: f.evaluations_trustpilot_url || null,
+          },
         },
 
         company: {

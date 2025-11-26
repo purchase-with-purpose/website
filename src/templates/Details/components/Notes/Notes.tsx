@@ -1,10 +1,9 @@
 import { type Software } from "@/entities/software";
 import s from "./Notes.module.css";
 import c from "classnames";
+import * as schema from "../../schema";
 
-export type Props = Software["notes"][number];
-
-export const Notes = (props: Props) => {
+export const Notes = (props: schema.Props["notes"][number]) => {
   const { value, variant } = props;
 
   return (

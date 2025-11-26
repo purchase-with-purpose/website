@@ -14,4 +14,7 @@ The `Software` entity is the core data structure underpinning PWP.
 
 ## Usage
 
+### Variant Collections
+
 <<< ./examples/example.usage.ts
+

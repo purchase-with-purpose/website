@@ -107,16 +107,17 @@ export const keys = <T extends object>(obj: T): (keyof T)[] => {
  *
  * Useful for converting a collection into dropdown options.
  */
-export const toLabels = <
+export const toPrimitiveRecord = <
+  V extends string | boolean | null | number,
   T extends { [K: string]: unknown; id: string; label: string }
->(
-  collection: T[] | Collection<T>
-): Record<T["id"], string> => {
+>(props: {
+  collection: T[] | Collection<T>;
+  key: keyof T;
+}): Record<T["id"], V> => {
+  const { collection, key } = props;
   const array = Array.isArray(collection) ? collection : values(collection);
-  return Object.fromEntries(array.map((x) => [x.id, x.label])) as Record<
-    T["id"],
-    string
-  >;
+  const entities = array.map((x) => [x.id, x[key]]) as [T["id"], V][];
+  return Object.fromEntries(entities) as Record<T["id"], V>;
 };
 
 /**

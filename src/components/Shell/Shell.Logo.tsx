@@ -1,7 +1,7 @@
 export const Logo = () => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width="84" height="40" fill="none">
-      <g clip-path="url(#a)">
+      <g clipPath="url(#a)">
         <rect
           width="40"
           height="84"
