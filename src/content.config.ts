@@ -1,4 +1,4 @@
-import { defineCollection, z } from "astro:content";
+import { defineCollection } from "astro:content";
 import * as softwareData from "./data/software";
 import * as categoriesData from "./data/category";
 
