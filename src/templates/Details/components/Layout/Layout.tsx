@@ -7,10 +7,23 @@ export const Layout = (props: schema.Props) => {
       <main className={s.content}>
         <div className={s.breadcrumbs}>{props.breadcrumbs}</div>
         <div>{props.top}</div>
-        <div>{props.platforms}</div>
+
         <div>{props.description}</div>
 
-        <div>{props.features}</div>
+        {props.features && (
+          <>
+            <h2 className={s.subtitle}>Features</h2>
+            <div>{props.features}</div>
+          </>
+        )}
+
+        {props.platforms && (
+          <>
+            <h2 className={s.subtitle}>Platforms</h2>
+            <div>{props.platforms}</div>
+          </>
+        )}
+
         <div>{props.disclaimers}</div>
         <div>{props.screenshots}</div>
       </main>

@@ -1,6 +1,15 @@
 import { type Props as DataBlockProps } from "@/components/DataBlock";
-import { type Note } from "@/entities/software";
+import { type Category } from "@/entities/categories";
+import { type Note, type Software } from "@/entities/software";
 import { type IconVariant } from "@/entities/icons";
+
+type Action = {
+  type: "USER_CHANGES_CATEGORY";
+  payload: {
+    index: number;
+    id: Category["id"];
+  };
+};
 
 export type Props = {
   title: string;
@@ -12,8 +21,13 @@ export type Props = {
   company: DataBlockProps[];
   tiers: DataBlockProps[];
   ratings: DataBlockProps[];
-  platforms: DataBlockProps[];
+  platforms: (DataBlockProps & { description: string })[];
   indicators: DataBlockProps[];
   logo: string;
   url: string;
+  dispatch: (action: Action) => void;
+};
+
+export type ContainerProps = {
+  software: Software;
 };

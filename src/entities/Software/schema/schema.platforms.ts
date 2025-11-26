@@ -35,12 +35,12 @@ const ICONS: Record<Platform["id"], GeneralIconVariant> = {
 };
 
 const DESCRIPTIONS: Record<Platform["id"], string> = {
-  android: "...",
-  ios: "..",
-  linux: "..",
-  mac: "...",
-  web: "...",
-  windows: "...",
+  android: "Available on Android mobile devices and tablets",
+  ios: "Available on iPhone, iPad, and iPod touch",
+  linux: "Compatible with Linux operating systems",
+  mac: "Compatible with macOS computers",
+  web: "Accessible through any web browser",
+  windows: "Compatible with Windows operating systems",
 };
 
 export const PLATFORM_VARIANTS = u.fromArray(

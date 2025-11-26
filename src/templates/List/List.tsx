@@ -5,10 +5,12 @@ import { Card } from "./components/Card";
 import * as schema from "./schema";
 
 import { useWindowVirtualizer } from "@tanstack/react-virtual";
+import { useViewportWidth } from "./List.useViewportWidth";
 import { Front } from "./components/Front";
 
 export const List = (props: schema.Props) => {
   const { items, dispatch, column, page } = props;
+  const innerWidth = useViewportWidth();
 
   const virtualizer = useWindowVirtualizer({
     count: items.length,
@@ -41,25 +43,27 @@ export const List = (props: schema.Props) => {
                 position: "relative",
               }}
             >
-              {virtualizer
-                .getVirtualItems()
-                .map(({ index, key, size, start }) => {
-                  return (
-                    <div
-                      key={items[index].id}
-                      style={{
-                        position: "absolute",
-                        top: 0,
-                        left: 0,
-                        width: "100%",
-                        height: `${size}px`,
-                        transform: `translateY(${start}px)`,
-                      }}
-                    >
-                      <Card active={column} {...items[index]} />
-                    </div>
-                  );
-                })}
+              {virtualizer.getVirtualItems().map(({ index, size, start }) => {
+                return (
+                  <div
+                    key={items[index].id}
+                    style={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      width: "100%",
+                      height: `${size}px`,
+                      transform: `translateY(${start}px)`,
+                    }}
+                  >
+                    <Card
+                      active={column}
+                      {...items[index]}
+                      innerWidth={innerWidth}
+                    />
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>

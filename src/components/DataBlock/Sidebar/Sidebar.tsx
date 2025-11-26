@@ -5,7 +5,7 @@ import * as schema from "../DataBlock.schema";
 import { TinyColor } from "@ctrl/tinycolor";
 
 export const Sidebar = (props: schema.Props) => {
-  const { label, value, icon, url, color } = props;
+  const { label, value, icon, url, color, fill } = props;
   const Element = url ? "a" : "div";
   const inner = new TinyColor(color || "#24224B");
 
@@ -23,7 +23,11 @@ export const Sidebar = (props: schema.Props) => {
           className={s.icon}
           style={{
             fill: inner.toRgbString(),
-            backgroundColor: inner.setAlpha(0.05).toRgbString(),
+            color: fill ? "white" : "#24224B",
+
+            backgroundColor: fill
+              ? color || "#24224B"
+              : inner.setAlpha(0.05).toRgbString(),
           }}
         >
           <Icon variant={icon} />

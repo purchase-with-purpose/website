@@ -1,21 +1,22 @@
 import * as u from "@/helpers/utilities";
 import * as schema from "../schema";
 import { type Props as DataBlockProps } from "@/components/DataBlock";
+import { CATEGORY_VARIANTS } from "@/entities/categories";
 
 import {
   type Software,
-  FEATURE_VARIANTS,
   type Feature,
+  FEATURE_VARIANTS,
+  PLATFORM_VARIANTS,
 } from "@/entities/software";
 
 import {
+  type Block,
   BLOCK_VARIANTS,
   GROUP_VARIANTS,
   getValue,
   display,
-  type Block,
 } from "@/entities/blocks";
-import { CATEGORY_VARIANTS } from "@/entities/categories";
 
 const createToDataBlockFn =
   (software: Software) =>
@@ -50,7 +51,7 @@ const createToDataBlockFn =
   };
 
 export const calcFeatures = (software: Software): schema.Props["features"] => {
-  const inner = GROUP_VARIANTS.features.blocks;
+  const inner = GROUP_VARIANTS["software.card.features"].blocks;
   const toDataBlock = createToDataBlockFn(software);
 
   const result = inner.map((x): schema.Props["features"][number] | null => {
@@ -86,10 +87,31 @@ export const calcDataBlock = (
   const toDataBlock = createToDataBlockFn(software);
 
   return {
-    tiers: u.filter(GROUP_VARIANTS.tiers.blocks.map(toDataBlock)),
-    ratings: u.filter(GROUP_VARIANTS.ratings.blocks.map(toDataBlock)),
-    indicators: u.filter(GROUP_VARIANTS.indicators.blocks.map(toDataBlock)),
-    platforms: u.filter(GROUP_VARIANTS.platforms.blocks.map(toDataBlock)),
+    tiers: u.filter(
+      GROUP_VARIANTS["software.card.pricing"].blocks.map(toDataBlock)
+    ),
+
+    ratings: u.filter(
+      GROUP_VARIANTS["software.card.ratings"].blocks.map(toDataBlock)
+    ),
+
+    platforms: u
+      .filter(GROUP_VARIANTS["software.card.platforms"].blocks.map(toDataBlock))
+      .map((x, i) => {
+        const match = u.values(PLATFORM_VARIANTS)[i];
+
+        return {
+          ...x,
+          description: match.description,
+        };
+      }),
+
+    indicators: u.filter([
+      toDataBlock("software.indicators.environmental"),
+      toDataBlock("software.indicators.open-source"),
+      toDataBlock("software.indicators.profit-share"),
+      toDataBlock("software.indicators.self-hosted"),
+    ]),
 
     company: u.filter([
       toDataBlock("software.company.name"),
@@ -99,7 +121,9 @@ export const calcDataBlock = (
   };
 };
 
-export const calcProps = (software: Software): schema.Props => {
+export const calcProps = (
+  software: Software
+): Omit<schema.Props, "dispatch"> => {
   const features = calcFeatures(software);
   const category = CATEGORY_VARIANTS[software.category];
   const { label: title, url, description, screenshots, logo, notes } = software;

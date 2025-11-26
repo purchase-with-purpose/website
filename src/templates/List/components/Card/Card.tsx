@@ -5,8 +5,8 @@ import c from "classnames";
 import { DataBlock } from "@/components/DataBlock";
 import { type Item } from "../../schema";
 
-const calcCardWidth = () => {
-  const total = window.innerWidth;
+const calcCardWidth = (innerWidth: number) => {
+  const total = innerWidth;
   if (total > 16 * 16 * 2) return 16 * 16;
 
   const margins = 32;
@@ -14,12 +14,12 @@ const calcCardWidth = () => {
   return available;
 };
 
-const calcOffset = (active: number) => {
+const calcOffset = (active: number, innerWidth: number) => {
   const margins = 32;
-  const item = calcCardWidth();
+  const item = calcCardWidth(innerWidth);
 
   const max = 5;
-  const total = window.innerWidth;
+  const total = innerWidth;
   const fit = Math.floor(total / item);
   const halfFit = Math.ceil(fit / 2);
 
@@ -39,7 +39,7 @@ const calcOffset = (active: number) => {
   return active * item - (halfWay - item / 2);
 };
 
-export const Inner = (props: Item & { active: number }) => {
+export const Inner = (props: Item & { active: number; innerWidth: number }) => {
   const { active, cells, height, id, label, logo, swatch } = props;
 
   return (
@@ -66,14 +66,16 @@ export const Inner = (props: Item & { active: number }) => {
       <div className={s.stackWrapper}>
         <div
           className={s.stack}
-          style={{ transform: `translateX(-${calcOffset(active)}px)` }}
+          style={{
+            transform: `translateX(-${calcOffset(active, innerWidth)}px)`,
+          }}
         >
           {cells.map((array, index) => {
             return (
               <div key={index}>
                 <div
                   style={{
-                    width: `${calcCardWidth()}px`,
+                    width: `${calcCardWidth(innerWidth)}px`,
                   }}
                   className={c({
                     [s.column]: true,
@@ -94,6 +96,7 @@ export const Inner = (props: Item & { active: number }) => {
 };
 
 export const Card = memo(Inner, (prev, next) => {
+  if (prev.innerWidth !== next.innerWidth) return false;
   if (prev.active !== next.active) return false;
   return true;
 });

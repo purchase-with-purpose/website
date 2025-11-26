@@ -1,7 +1,7 @@
 import s from "./Details.module.css";
 import { Breadcrumbs } from "./components/Breadcrumbs";
 import { Layout } from "./components/Layout";
-import { Features } from "./components/Features";
+import { DataBlock } from "@/components/DataBlock";
 import { TopBlock } from "./components/TopBlock";
 import { Notes } from "./components/Notes";
 import { SideBlocks } from "./components/SideBlocks";
@@ -23,14 +23,62 @@ export const Details = (props: schema.Props) => {
     screenshots,
     title,
     url,
+    dispatch,
   } = props;
 
   return (
-    <Shell header={true}>
+    <Shell
+      header={true}
+      dispatch={(x) => {
+        if (x.type === "USER_CHANGES_CATEGORY") {
+          dispatch({
+            type: "USER_CHANGES_CATEGORY",
+            payload: { id: x.payload.category, index: x.payload.index },
+          });
+        }
+      }}
+    >
       <Layout
         breadcrumbs={<Breadcrumbs breadcrumbs={breadcrumbs} />}
-        description={<p className={s.paragraph}>{description}</p>}
-        features={<Features features={features} />}
+        description={
+          <>
+            <div className={s.indicators}>
+              {indicators.map((x) => {
+                return (
+                  <div className={s.indicatorItem}>
+                    <DataBlock {...x} variant="sidebar" fill={true} />
+                  </div>
+                );
+              })}
+            </div>
+
+            <p className={s.description}>{description}</p>
+          </>
+        }
+        company={<SideBlocks title="Company" items={company} />}
+        tiers={<SideBlocks title="Tiers" items={tiers} />}
+        reviews={<SideBlocks title="Ratings" items={ratings} />}
+        features={
+          <div className={s.grid}>
+            {features
+              .sort((a, b) => a.description.length - b.description.length)
+              .map((x) => {
+                return (
+                  <div className={s.gridItem}>
+                    <DataBlock
+                      variant="sidebar"
+                      label={x.description}
+                      value={x.label}
+                      color="#24224b"
+                      fill={false}
+                      icon={x.icon}
+                      url={null}
+                    />
+                  </div>
+                );
+              })}
+          </div>
+        }
         disclaimers={
           <>
             {notes.map((x, i) => {
@@ -41,20 +89,29 @@ export const Details = (props: schema.Props) => {
         screenshots={
           <div className={s.gallery}>
             {screenshots.map((x, i) => (
-              <img key={i} className={s.image} src={x} />
+              <div className={s.imageWrapper}>
+                <img key={i} className={s.image} src={x} />
+              </div>
             ))}
           </div>
         }
-        company={<SideBlocks title="Company" items={company} />}
-        tiers={<SideBlocks title="Tiers" items={tiers} />}
-        reviews={<SideBlocks title="Ratings" items={ratings} />}
         platforms={
-          <div className={s.platforms}>
-            {platforms.map((x) => (
-              <div key={x.label} className={s.tag}>
-                {x.label}
-              </div>
-            ))}
+          <div className={s.grid}>
+            {platforms.map((x) => {
+              return (
+                <div className={s.gridItem}>
+                  <DataBlock
+                    variant="sidebar"
+                    label={x.description}
+                    value={x.label}
+                    color="#004e8a"
+                    fill={false}
+                    icon={x.icon}
+                    url={null}
+                  />
+                </div>
+              );
+            })}
           </div>
         }
         top={

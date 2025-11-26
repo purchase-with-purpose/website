@@ -1,0 +1,28 @@
+---
+import { getCollection } from "astro:content";
+import { Container } from "@/templates/Details";
+
+export async function getStaticPaths() {
+  const array = await getCollection("software");
+
+  return array.map(({ id, data }) => ({
+    params: { id },
+    props: { software: data },
+  }));
+}
+
+const software = Astro.props.software;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{software.label}</title>
+  </head>
+
+  <body>
+    <Container software={software} client:load />
+  </body>
+</html>

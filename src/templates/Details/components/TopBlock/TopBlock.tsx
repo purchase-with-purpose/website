@@ -17,12 +17,6 @@ export const TopBlock = (
       <div className={s.content}>
         <div>
           <h1 className={s.title}>{title}</h1>
-
-          <div className={s.indicatorWrap}>
-            {props.indicators.map((x) => {
-              return <div>{x.label}</div>;
-            })}
-          </div>
         </div>
 
         <a

@@ -12,6 +12,16 @@ const client = createClient({
   environment: "master",
 });
 
+const calcLocation = (
+  value: string | undefined,
+  existing?: string | undefined
+): Software["company"]["ownership"] => {
+  if (value === existing) return null;
+  if (value === "ZA" || !value) return null;
+  if (value === "UK") return "GB";
+  return value as Software["company"]["ownership"];
+};
+
 export const loader = async (): Promise<Software[]> => {
   const response = await client.getEntries({
     content_type: "software",
@@ -22,7 +32,20 @@ export const loader = async (): Promise<Software[]> => {
 
   const items = response.items.map((x): Software | null => {
     try {
-      const { fields: f } = schema.shape.items.element.parse(x);
+      const { fields: f } = schema.shape.items.element.parse({
+        ...x,
+        fields: {
+          ...x.fields,
+          company_headquarters: calcLocation(
+            x.fields.company_headquarters as string
+          ),
+
+          company_ownership: calcLocation(
+            x.fields.company_ownership as string,
+            x.fields.company_headquarters as string
+          ),
+        },
+      });
 
       const logo =
         array.find((x) => x.sys.id === f.logo.sys.id)?.fields.file?.url || "";
@@ -79,8 +102,8 @@ export const loader = async (): Promise<Software[]> => {
         },
 
         company: {
-          url: f.company_url,
-          headquarters: f.company_headquarters,
+          url: f.company_url || null,
+          headquarters: f.company_headquarters || null,
           name: f.company_name,
           ownership: f.company_ownership || null,
         },

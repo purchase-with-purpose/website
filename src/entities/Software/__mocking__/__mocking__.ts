@@ -27,9 +27,9 @@ export const createItem = (): Software => {
     swatch,
     description: f.lorem.paragraphs(2),
 
-    screenshots: new Array(f.number.int({ min: 2, max: 5 })).map(() =>
-      f.image.urlPicsumPhotos()
-    ),
+    screenshots: new Array(f.number.int({ min: 2, max: 5 }))
+      .fill(null)
+      .map(() => f.image.urlPicsumPhotos()),
 
     features: f.helpers.arrayElements(u.keys(FEATURE_VARIANTS), {
       min: 3,

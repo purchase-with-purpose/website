@@ -64,7 +64,7 @@ const BLOCKS: Record<Grouped["id"], Block["id"][]> = {
   ],
 };
 
-export const GROUP_VARIANTS = u.fromArray(
+export const GROUP_VARIANTS: Record<Grouped["id"], Grouped> = u.fromArray(
   GROUP_ID_ARRAY.map(
     (id): Grouped => ({
       id,

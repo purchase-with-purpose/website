@@ -31,7 +31,7 @@ export const Basic = () => {
       >
         +
       </button>
-      <Card active={active} {...inner[0]} />
+      <Card active={active} {...inner[0]} innerWidth={window.innerWidth} />
     </>
   );
 };

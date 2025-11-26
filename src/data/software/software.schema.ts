@@ -50,9 +50,9 @@ export const schema = z.object({
         platforms: z.array(extractKeysAsEnum(PLATFORM_VARIANTS)).default([]),
 
         company_name: z.string(),
-        company_url: z.string().url(),
-        company_headquarters: extractKeysAsEnum(ORIGIN_VARIANTS),
-        company_ownership: extractKeysAsEnum(ORIGIN_VARIANTS).optional(),
+        company_url: z.string().url().nullish(),
+        company_headquarters: extractKeysAsEnum(ORIGIN_VARIANTS).nullish(),
+        company_ownership: extractKeysAsEnum(ORIGIN_VARIANTS).nullish(),
 
         evaluations_trustpilot: z.number().optional(),
         evaluations_trustpilot_url: z.string().url().optional(),
