@@ -12,6 +12,12 @@ const example: Software = {
   id: u.createBrand("SOFTWARE_ID", "ce61b7c0-b7ba-40bd-adc9-7f99cd7ce6c7")!,
 
   /**
+   * If software is recommended it will appear at the top of a list of software,
+   * and include the `description` when showing a preview of the software.
+   */
+  recommended: true,
+
+  /**
    * Human-friendly name of the software tool.
    */
   label: "Brave",

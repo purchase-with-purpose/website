@@ -10,11 +10,14 @@ export default {
   },
 };
 
-const PROPS: schema.Props = calcProps(__mocking__.createItem());
+const PROPS: Omit<schema.Props, "dispatch"> = calcProps(
+  __mocking__.createItem()
+);
 
 export const Basic = () => (
   <Details
     {...PROPS}
+    dispatch={console.log}
     logo="https://upload.wikimedia.org/wikipedia/commons/9/9d/Brave_lion_icon.svg"
   />
 );

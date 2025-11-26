@@ -7,5 +7,5 @@ export type Props = {
   url: string | null;
   color: string;
   fill: boolean;
-  variant: "compact" | "sidebar";
+  variant: "compact" | "sidebar" | "square";
 };

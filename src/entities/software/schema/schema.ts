@@ -10,6 +10,7 @@ import * as u from "@/helpers/utilities";
 
 export type Software = {
   id: u.Brand<"SOFTWARE_ID">;
+  recommended: boolean;
   label: string;
   swatch: string;
   url: string;
