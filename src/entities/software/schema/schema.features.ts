@@ -104,7 +104,7 @@ const LABELS: Record<Feature["id"], string> = {
   "audiobooks-good-support-partial": "Partial User Support",
   "office-online-service": "Online Service",
   "office-mobile-app": "Mobile App",
-  "office-own-software": "Own Software",
+  "office-own-software": "Their Own Software",
   "office-ai-assistance": "AI Office Assistant",
   "office-good-support": "Good User Support",
   "office-good-support-partial": "Partial User Support",
