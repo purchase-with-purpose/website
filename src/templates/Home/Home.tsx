@@ -27,14 +27,13 @@ export const Home = (props: schema.Props) => {
 
         <p className={s.paragraph}>
           These can be due to privacy concerns, environmental reasons,
-          boycotting US companies, or other causes. Underpinning all of it is
+          boycotting the tech oligarchy, or other causes. Underpinning all of it is
           the idea that too much power is given to the few, and it is time to
           empower the many.
         </p>
 
         <p className={s.paragraph}>
-          Change takes time, so this is broken into weekly challenges to make
-          that switch one product at a time.
+          Change takes time, so this is broken into sections and you are encouragd to take them on as weekly challenges.
         </p>
       </div>
 

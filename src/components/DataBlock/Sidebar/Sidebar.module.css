@@ -37,7 +37,6 @@
   line-height: 1;
   font-size: 1.1rem;
   font-weight: 700;
-  overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   line-clamp: 3;
@@ -52,10 +51,9 @@
   font-weight: 400;
   color: rgba(0, 0, 0, 0.5);
   display: -webkit-box;
-  line-clamp: 2;
-  -webkit-line-clamp: 2;
+  line-clamp: 3;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
-  overflow: hidden;
 }
 
 .secondaryLink {
