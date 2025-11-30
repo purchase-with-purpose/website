@@ -26,21 +26,21 @@ const LABELS: Record<Platform["id"], string> = {
 };
 
 const ICONS: Record<Platform["id"], GeneralIconVariant> = {
-  windows: "desktop",
-  mac: "desktop",
-  linux: "desktop",
-  web: "globe",
   android: "smartphone",
   ios: "smartphone",
+  linux: "desktop",
+  mac: "desktop",
+  web: "globe",
+  windows: "desktop",
 };
 
 const DESCRIPTIONS: Record<Platform["id"], string> = {
-  windows: "Compatible with Windows computers",
+  android: "Available on Android mobile devices and tablets",
+  ios: "Available on iPhone, iPad, and iPod touch",
+  linux: "Compatible with Linux operating systems",
   mac: "Compatible with macOS computers",
-  linux: "Compatible with Linux computers",
   web: "Accessible through any web browser",
-  android: "Available on Android devices and tablets",
-  ios: "Available on iPhone or iPad",
+  windows: "Compatible with Windows operating systems",
 };
 
 export const PLATFORM_VARIANTS = u.fromArray(
