@@ -21,6 +21,7 @@ export type Item = {
   label: string;
   logo: string;
   swatch: string;
+  isRecommended: boolean;
   recommended: Omit<DataBlockProps, "variant">[];
 };
 

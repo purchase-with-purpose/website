@@ -63,7 +63,9 @@ export const calcItems = (items: Software[]): Item[] => {
       id: x.id,
       label: x.label,
       logo: x.logo,
-      cells,
+      isRecommended: x.recommended,
+      positionScore: x.features.length,
+      cells,      
       swatch: x.swatch,
     };
   });

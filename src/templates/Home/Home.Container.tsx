@@ -14,6 +14,7 @@ export const Container = (props: schema.ContainerProps) => {
     .map((x): schema.Props["sections"][number] => {
       const inner = software.filter((y) => y.category === x.id);
       const result = calcItems(inner)
+        .filter(item => item.isRecommended)
         .sort((a, b) => b.recommended.length - a.recommended.length)
         .slice(0, 4);
 
