@@ -19,11 +19,11 @@ export const Container = (props: schema.ContainerProps) => {
     {
       if ((a.isRecommended && b.isRecommended) || (!a.isRecommended && !b.isRecommended)) 
       {
-          return a.positionScore - b.positionScore;
+          return b.positionScore - a.positionScore;
       }
       
-      if (b.isRecommended) return -1;
-      return 1;
+      if (b.isRecommended) return 1;
+      return -1;
     });
 
   return (
