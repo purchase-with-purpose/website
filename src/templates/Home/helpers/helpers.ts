@@ -18,6 +18,7 @@ export const calcItems = (items: Software[]): schema.Item[] => {
       label: x.label,
       logo: x.logo,
       swatch: x.swatch,
+      isRecommended: x.recommended,
       recommended: u.filter(
         blocks.map((id) => {
           const { label } = BLOCK_VARIANTS[id];
