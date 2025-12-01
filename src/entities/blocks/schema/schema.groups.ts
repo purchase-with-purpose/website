@@ -44,6 +44,7 @@ const BLOCKS: Record<Grouped["id"], Block["id"][]> = {
   "software.card.recommended": [
     "software.company.ownership",
     "software.company.headquarters",
+    "software.tiers.free",
 
     ...u
       .keys(INDICATOR_VARIANTS)
@@ -63,7 +64,6 @@ const BLOCKS: Record<Grouped["id"], Block["id"][]> = {
     "software.features.photos-memories",
     "software.features.office-online-service",
     "software.features.email-automatic-categorization",
-    "software.tiers.free",
   ],
 
   "software.card.features": [

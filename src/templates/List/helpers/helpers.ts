@@ -42,11 +42,7 @@ export const calcItems = (items: Software[]): Item[] => {
                   id,
                 }),
 
-                value:
-                  group === "software.card.recommended" &&
-                  id === "software.tiers.free"
-                    ? "Free Tier"
-                    : display.calcValue(inner),
+                value: display.calcValue(inner),
               };
             }
           );

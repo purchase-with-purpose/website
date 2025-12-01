@@ -14,7 +14,11 @@ export const Icon = (props: schema.Props) => {
   });
 
   if (variant.startsWith("flag-")) {
-    const code = variant.slice(5).toLowerCase();
+    let code = variant.slice(5).toLowerCase();
+    if (code === "global") 
+    {
+      code = 'other/earth'
+    }
 
     return (
       <img

@@ -103,13 +103,13 @@ export const calcDataBlock = (
       }),
 
     company: u.filter([
+      toDataBlock("software.company.name"),
+      toDataBlock("software.company.headquarters"),
+      toDataBlock("software.company.ownership"),
       toDataBlock("software.indicators.environmental"),
       toDataBlock("software.indicators.open-source"),
       toDataBlock("software.indicators.profit-share"),
       toDataBlock("software.indicators.self-hosted"),
-      toDataBlock("software.company.name"),
-      toDataBlock("software.company.ownership"),
-      toDataBlock("software.company.headquarters"),
     ]),
   };
 };

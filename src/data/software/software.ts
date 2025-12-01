@@ -16,8 +16,9 @@ const calcLocation = (
   value: string | undefined,
   existing?: string | undefined
 ): Software["company"]["ownership"] => {
-  if (value === existing) return null;
-  if (value === "ZA" || !value) return null;
+  if (!value) return null;
+  if (value === existing) return null;  
+  if (value === "ZA") return "global";  
   if (value === "UK") return "GB";
   return value as Software["company"]["ownership"];
 };

@@ -26,14 +26,15 @@ export const Home = (props: schema.Props) => {
         </p>
 
         <p className={s.paragraph}>
-          These can be due to privacy concerns, environmental reasons,
-          boycotting the tech oligarchy, or other causes. Underpinning all of it is
-          the idea that too much power is given to the few, and it is time to
-          empower the many.
+          Each person has their own reason, but the list of options are growing. Whether it is
+          privacy concerns, environmental, boycotting the tech oligarch, non-existent customer service,
+          the prolification of AI or any other cause. 
+          Underpinning all of it is the idea that too much power is given to the few, and it is time to empower the many.
         </p>
 
         <p className={s.paragraph}>
-          Change takes time, so this is broken into sections and you are encouragd to take them on as weekly challenges.
+          Purchase with Purpose is a movement that looks to grow and support people in making this switch.                     
+          This is just the start with more tools and industries to come.
         </p>
       </div>
 
