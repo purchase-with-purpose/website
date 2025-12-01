@@ -46,10 +46,7 @@ export const calcItems = (items: Software[]): schema.Item[] => {
               id,
             }),
 
-            value:
-              id === "software.tiers.free"
-                ? "Free Tier"
-                : display.calcValue(inner),
+            value: display.calcValue(inner),
           };
         })
       ),

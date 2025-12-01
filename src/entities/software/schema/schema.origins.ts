@@ -250,6 +250,7 @@ const ARRAY = [
   "YE",
   "ZM",
   "ZW",
+  "global"
 ] as const;
 
 export type Origin = {
@@ -492,7 +493,7 @@ const LABELS: Record<Origin["id"], string> = {
   UG: "Uganda",
   UA: "Ukraine",
   AE: "United Arab Emirates",
-  GB: "United Kingdom of Great Britain and Northern Ireland",
+  GB: "United Kingdom",
   US: "USA",
   UM: "United States Minor Outlying Islands",
   UY: "Uruguay",
@@ -507,6 +508,7 @@ const LABELS: Record<Origin["id"], string> = {
   YE: "Yemen",
   ZM: "Zambia",
   ZW: "Zimbabwe",
+  global: "Global"
 };
 
 export const ORIGIN_VARIANTS = u.fromArray(

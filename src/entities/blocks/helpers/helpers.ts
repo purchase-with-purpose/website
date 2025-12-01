@@ -63,6 +63,10 @@ const calcValue = (props: {
 }): string | null => {
   const { id, value } = props;
   if (value === null) return null;
+  if(id === "software.tiers.free") 
+    {
+      return value.toString();
+    }
 
   if (
     id === "software.company.headquarters" ||
