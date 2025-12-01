@@ -2,13 +2,13 @@ import * as u from "@/helpers/utilities";
 
 const CATEGORY_ID_ARRAY = [
   "browser",
+  "email",
   "search-engine",
-  "office-suite",
   "music-streaming",
+  "audio-book",
+  "office-suite",
   "file-storage",
   "photo-management",
-  "audio-book",
-  "email",
 ] as const;
 
 export type Category = {
@@ -26,7 +26,7 @@ const CATEGORY_LABELS: Record<Category["id"], string> = {
   "file-storage": "File Storage",
   "office-suite": "Office Suite",
   "search-engine": "Search Engines",
-  "audio-book": "Audio Books",
+  "audio-book": "Audiobooks",
   "music-streaming": "Music Streaming",
 };
 
@@ -167,7 +167,7 @@ const INCUMBENTS: Record<
     },
     {
       label: "iCloud Mail",
-      logo: "/images/logos/apple-email.webp",
+      logo: "/images/logos/apple-email.png",
       url: "",
     },
     {
