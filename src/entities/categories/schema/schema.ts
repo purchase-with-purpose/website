@@ -35,10 +35,10 @@ const CATEGORY_DESCRIPTIONS: Record<Category["id"], string> = {
     "These guides aim to help you move away from the big tech monopolies. This can be due to privacy concerns, environmental reasons, treatment of their customers, or their influence on politics.",
 
   browser:
-    "These guides aim to help you move away from the big tech monopolies. This can be due to privacy concerns, environmental reasons, treatment of their customers, or their influence on politics.",
+    "These guides aim to help you move away from the big tech monopolies. By using these browsers you are giving unparalleled access to your data, control how you browse and push their tooling. One recent example is Google's change to their engine that limits the effectiveness of privacy tools and ad-blockers (https://egitech.io/post/the-transition-from-manifest-v2-to-manifest-v3-whats-happening-27642305).\n\nThis category is easy to switch with many excellent options and built-in ways to migrate your current settings.\n\nAdditional resources: Telemetry Analysis (https://sizeof.cat/post/web-browser-telemetry-2025-edition/)",
 
   email:
-    "These guides aim to help you move away from the big tech monopolies. This can be due to privacy concerns, environmental reasons, treatment of their customers, or their influence on politics.",
+    "These guides aim to help you move away from the big tech monopolies. By using these email services you are giving unfiltered access to your data, purchasing habits and your personal network. This is being used to push ads masked as emails and lock you into their other products.\n\nThis category is easy to switch, but should be done over an extended period. Choose from the many excellent options and forward your emails to your new address while you slowly change over your accounts.\n\nTo note:\nIf you like an email provider, but not their apps, consider using one of the email clients listed.",
 
   "file-storage":
     "These guides aim to help you move away from the big tech monopolies. This can be due to privacy concerns, environmental reasons, treatment of their customers, or their influence on politics.",

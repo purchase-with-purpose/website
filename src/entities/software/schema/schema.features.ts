@@ -70,12 +70,12 @@ const LABELS: Record<Feature["id"], string> = {
   "browser-native-add-blocking": "Built-in Ad Blocker",
   "browser-built-in-vpn": "Built-in VPN",
   "browser-ai-helper": "AI Assistant",
-  "browser-ecosystem-support": "Larger ecosystem",
-  "browser-good-user-support": "Good User Support",
+  "browser-ecosystem-support": "Larger Ecosystem",
+  "browser-good-user-support": "Partial User Support",
   "browser-good-user-support-partial": "Partial User Support",
   "browser-zero-telemetry": "Zero Telemetry",
   "email-alias-creation": "Alias Creation",
-  "email-easy-unsubscribe": "Easy Email Unsubscribe",
+  "email-easy-unsubscribe": "Unsubscribe Prompts",
   "email-schedule-send": "Schedule Send",
   "email-automatic-categorization": "Automatic Email Sorting",
   "email-ecosystem-support": "Larger Ecosystem",
@@ -124,27 +124,27 @@ const LABELS: Record<Feature["id"], string> = {
 
 const DESCRIPTIONS: Record<Feature["id"], string> = {
   "browser-non-google-engine":
-    "Isn't impacted by Google's decisions e.g. dropping support for ad-blocking extensions",
+    "Isn't impacted by Google's decisions",
   "browser-native-add-blocking":
-    "Default installation comes with an ad-blocker built-in or a preconfigured ad-blocking extension",
+    "Comes with an ad-blocker built-in or preconfigured extension installed",
   "browser-built-in-vpn": "Integrated VPN service for enhanced privacy",
   "browser-ai-helper":
     "Integrated AI helper that integrates into browsing experience",
   "browser-ecosystem-support":
-    "Offers a VPN as an additional tool within their ecosystem",
+    "Offers Search or a VPN as an additional tool within their ecosystem",
   "browser-good-user-support":
     "Forum, community app or email where support within 24 hours is available",
   "browser-good-user-support-partial":
     "Forum, community app or email where support within 24 hours is available",
-  "browser-zero-telemetry": "Limited or no telemetry (tracking or analytical data) is reported back to the company",
+  "browser-zero-telemetry": "Limited or no telemetry (tracking or analytics) is reported back to the company",
   "email-alias-creation": "Create email aliases to protect your main address",
   "email-easy-unsubscribe": "Quick unsubscribe action prompt for unwanted newsletters",
-  "email-automatic-categorization": "Automatic classification of social media messages and promotional communication into specific folders",
-  "email-schedule-send": "Emails can be sent at a specific time",
+  "email-automatic-categorization": "Automatic grouping of emails into specific folders such as social media and promotional",
+  "email-schedule-send": "Emails can be schedule to be delivered at a specific time",
   "email-ecosystem-support": "Offers storage, docs or other productivity tools within their ecosystem",
   "email-good-user-support": "Phone or live chat where support is immediately available",
   "email-good-user-support-partial": "Forum, community app or email where support within 24 hours is available",
-  "email-email-address": "Email Address Included",
+  "email-email-address": "Includes a customisable email address on sign-up",
   "search-independent-index":
     "Provides their own search results alongside of Google or Bing",
   "search-no-personal-identifiers":
