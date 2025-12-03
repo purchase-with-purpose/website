@@ -64,6 +64,7 @@ const BLOCKS: Record<Grouped["id"], Block["id"][]> = {
     "software.features.photos-memories",
     "software.features.office-online-service",
     "software.features.email-automatic-categorization",
+    "software.features.storage-online-office",
   ],
 
   "software.card.features": [

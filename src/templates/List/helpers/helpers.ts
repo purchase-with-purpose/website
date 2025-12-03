@@ -22,6 +22,7 @@ export const calcItems = (items: Software[]): Item[] => {
               const value = getValue({
                 software: x,
                 id,
+                isSummary: group === "software.card.recommended",
               });
 
               if (!value) return null;

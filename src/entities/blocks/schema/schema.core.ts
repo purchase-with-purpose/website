@@ -66,7 +66,7 @@ const LABELS: Record<Id, string> = {
   "software.evaluations.privacy-tools.url": "Privacy Tools URL",
   "software.evaluations.trustpilot.url": "Trustpilot URL",
 
-  "software.derived.app": "Mobile App",
+  "software.derived.app": "Mobile Apps",
 
   ...(Object.fromEntries(
     u.values(FEATURE_VARIANTS).map((x) => {
