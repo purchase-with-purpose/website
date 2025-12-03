@@ -26,6 +26,7 @@ export const calcItems = (items: Software[]): schema.Item[] => {
           const value = getValue({
             software: x,
             id,
+            isSummary: true,
           });
 
           if (!value) return null;

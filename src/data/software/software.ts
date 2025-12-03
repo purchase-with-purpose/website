@@ -67,7 +67,7 @@ export const loader = async (): Promise<Software[]> => {
 
       const inner: Software = {
         id: u.createBrand("SOFTWARE_ID", x.sys.id)!,
-        screenshots: [],
+        screenshots: f.screenshots?.map(screenshot => array.find((x) => x.sys.id === screenshot.sys.id)?.fields.file?.url || "") || [],
         label: f.label,
         recommended: f.recommended || false,
         logo,
@@ -120,6 +120,7 @@ export const loader = async (): Promise<Software[]> => {
       success += 1;
       return inner;
     } catch (error) {
+      console.log(JSON.stringify(x));
       console.error(error);
       return null;
     }

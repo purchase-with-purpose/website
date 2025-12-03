@@ -29,7 +29,7 @@ const calcColour = (props: {
     return INDICATOR_VARIANTS[inner as keyof typeof INDICATOR_VARIANTS].swatch;
   }
 
-  if (id.startsWith("software.features.")) {
+  if (id.startsWith("software.features.") || id.startsWith("software.derived.")) {
     return "#543BF1";
   }
 
@@ -63,10 +63,10 @@ const calcValue = (props: {
 }): string | null => {
   const { id, value } = props;
   if (value === null) return null;
-  if(id === "software.tiers.free") 
-    {
-      return value.toString();
-    }
+
+  if(id === "software.derived.app"){
+    return "Mobile Apps";
+  }
 
   if (
     id === "software.company.headquarters" ||
@@ -166,8 +166,21 @@ const calcIcon = (props: {
 export const getValue = (props: {
   software: Software;
   id: Block["id"];
-}): number | string | boolean | null => {
-  const { software, id } = props;
+  isSummary?: boolean;
+}): number | string | boolean | null => {  
+  const { software, id} = props;
+  
+  let isSummary = props.isSummary || false;
+  if(isSummary && id === "software.tiers.free" && software.category === 'browser') 
+  {
+    return null;
+  }
+
+  if(isSummary && id === "software.derived.app"&& (software.category === 'browser'|| software.category === 'office-suite'))
+  {
+    if (software.platforms.includes("android") && software.platforms.includes("ios")) return id;
+    return null;
+  }
 
   if (id.startsWith("software.features.")) {
     const feature = id.replace("software.features.", "");

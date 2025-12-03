@@ -44,6 +44,11 @@ export const schema = z.object({
         swatch: z.string().optional(),
 
         description: z.string().default(""),
+        screenshots: z.array( z.object({
+          sys: z.object({
+            id: z.string(),
+          }),
+        })).optional(),
         recommended: z.coerce.boolean(),
         indicators: z.array(extractKeysAsEnum(INDICATOR_VARIANTS)).default([]),
         features: z.array(extractKeysAsEnum(FEATURE_VARIANTS)).default([]),
